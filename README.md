@@ -23,11 +23,10 @@
 ### 示例
 ```json
 {
-           "date": "${__time(yyyyMMdd)}",
-           "trans_no": "${__time(yyyyMMdd)}${__RandomString(11,0123456789)}A",
-           "refer_valeu": "${__refer($[1].name)}"
-        
-       }
+   "date": "${__time(yyyyMMdd)}",
+   "trans_no": "${__time(yyyyMMdd)}${__RandomString(11,0123456789)}A",
+   "refer_value": "${__refer($[1].name)}"
+}
 ```
 
 
