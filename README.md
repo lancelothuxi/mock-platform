@@ -1,10 +1,17 @@
 # mock平台
 
 * 零侵入式mock平台，多协议支持（dubbo2.x,3.x,openfeign,http）
+* 自动扫描、自动注册
 * 支持动态参数匹配
-* 支持动态数据
+* 支持动态数据(支持函数生成数据)
 * 云原生支持
 * 支持模拟耗时
+
+
+![自动注册dubbo服务](./asset/dubbo.png)
+![mock数据](./asset/data.png)
+![根据jsonpath匹配数据](./asset/jsonpath.png)
+
 
 
 ## Getting started

@@ -20,9 +20,4 @@ public class CacheUtil {
                 .on("_").useForNull("null")
                         .join(args);
     }
-    public static String buildKey4Data(String... args){
-        return DATA_PREFX+Joiner.on("_")
-                .useForNull("null")
-                .join(args);
-    }
 }
