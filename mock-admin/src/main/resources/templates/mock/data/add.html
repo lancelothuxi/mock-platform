@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('修改mock配置关联响应数据')" />
+    <th:block th:include="include :: datetimepicker-css" />
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-data-edit">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">mock响应数据值：</label>
+            <pre id="data-json-display" autocomplete="off"></pre>
+        </div>
+
+        <input name="mockConfigId" th:value="${mockConfigId}" class="form-control" type="hidden">
+        <input name="data" class="form-control" type="hidden" id="data">
+        <input name="mockReqParams" class="form-control" type="hidden" id="mockReqParams">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">jsonPath表达式：</label>
+            <pre id="expression-json-display" autocomplete="off"></pre>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">模拟耗时(ms)：</label>
+            <div class="col-sm-8">
+                <input name="timeout" class="form-control" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: datetimepicker-js" />
+<script th:src="@{/js/jquery.json-editor.min.js}"></script>
+<script th:inline="javascript">
+    var dataEditor =new JsonEditor('#data-json-display',getJson($('#data')));
+    var expresionEditor =new JsonEditor('#expression-json-display',getJson($('#mockReqParams')));
+
+    function getJson(element) {
+        try {
+            return JSON.parse(element.val());
+        }catch (ex) {
+            return element.val();
+        }
+    }
+
+    var prefix = ctx + "mock/data";
+    $("#form-data-add").validate({
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        $("#data").val( dataEditor.get())
+        $("#mockReqParams").val( expresionEditor.get())
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-data-edit').serialize());
+        }
+    }
+</script>
+</body>
+</html>

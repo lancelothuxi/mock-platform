@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.web.controller.mapper.MockDataMapper">
+<!--    <cache  flushInterval="20000" readOnly="true" type="MockMyabtisCache"/>-->
+    <resultMap type="MockData" id="MockDataResult">
+        <result property="id"    column="id"    />
+        <result property="data"    column="data"    />
+        <result property="mockConfigId"    column="mock_config_id"    />
+        <result property="mockReqParams"    column="mock_req_params"    />
+        <result property="timeout"    column="timeout"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="expectedValue"    column="expected_value"    />
+        <result property="enabled"    column="enabled"    />
+    </resultMap>
+
+    <resultMap type="MockData" id="MockDataResMap">
+        <result property="id"    column="id"    />
+        <result property="data"    column="data"    />
+        <result property="mockConfigId"    column="mock_config_id"    />
+        <result property="mockReqParams"    column="mock_req_params"    />
+        <result property="interfaceName"    column="interface_name"    />
+        <result property="methodName"    column="method_name"    />
+        <result property="timeout"    column="timeout"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedTime"    column="updated_time"    />
+    </resultMap>
+
+    <sql id="selectMockDataVo">
+        select id, data, mock_config_id, mock_req_params, created_time, updated_time, timeout, expected_value, enabled from mock_data
+    </sql>
+
+    <select id="selectMockDataList" parameterType="MockData" resultMap="MockDataResult">
+        <include refid="selectMockDataVo"/>
+        <where>
+            <if test="mockConfigId != null  and mockConfigId != ''"> and mock_config_id = #{mockConfigId}</if>
+            <if test="expectedValue != null  and expectedValue != ''"> and expected_value = #{expectedValue}</if>
+            <if test="enabled != null "> and enabled = #{enabled}</if>
+        </where>
+        order by created_time desc
+    </select>
+
+    <select id="selectMockDataById" parameterType="Long" resultMap="MockDataResult">
+        <include refid="selectMockDataVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertMockData" parameterType="MockData" useGeneratedKeys="true" keyProperty="id">
+        insert into mock_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="data != null">data,</if>
+            <if test="mockConfigId != null">mock_config_id,</if>
+            <if test="mockReqParams != null">mock_req_params,</if>
+            <if test="createdTime != null">created_time,</if>
+            <if test="updatedTime != null">updated_time,</if>
+            <if test="expectedValue != null and expectedValue != ''">expected_value,</if>
+            <if test="enabled != null">enabled,</if>
+            <if test="timeout != null">timeout,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="data != null">#{data},</if>
+            <if test="mockConfigId != null">#{mockConfigId},</if>
+            <if test="mockReqParams != null">#{mockReqParams},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+            <if test="expectedValue != null and expectedValue != ''">#{expectedValue},</if>
+            <if test="enabled != null">#{enabled},</if>
+            <if test="timeout != null">#{timeout},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMockData" parameterType="MockData" flushCache="true">
+        update mock_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="data != null">data = #{data},</if>
+            <if test="mockConfigId != null">mock_config_id = #{mockConfigId},</if>
+            <if test="mockReqParams != null">mock_req_params = #{mockReqParams},</if>
+            <if test="createdTime != null">created_time = #{createdTime},</if>
+            <if test="updatedTime != null">updated_time = #{updatedTime},</if>
+            <if test="expectedValue != null and expectedValue != ''">expected_value = #{expectedValue},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+            <if test="timeout != null">timeout = #{timeout},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+    <update id="batchUpdateMockDelayTimeByMockId">
+        update  mock_data set timeout=#{timeout} where mock_config_id= #{mockConfigId}
+    </update>
+
+    <delete id="deleteMockDataById" parameterType="Long" flushCache="true">
+        delete from mock_data where id = #{id}
+    </delete>
+
+    <delete id="deleteMockDataByIds" parameterType="String" flushCache="true">
+        delete from mock_data where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectMockDataResult" parameterType="MockConfig" resultMap="MockDataResMap">
+        select  d.* from mock_config c left join mock_data d on c.match_data_id = d.id
+        where c.enabled = 1 and c.interface_name = #{interfaceName} and
+        c.method_name = #{methodName} and c.group_name = #{groupName}
+        and c.version = #{version}
+    </select>
+
+    <select id="selectListByConfigList" resultMap="MockDataResult">
+        <include refid="selectMockDataVo"/>
+        where mock_config_id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        and enabled = 1
+    </select>
+    <select id="selectByConfigId"  resultMap="MockDataResult">
+        <include refid="selectMockDataVo"/>
+        where mock_config_id = #{configId}   and enabled = 1      order by created_time desc
+    </select>
+
+</mapper>
