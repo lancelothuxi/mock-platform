@@ -13,6 +13,24 @@
 ![根据jsonpath匹配数据](./asset/jsonpath.png)
 
 
+## 函数支持
+
+* 随机字符串：${__RandomString(11,0123456789)}
+* 时间戳：${__time(yyyyMMdd)}  或者 ${__time(yyyy-MM-dd'T'HH:mm:ss.SSS'Z')}
+* 引用入参的某个值：${__refer($[1].name)}
+
+
+### 示例
+```json
+{
+           "date": "${__time(yyyyMMdd)}",
+           "trans_no": "${__time(yyyyMMdd)}${__RandomString(11,0123456789)}A",
+           "refer_valeu": "${__refer($[1].name)}"
+        
+       }
+```
+
+
 
 ## Getting started
 
