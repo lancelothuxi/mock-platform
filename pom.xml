@@ -29,7 +29,6 @@
         <commons.io.version>2.11.0</commons.io.version>
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
-        <com.ysepay.base.version>1.0.1-SNAPSHOT</com.ysepay.base.version>
     </properties>
 
     <!-- 依赖声明 -->

@@ -95,20 +95,6 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
-        <!--<dependency>
-            <groupId>com.ysepay.base</groupId>
-            <artifactId>ysepay-common-cache</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.ysepay.base</groupId>
-                    <artifactId>ysepay-common-monitor</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.logging.log4j</groupId>
-                    <artifactId>log4j-slf4j-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
 
         <dependency>
             <groupId>org.redisson</groupId>
