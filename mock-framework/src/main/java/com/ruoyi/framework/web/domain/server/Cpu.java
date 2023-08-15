@@ -1,6 +1,6 @@
 package com.ruoyi.framework.web.domain.server;
 
-import com.ruoyi.common.utils.Arith;
+import com.lancelot.mock.common.utils.Arith;
 
 /**
  * CPU相关信息

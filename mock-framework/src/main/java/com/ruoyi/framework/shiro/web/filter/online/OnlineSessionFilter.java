@@ -8,10 +8,10 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Value;
-import com.ruoyi.common.constant.ShiroConstants;
-import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.common.enums.OnlineStatus;
-import com.ruoyi.common.utils.ShiroUtils;
+import com.lancelot.mock.common.constant.ShiroConstants;
+import com.lancelot.mock.common.core.domain.entity.SysUser;
+import com.lancelot.mock.common.enums.OnlineStatus;
+import com.lancelot.mock.common.utils.ShiroUtils;
 import com.ruoyi.framework.shiro.session.OnlineSession;
 import com.ruoyi.framework.shiro.session.OnlineSessionDAO;
 

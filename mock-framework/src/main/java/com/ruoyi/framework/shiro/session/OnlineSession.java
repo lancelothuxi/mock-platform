@@ -3,7 +3,7 @@ package com.ruoyi.framework.shiro.session;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.session.mgt.SimpleSession;
-import com.ruoyi.common.enums.OnlineStatus;
+import com.lancelot.mock.common.enums.OnlineStatus;
 
 /**
  * 在线用户会话属性

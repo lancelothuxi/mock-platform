@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.annotation.DataSource;
-import com.ruoyi.common.config.datasource.DynamicDataSourceContextHolder;
-import com.ruoyi.common.utils.StringUtils;
+import com.lancelot.mock.common.annotation.DataSource;
+import com.lancelot.mock.common.config.datasource.DynamicDataSourceContextHolder;
+import com.lancelot.mock.common.utils.StringUtils;
 
 /**
  * 多数据源处理
@@ -27,8 +27,8 @@ public class DataSourceAspect
 {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("@annotation(com.ruoyi.common.annotation.DataSource)"
-            + "|| @within(com.ruoyi.common.annotation.DataSource)")
+    @Pointcut("@annotation(com.lancelot.mock.common.annotation.DataSource)"
+            + "|| @within(com.lancelot.mock.common.annotation.DataSource)")
     public void dsPointCut()
     {
 

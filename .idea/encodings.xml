@@ -6,10 +6,6 @@
     <file url="file://$PROJECT_DIR$/mock-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-framework/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mock-generator/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mock-generator/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mock-quartz/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mock-quartz/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-system/src/main/resources" charset="UTF-8" />
   </component>

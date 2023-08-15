@@ -3,13 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ruoyi.iml" filepath="$PROJECT_DIR$/ruoyi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-admin/ruoyi-admin.iml" filepath="$PROJECT_DIR$/mock-admin/ruoyi-admin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-common/ruoyi-common.iml" filepath="$PROJECT_DIR$/mock-common/ruoyi-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-framework/ruoyi-framework.iml" filepath="$PROJECT_DIR$/mock-framework/ruoyi-framework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-generator/ruoyi-generator.iml" filepath="$PROJECT_DIR$/mock-generator/ruoyi-generator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-quartz/ruoyi-quartz.iml" filepath="$PROJECT_DIR$/mock-quartz/ruoyi-quartz.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mock-system/ruoyi-system.iml" filepath="$PROJECT_DIR$/mock-system/ruoyi-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-platform.iml" filepath="$PROJECT_DIR$/mock-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-common/mock-platform-common.iml" filepath="$PROJECT_DIR$/mock-common/mock-platform-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-framework/mock-platform-framework.iml" filepath="$PROJECT_DIR$/mock-framework/mock-platform-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-system/mock-platform-system.iml" filepath="$PROJECT_DIR$/mock-system/mock-platform-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-admin/mock-platorm-admin.iml" filepath="$PROJECT_DIR$/mock-admin/mock-platorm-admin.iml" />
     </modules>
   </component>
 </project>

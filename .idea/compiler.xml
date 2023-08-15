@@ -6,24 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ruoyi-framework" />
+        <module name="mock-platorm-admin" />
         <module name="api" />
-        <module name="ruoyi-admin" />
-        <module name="ruoyi-generator" />
-        <module name="ruoyi-quartz" />
-        <module name="ruoyi-common" />
-        <module name="ruoyi-system" />
+        <module name="mock-platform-common" />
+        <module name="mock-platform-framework" />
+        <module name="mock-platform-system" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
-      <module name="ruoyi" target="1.8" />
-      <module name="ruoyi-admin" target="1.8" />
-      <module name="ruoyi-common" target="1.8" />
-      <module name="ruoyi-framework" target="1.8" />
-      <module name="ruoyi-generator" target="1.8" />
-      <module name="ruoyi-quartz" target="1.8" />
-      <module name="ruoyi-system" target="1.8" />
+      <module name="mock-platform" target="1.8" />
+      <module name="mock-platform-common" target="1.8" />
+      <module name="mock-platform-framework" target="1.8" />
+      <module name="mock-platform-system" target="1.8" />
+      <module name="mock-platorm-admin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

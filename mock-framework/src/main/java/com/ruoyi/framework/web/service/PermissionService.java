@@ -8,7 +8,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.ruoyi.common.utils.StringUtils;
+import com.lancelot.mock.common.utils.StringUtils;
 
 /**
  * RuoYi首创 js调用 thymeleaf 实现按钮权限可见性

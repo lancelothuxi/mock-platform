@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.utils.Threads;
+import com.lancelot.mock.common.utils.Threads;
 
 /**
  * 自定义任务调度器完成

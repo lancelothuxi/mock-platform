@@ -6,7 +6,7 @@ import org.apache.shiro.session.mgt.SessionContext;
 import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.utils.IpUtils;
+import com.lancelot.mock.common.utils.IpUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 
 /**

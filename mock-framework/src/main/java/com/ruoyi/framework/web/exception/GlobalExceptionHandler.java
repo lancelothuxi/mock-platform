@@ -9,11 +9,11 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
-import com.ruoyi.common.core.domain.AjaxResult;
-import com.ruoyi.common.exception.DemoModeException;
-import com.ruoyi.common.exception.ServiceException;
-import com.ruoyi.common.utils.ServletUtils;
-import com.ruoyi.common.utils.security.PermissionUtils;
+import com.lancelot.mock.common.core.domain.AjaxResult;
+import com.lancelot.mock.common.exception.DemoModeException;
+import com.lancelot.mock.common.exception.ServiceException;
+import com.lancelot.mock.common.utils.ServletUtils;
+import com.lancelot.mock.common.utils.security.PermissionUtils;
 
 /**
  * 全局异常处理器

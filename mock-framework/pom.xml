@@ -3,17 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ruoyi</artifactId>
-        <groupId>com.ruoyi</groupId>
-        <version>4.7.7</version>
+        <groupId>com.lancelot</groupId>
+        <artifactId>mock-platform</artifactId>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ruoyi-framework</artifactId>
-
-    <description>
-        framework框架核心
-    </description>
+    <artifactId>mock-platform-framework</artifactId>
 
     <dependencies>
 
@@ -92,8 +88,8 @@
 
         <!-- 系统模块-->
         <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-system</artifactId>
+            <groupId>com.lancelot</groupId>
+            <artifactId>mock-platform-system</artifactId>
         </dependency>
 
     </dependencies>

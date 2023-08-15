@@ -6,14 +6,14 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-import com.ruoyi.common.annotation.DataScope;
-import com.ruoyi.common.core.context.PermissionContextHolder;
-import com.ruoyi.common.core.domain.BaseEntity;
-import com.ruoyi.common.core.domain.entity.SysRole;
-import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.common.core.text.Convert;
-import com.ruoyi.common.utils.ShiroUtils;
-import com.ruoyi.common.utils.StringUtils;
+import com.lancelot.mock.common.annotation.DataScope;
+import com.lancelot.mock.common.core.context.PermissionContextHolder;
+import com.lancelot.mock.common.core.domain.BaseEntity;
+import com.lancelot.mock.common.core.domain.entity.SysRole;
+import com.lancelot.mock.common.core.domain.entity.SysUser;
+import com.lancelot.mock.common.core.text.Convert;
+import com.lancelot.mock.common.utils.ShiroUtils;
+import com.lancelot.mock.common.utils.StringUtils;
 
 /**
  * 数据过滤处理
