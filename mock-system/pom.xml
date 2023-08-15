@@ -9,18 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mock-platform-system</artifactId>
+    <artifactId>mock-system</artifactId>
 
     <dependencies>
 
         <!-- 通用工具-->
         <dependency>
             <groupId>com.lancelot</groupId>
-            <artifactId>mock-platform-common</artifactId>
+            <artifactId>mock-common</artifactId>
         </dependency>
         <dependency>
             <groupId>com.lancelot</groupId>
-            <artifactId>mock-platform-common</artifactId>
+            <artifactId>mock-common</artifactId>
         </dependency>
 
     </dependencies>

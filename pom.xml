@@ -144,21 +144,21 @@
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.lancelot</groupId>
-                <artifactId>mock-platform-framework</artifactId>
+                <artifactId>mock-framework</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
                 <groupId>com.lancelot</groupId>
-                <artifactId>mock-platform-system</artifactId>
+                <artifactId>mock-system</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.lancelot</groupId>
-                <artifactId>mock-platform-common</artifactId>
+                <artifactId>mock-common</artifactId>
                 <version>${revision}</version>
             </dependency>
 

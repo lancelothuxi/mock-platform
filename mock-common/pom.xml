@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mock-platform-common</artifactId>
+    <artifactId>mock-common</artifactId>
 
     <dependencies>
 
