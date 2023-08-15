@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.web.controller.mapper.MockDataMapper">
+<mapper namespace="com.lancelot.mock.mapper.MockDataMapper">
 <!--    <cache  flushInterval="20000" readOnly="true" type="MockMyabtisCache"/>-->
-    <resultMap type="MockData" id="MockDataResult">
+    <resultMap type="com.lancelot.mock.domain.MockData" id="MockDataResult">
         <result property="id"    column="id"    />
         <result property="data"    column="data"    />
         <result property="mockConfigId"    column="mock_config_id"    />
@@ -16,7 +16,7 @@
         <result property="enabled"    column="enabled"    />
     </resultMap>
 
-    <resultMap type="MockData" id="MockDataResMap">
+    <resultMap type="com.lancelot.mock.domain.MockData" id="MockDataResMap">
         <result property="id"    column="id"    />
         <result property="data"    column="data"    />
         <result property="mockConfigId"    column="mock_config_id"    />
@@ -32,7 +32,7 @@
         select id, data, mock_config_id, mock_req_params, created_time, updated_time, timeout, expected_value, enabled from mock_data
     </sql>
 
-    <select id="selectMockDataList" parameterType="MockData" resultMap="MockDataResult">
+    <select id="selectMockDataList" parameterType="com.lancelot.mock.domain.MockData" resultMap="MockDataResult">
         <include refid="selectMockDataVo"/>
         <where>
             <if test="mockConfigId != null  and mockConfigId != ''"> and mock_config_id = #{mockConfigId}</if>
@@ -47,7 +47,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertMockData" parameterType="MockData" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertMockData" parameterType="com.lancelot.mock.domain.MockData" useGeneratedKeys="true" keyProperty="id">
         insert into mock_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="data != null">data,</if>
@@ -71,7 +71,7 @@
         </trim>
     </insert>
 
-    <update id="updateMockData" parameterType="MockData" flushCache="true">
+    <update id="updateMockData" parameterType="com.lancelot.mock.domain.MockData" flushCache="true">
         update mock_data
         <trim prefix="SET" suffixOverrides=",">
             <if test="data != null">data = #{data},</if>
@@ -101,13 +101,6 @@
             #{id}
         </foreach>
     </delete>
-
-    <select id="selectMockDataResult" parameterType="MockConfig" resultMap="MockDataResMap">
-        select  d.* from mock_config c left join mock_data d on c.match_data_id = d.id
-        where c.enabled = 1 and c.interface_name = #{interfaceName} and
-        c.method_name = #{methodName} and c.group_name = #{groupName}
-        and c.version = #{version}
-    </select>
 
     <select id="selectListByConfigList" resultMap="MockDataResult">
         <include refid="selectMockDataVo"/>

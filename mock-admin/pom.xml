@@ -3,13 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ruoyi</artifactId>
-        <groupId>com.ruoyi</groupId>
-        <version>4.7.7</version>
+        <groupId>com.lancelot</groupId>
+        <artifactId>mock-platform</artifactId>
+        <version>1.0.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>mock-platorm</artifactId>
+    <artifactId>mock-platorm-admin</artifactId>
 
 
     <properties>
@@ -133,26 +134,20 @@
 
         <!-- 核心模块-->
         <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-framework</artifactId>
-        </dependency>
-
-        <!-- 定时任务-->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-quartz</artifactId>
-        </dependency>
-
-        <!-- 代码生成-->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-generator</artifactId>
+            <groupId>com.lancelot</groupId>
+            <artifactId>mock-platform-common</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-generator</artifactId>
+            <groupId>com.lancelot</groupId>
+            <artifactId>mock-platform-system</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lancelot</groupId>
+            <artifactId>mock-platform-framework</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -170,12 +165,6 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
         </dependency>
 
         <dependency>
@@ -203,11 +192,18 @@
             <artifactId>okhttp</artifactId>
             <version>3.14.9</version>
         </dependency>
+
         <dependency>
-            <groupId>com.ruoyi</groupId>
+            <groupId>com.lancelot</groupId>
             <artifactId>api</artifactId>
-            <version>4.7.7</version>
-            <scope>compile</scope>
+            <version>${revision}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-client</artifactId>
+            <version>6.8.0</version>
         </dependency>
 
     </dependencies>
@@ -243,11 +239,6 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.0</version>
-            </plugin>
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-compose-maven-plugin</artifactId>
-                <version>0.38.0</version>
             </plugin>
         </plugins>
         <finalName>${project.artifactId}</finalName>

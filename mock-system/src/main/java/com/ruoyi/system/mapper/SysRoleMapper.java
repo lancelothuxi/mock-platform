@@ -1,7 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
-import com.ruoyi.common.core.domain.entity.SysRole;
+import com.lancelot.mock.common.core.domain.entity.SysRole;
 
 /**
  * 角色表 数据层

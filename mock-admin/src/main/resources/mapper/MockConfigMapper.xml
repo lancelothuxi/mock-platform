@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.web.controller.mapper.MockConfigMapper">
+<mapper namespace="com.lancelot.mock.mapper.MockConfigMapper">
 <!--    <cache  flushInterval="20000" readOnly="true" type="MockMyabtisCache"/>-->
-    <resultMap type="com.lancelot.mock.api.controller.domain.MockConfig" id="MockConfigResult">
+    <resultMap type="com.lancelot.mock.domain.MockConfig" id="MockConfigResult">
         <result property="id"    column="id"    />
         <result property="interfaceName"    column="interface_name"    />
         <result property="methodName"    column="method_name"    />
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         created_at, updated_at, match_data_id, appliaction_name, type, server_side_mock,direct_match from mock_config
     </sql>
 
-    <select id="selectMockConfigList" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" resultMap="MockConfigResult">
+    <select id="selectMockConfigList" parameterType="com.lancelot.mock.domain.MockConfig" resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         <where>  
             <if test="interfaceName != null  and interfaceName != ''"> and interface_name = #{interfaceName}</if>
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-    <select id="selectMockConfig" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" resultMap="MockConfigResult">
+    <select id="selectMockConfig" parameterType="com.lancelot.mock.domain.MockConfig" resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         <where>
             interface_name = #{interfaceName} and method_name = #{methodName}
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
 
-    <select id="selectMockConfigData" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" resultType="java.lang.String">
+    <select id="selectMockConfigData" parameterType="com.lancelot.mock.domain.MockConfig" resultType="java.lang.String">
         select  d.data from mock_config c left join mock_data d on c.match_data_id = d.id
         where c.interface_name = #{interfaceName} and
         c.method_name = #{methodName} and c.group_name = #{groupName}
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
 
-    <select id="fuzzlySelectMockConfigList" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" resultMap="MockConfigResult">
+    <select id="fuzzlySelectMockConfigList" parameterType="com.lancelot.mock.domain.MockConfig" resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         <where>
             <if test="interfaceName != null  and interfaceName != ''"> and interface_name like concat('%', #{interfaceName}, '%')</if>
@@ -95,7 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-    <insert id="insertMockConfig" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" useGeneratedKeys="true" keyProperty="id" >
+    <insert id="insertMockConfig" parameterType="com.lancelot.mock.domain.MockConfig" useGeneratedKeys="true" keyProperty="id" >
         insert into mock_config
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="interfaceName != null">interface_name,</if>
@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </trim>
     </insert>
 
-    <update id="updateMockConfig" parameterType="com.lancelot.mock.api.controller.domain.MockConfig" flushCache="true">
+    <update id="updateMockConfig" parameterType="com.lancelot.mock.domain.MockConfig" flushCache="true">
         update mock_config
         <trim prefix="SET" suffixOverrides=",">
             <if test="interfaceName != null">interface_name = #{interfaceName},</if>

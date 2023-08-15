@@ -1,9 +1,9 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
-import com.ruoyi.common.core.domain.Ztree;
-import com.ruoyi.common.core.domain.entity.SysDictData;
-import com.ruoyi.common.core.domain.entity.SysDictType;
+import com.lancelot.mock.common.core.domain.Ztree;
+import com.lancelot.mock.common.core.domain.entity.SysDictData;
+import com.lancelot.mock.common.core.domain.entity.SysDictType;
 
 /**
  * 字典 业务层

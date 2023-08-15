@@ -3,8 +3,8 @@ package com.ruoyi.system.domain;
 import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ruoyi.common.core.domain.BaseEntity;
-import com.ruoyi.common.enums.OnlineStatus;
+import com.lancelot.mock.common.core.domain.BaseEntity;
+import com.lancelot.mock.common.enums.OnlineStatus;
 
 /**
  * 当前在线会话 sys_user_online

@@ -1,9 +1,9 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
-import com.ruoyi.common.core.domain.Ztree;
-import com.ruoyi.common.core.domain.entity.SysDept;
-import com.ruoyi.common.core.domain.entity.SysRole;
+import com.lancelot.mock.common.core.domain.Ztree;
+import com.lancelot.mock.common.core.domain.entity.SysDept;
+import com.lancelot.mock.common.core.domain.entity.SysRole;
 
 /**
  * 部门管理 服务层
