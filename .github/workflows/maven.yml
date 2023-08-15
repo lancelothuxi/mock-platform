@@ -24,7 +24,7 @@ jobs:
       with:
         java-version: '8'
         cache: maven
-        distribution: 'oracle'
+        distribution: 'temurin'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
