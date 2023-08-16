@@ -17,10 +17,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class Application {
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
-        System.setProperty("zookeeper.sasl.client","false");
         SpringApplication.run(Application.class, args);
     }
 }
