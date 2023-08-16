@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-api/api.iml" filepath="$PROJECT_DIR$/mock-api/api.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-admin/mock-admin.iml" filepath="$PROJECT_DIR$/mock-admin/mock-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mock-api/mock-api.iml" filepath="$PROJECT_DIR$/mock-api/mock-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-common/mock-common.iml" filepath="$PROJECT_DIR$/mock-common/mock-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-framework/mock-framework.iml" filepath="$PROJECT_DIR$/mock-framework/mock-framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/mock-platform.iml" filepath="$PROJECT_DIR$/mock-platform.iml" />
