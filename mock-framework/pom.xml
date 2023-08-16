@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lancelot</groupId>
+        <groupId>io.github.lancelothuxi</groupId>
         <artifactId>mock-platform</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -88,7 +88,7 @@
 
         <!-- 系统模块-->
         <dependency>
-            <groupId>com.lancelot</groupId>
+            <groupId>io.github.lancelothuxi</groupId>
             <artifactId>mock-system</artifactId>
         </dependency>
 

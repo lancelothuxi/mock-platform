@@ -3,12 +3,10 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lancelot</groupId>
+    <groupId>io.github.lancelothuxi</groupId>
     <artifactId>mock-platform</artifactId>
     <version>1.0.0</version>
 
-    <description>mock平台</description>
-    
     <properties>
         <revision>1.0.0</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +26,30 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
     </properties>
+
+    <name>mock-platform</name>
+    <description>mock-platform for various rpc framework</description>
+    <url>https://github.com/lancelothuxi/mock-platform</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>lancelothuxi</name>
+            <email>huxisuz@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://git@github.com:lancelothuxi/mock-platform.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:lancelothuxi/mock-platform.git</developerConnection>
+        <url>https://github.com/lancelothuxi/mock-platform/main</url>
+    </scm>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
@@ -143,21 +165,21 @@
 
             <!-- 核心模块-->
             <dependency>
-                <groupId>com.lancelot</groupId>
+                <groupId>io.github.lancelothuxi</groupId>
                 <artifactId>mock-framework</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
-                <groupId>com.lancelot</groupId>
+                <groupId>io.github.lancelothuxi</groupId>
                 <artifactId>mock-system</artifactId>
                 <version>${revision}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
-                <groupId>com.lancelot</groupId>
+                <groupId>io.github.lancelothuxi</groupId>
                 <artifactId>mock-common</artifactId>
                 <version>${revision}</version>
             </dependency>

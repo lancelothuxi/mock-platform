@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lancelot.mock.mapper.MockDataMapper">
+<mapper namespace="io.github.lancelothuxi.mock.mapper.MockDataMapper">
 <!--    <cache  flushInterval="20000" readOnly="true" type="MockMyabtisCache"/>-->
-    <resultMap type="com.lancelot.mock.domain.MockData" id="MockDataResult">
+    <resultMap type="io.github.lancelothuxi.mock.domain.MockData" id="MockDataResult">
         <result property="id"    column="id"    />
         <result property="data"    column="data"    />
         <result property="mockConfigId"    column="mock_config_id"    />
@@ -16,7 +16,7 @@
         <result property="enabled"    column="enabled"    />
     </resultMap>
 
-    <resultMap type="com.lancelot.mock.domain.MockData" id="MockDataResMap">
+    <resultMap type="io.github.lancelothuxi.mock.domain.MockData" id="MockDataResMap">
         <result property="id"    column="id"    />
         <result property="data"    column="data"    />
         <result property="mockConfigId"    column="mock_config_id"    />
@@ -32,7 +32,7 @@
         select id, data, mock_config_id, mock_req_params, created_time, updated_time, timeout, expected_value, enabled from mock_data
     </sql>
 
-    <select id="selectMockDataList" parameterType="com.lancelot.mock.domain.MockData" resultMap="MockDataResult">
+    <select id="selectMockDataList" parameterType="io.github.lancelothuxi.mock.domain.MockData" resultMap="MockDataResult">
         <include refid="selectMockDataVo"/>
         <where>
             <if test="mockConfigId != null  and mockConfigId != ''"> and mock_config_id = #{mockConfigId}</if>
@@ -47,7 +47,7 @@
         where id = #{id}
     </select>
 
-    <insert id="insertMockData" parameterType="com.lancelot.mock.domain.MockData" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertMockData" parameterType="io.github.lancelothuxi.mock.domain.MockData" useGeneratedKeys="true" keyProperty="id">
         insert into mock_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="data != null">data,</if>
@@ -71,7 +71,7 @@
         </trim>
     </insert>
 
-    <update id="updateMockData" parameterType="com.lancelot.mock.domain.MockData" flushCache="true">
+    <update id="updateMockData" parameterType="io.github.lancelothuxi.mock.domain.MockData" flushCache="true">
         update mock_data
         <trim prefix="SET" suffixOverrides=",">
             <if test="data != null">data = #{data},</if>

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysConfigMapper">
+<mapper namespace="io.github.lancelothuxi.mock.system.mapper.SysConfigMapper">
     
-    <resultMap type="SysConfig" id="SysConfigResult">
+    <resultMap type="io.github.lancelothuxi.mock.system.domain.SysConfig" id="SysConfigResult">
     	<id     property="configId"      column="config_id"      />
         <result property="configName"    column="config_name"    />
         <result property="configKey"     column="config_key"     />

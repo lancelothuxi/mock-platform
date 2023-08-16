@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysRoleMapper">
+<mapper namespace="io.github.lancelothuxi.mock.system.mapper.SysRoleMapper">
 
-	<resultMap type="SysRole" id="SysRoleResult">
+	<resultMap type="io.github.lancelothuxi.mock.common.core.domain.entity.SysRole" id="SysRoleResult">
 		<id     property="roleId"       column="role_id"        />
 		<result property="roleName"     column="role_name"      />
 		<result property="roleKey"      column="role_key"       />
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach> 
  	</delete>
  	
- 	<update id="updateRole" parameterType="SysRole">
+ 	<update id="updateRole" parameterType="io.github.lancelothuxi.mock.common.core.domain.entity.SysRole">
  		update sys_role
  		<set>
  			<if test="roleName != null and roleName != ''">role_name = #{roleName},</if>
@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where role_id = #{roleId}
 	</update>
  	
- 	<insert id="insertRole" parameterType="SysRole" useGeneratedKeys="true" keyProperty="roleId">
+ 	<insert id="insertRole" parameterType="io.github.lancelothuxi.mock.common.core.domain.entity.SysRole" useGeneratedKeys="true" keyProperty="roleId">
  		insert into sys_role(
  			<if test="roleId != null and roleId != 0">role_id,</if>
  			<if test="roleName != null and roleName != ''">role_name,</if>
