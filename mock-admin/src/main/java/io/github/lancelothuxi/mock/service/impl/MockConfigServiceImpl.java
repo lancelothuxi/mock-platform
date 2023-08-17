@@ -14,7 +14,7 @@ import java.util.List;
  * 服务mock方法Service业务层处理
  *
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-11
+ * @since 2023-05-11
  */
 @Service
 public class MockConfigServiceImpl implements IMockConfigService

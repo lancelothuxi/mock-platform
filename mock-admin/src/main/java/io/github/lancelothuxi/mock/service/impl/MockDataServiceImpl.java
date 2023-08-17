@@ -25,7 +25,7 @@ import java.util.List;
  * mock配置关联响应数据Service业务层处理
  *
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-10
+ * @since 2023-05-10
  */
 @Service
 public class MockDataServiceImpl implements IMockDataService {

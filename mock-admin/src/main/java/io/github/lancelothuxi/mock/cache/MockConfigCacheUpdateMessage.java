@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/7/18 下午3:25
+ * @since 2023/7/18 下午3:25
  */
 public class MockConfigCacheUpdateMessage implements Serializable {
 

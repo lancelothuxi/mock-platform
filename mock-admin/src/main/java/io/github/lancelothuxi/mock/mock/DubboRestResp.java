@@ -4,7 +4,7 @@ package io.github.lancelothuxi.mock.mock;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/2/22 上午11:03
+ * @since 2023/2/22 上午11:03
  */
 public class DubboRestResp<T> {
 

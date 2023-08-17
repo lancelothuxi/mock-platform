@@ -31,7 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * mock配置关联响应数据Controller
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-10
+ * @since 2023-05-10
  */
 @Controller
 @RequestMapping("/mock/data")

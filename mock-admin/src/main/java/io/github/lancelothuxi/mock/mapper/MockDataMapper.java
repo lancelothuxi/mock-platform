@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * mock配置关联响应数据Mapper接口
  * 
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-10
+ * @since 2023-05-10
  */
 public interface MockDataMapper 
 {

@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * mock配置关联响应数据对象 mock_data
  *
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-10
+ * @since 2023-05-10
  */
 public class MockData extends BaseEntity
 {

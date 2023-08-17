@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 服务mock方法对象 mock_config
  * 
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-11
+ * @since 2023-05-11
  */
 public class MockConfig extends BaseEntity
 {

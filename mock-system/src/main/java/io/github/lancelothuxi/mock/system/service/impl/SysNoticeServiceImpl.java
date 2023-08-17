@@ -12,7 +12,7 @@ import io.github.lancelothuxi.mock.system.service.ISysNoticeService;
  * 公告 服务层实现
  * 
  * @author lancelot huxisuz@gmail.com
- * @date 2018-06-25
+ * @since 2018-06-25
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService

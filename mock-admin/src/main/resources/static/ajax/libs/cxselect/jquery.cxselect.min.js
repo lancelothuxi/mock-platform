@@ -2,7 +2,7 @@
  * jQuery cxSelect
  * @name jquery.cxselect.js
  * @version 1.4.2
- * @date 2017-09-26
+ * @since 2017-09-26
  * @author ciaoca
  * @email ciaoca@gmail.com
  * @site https://github.com/ciaoca/cxSelect

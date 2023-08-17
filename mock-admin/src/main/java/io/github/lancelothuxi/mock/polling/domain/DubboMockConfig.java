@@ -9,7 +9,7 @@ import java.util.Date;
  * dubbo mock配置表 dubbo_mock_config
  * 
  * @author luckyframe
- * @date 2022-02-11
+ * @since 2022-02-11
  */
 public class DubboMockConfig
 {

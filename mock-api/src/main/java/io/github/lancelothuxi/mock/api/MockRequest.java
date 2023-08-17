@@ -5,27 +5,32 @@ import java.io.Serializable;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/8/14 下午1:49
+ * @since 2023/8/14 下午1:49
  */
 public class MockRequest implements Serializable {
+
+    /**dubbo interface name**/
     private String interfaceName;
+
+    /**dubbo method name**/
     private String methodName;
+
+    /**dubbo group name**/
     private String groupName;
+
+    /**dubbo version**/
     private String version;
+
+    /**args**/
     private String args;
+
+    /**appName**/
     private String appName;
-    private Long id;
+
 
     public MockRequest() {
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getAppName() {
         return this.appName;

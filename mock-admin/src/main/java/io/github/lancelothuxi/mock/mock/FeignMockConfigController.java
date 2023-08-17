@@ -30,7 +30,7 @@ import static io.github.lancelothuxi.mock.mock.MockUtil.getMockData;
  * 服务mock方法Controller
  *
  * @author lancelot huxisuz@gmail.com
- * @date 2023-05-09
+ * @since 2023-05-09
  */
 @Controller
 @RequestMapping("/mock/feign/config")

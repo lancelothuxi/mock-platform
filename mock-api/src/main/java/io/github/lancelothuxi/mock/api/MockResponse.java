@@ -5,11 +5,26 @@ import java.io.Serializable;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/8/14 下午1:49
+ * @since 2023/8/14 下午1:49
  */
 public class MockResponse implements Serializable {
+
+    /**mock data**/
     private String data;
+
+    /**resp code**/
     private int code;
+
+    /**error message**/
+    private String errorMessage;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     public MockResponse() {
     }

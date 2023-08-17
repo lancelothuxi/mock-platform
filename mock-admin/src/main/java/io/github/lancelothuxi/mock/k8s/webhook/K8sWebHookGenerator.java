@@ -9,7 +9,7 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/8/14 下午7:33
+ * @since 2023/8/14 下午7:33
  */
 public class K8sWebHookGenerator {
 

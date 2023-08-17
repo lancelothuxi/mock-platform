@@ -3,7 +3,7 @@ package io.github.lancelothuxi.mock.mock;
 /**
  * @author lancelot
  * @version 1.0
- * @date 2023/6/17 下午12:35
+ * @since 2023/6/17 下午12:35
  */
 public class MockExpression {
 
