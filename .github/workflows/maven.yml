@@ -28,7 +28,7 @@ jobs:
           server-password: MAVEN_PASSWORD
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
             # gpg私钥
-          gpg-private-key: ${{ secrets.MAVEN_GPC_PRIVATE_KEY }
+          gpg-private-key: ${{ secrets.MAVEN_GPC_PRIVATE_KEY }}
       - name: Publish package
         run: mvn clean deploy -Dmaven.test.skip=true
         env:
