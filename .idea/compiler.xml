@@ -6,22 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mock-api" />
+        <module name="mock-common" />
         <module name="mock-system" />
         <module name="api" />
         <module name="mock-admin" />
-        <module name="mock-api" />
-        <module name="mock-common" />
         <module name="mock-framework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.8" />
-      <module name="mock-admin" target="1.8" />
-      <module name="mock-api" target="1.8" />
-      <module name="mock-common" target="1.8" />
-      <module name="mock-framework" target="1.8" />
-      <module name="mock-platform" target="1.8" />
-      <module name="mock-system" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
