@@ -4,9 +4,14 @@
     <file url="file://$PROJECT_DIR$/mock-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mock-framework/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mock-system/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
