@@ -30,13 +30,6 @@ public interface MockDataMapper
      */
     public List<MockData> selectMockDataList(MockData mockData);
 
-    /**
-     * 查询mock配置关联响应数据列表
-     *
-     * @param MockConfig mock配置关联响应数据
-     * @return mock配置关联响应数据集合
-     */
-    public MockData selectMockDataResult(MockConfig MockConfig);
 
     /**
      * 新增mock配置关联响应数据

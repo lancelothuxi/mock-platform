@@ -1,7 +1,10 @@
 package io.github.lancelothuxi.mock.k8s.webhook;
+import io.fabric8.kubernetes.api.model.LabelSelector;
+import io.fabric8.kubernetes.api.model.LabelSelectorBuilder;
 import io.fabric8.kubernetes.api.model.admissionregistration.v1.MutatingWebhookBuilder;
 import io.fabric8.kubernetes.api.model.admissionregistration.v1.MutatingWebhookConfiguration;
 import io.fabric8.kubernetes.api.model.admissionregistration.v1.MutatingWebhookConfigurationBuilder;
+import io.fabric8.kubernetes.api.model.admissionregistration.v1.RuleWithOperationsBuilder;
 import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequest;
 import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequestBuilder;
 import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequestCondition;
@@ -11,6 +14,9 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
 
 /**
@@ -22,26 +28,67 @@ public class K8sWebHookGenerator {
 
     KubernetesClient client = new DefaultKubernetesClient();
 
+    /**
+     * 创建一个MutatingWebhookConfiguration
+     */
     public void createWebhook(){
+
+        Map<String,String>  labelMap =new HashMap<>();
+        labelMap.put("mock-agent-enabled","true");
+        // Create a LabelSelector to match namespaces with specific labels
+        LabelSelector namespaceSelector = new LabelSelectorBuilder()
+                .withMatchLabels(labelMap)
+                .build();
+
         MutatingWebhookConfiguration webhookConfiguration = new MutatingWebhookConfigurationBuilder()
-                .withNewMetadata().withName("ggg").endMetadata()
+                .withNewMetadata().withName("mock-agent-mutation-webhook").endMetadata()
                 .addToWebhooks(new MutatingWebhookBuilder()
-                        .withName("com.lancelot.com")
+                        .withName("mock-agent-mutation-webhook")
                         .withSideEffects("None")
                         .withAdmissionReviewVersions(Arrays.asList("v1"))
                         .withNewClientConfig()
-                        .withNewService()
-                        .withName("svc1")
-                        .withNamespace("test")
-                        .withPath("/mutate")
-                        .endService()
+                        .withUrl("")
+//                        .withNewService()
+//                        .withName("svc1")
+//                        .withNamespace("test")
+//                        .withPath("/mutate")
+//                        .endService()
                         .endClientConfig()
+                        .withRules(new RuleWithOperationsBuilder()
+                                .withOperations("CREATE")
+                                .withApiGroups("apps")
+                                .withApiVersions("v1")
+                                .withResources("deployments")
+                                .build())
+                        .withNamespaceSelector(namespaceSelector)
                         .build())
                 .build();
 
 
         client.admissionRegistration().v1()
-                .mutatingWebhookConfigurations().delete(webhookConfiguration);
+                .mutatingWebhookConfigurations().replace(webhookConfiguration);
+
+    }
+
+    /**
+     *
+     */
+    public void deleteWebhook(){
+
+        boolean hasMatchingWebhook = new MutatingWebhookConfigurationBuilder()
+                .hasMatchingWebhook(new Predicate<MutatingWebhookBuilder>() {
+                    @Override
+                    public boolean test(MutatingWebhookBuilder mutatingWebhookBuilder) {
+                        return mutatingWebhookBuilder.getName().equals("mock-agent-mutation-webhook");
+                    }
+                });
+        if(!hasMatchingWebhook){
+            return;
+        }
+
+        client.admissionRegistration().v1()
+                .mutatingWebhookConfigurations().delete(new MutatingWebhookConfigurationBuilder().withNewMetadata()
+        .withName("mock-agent-mutation-webhook").endMetadata().build());
 
     }
 
