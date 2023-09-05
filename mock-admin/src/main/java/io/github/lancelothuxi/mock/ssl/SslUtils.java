@@ -10,6 +10,8 @@ import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+
 /**
  * @author lancelot
  * @version 1.0
@@ -55,7 +57,10 @@ public class SslUtils {
     }
 
     private static PrivateKey toPrivateKey(byte[] privateKeyBytes) throws Exception {
+
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(privateKeyBytes);
+        keyFactory.generatePublic(publicKeySpec);
         PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
         return keyFactory.generatePrivate(privateKeySpec);
     }
