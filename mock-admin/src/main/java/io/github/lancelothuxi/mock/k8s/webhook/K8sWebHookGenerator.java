@@ -11,12 +11,17 @@ import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequest
 import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequestConditionBuilder;
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.github.lancelothuxi.mock.mock.MockDubboServiceImpl;
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
+import java.io.*;
 
 
 /**
@@ -25,6 +30,8 @@ import java.util.function.Predicate;
  * @since 2023/8/14 下午7:33
  */
 public class K8sWebHookGenerator {
+
+    private static Logger logger= LoggerFactory.getLogger(MockDubboServiceImpl.class);
 
     KubernetesClient client = new DefaultKubernetesClient();
 
@@ -43,11 +50,11 @@ public class K8sWebHookGenerator {
         MutatingWebhookConfiguration webhookConfiguration = new MutatingWebhookConfigurationBuilder()
                 .withNewMetadata().withName("mock-agent-mutation-webhook").endMetadata()
                 .addToWebhooks(new MutatingWebhookBuilder()
-                        .withName("mock-agent-mutation-webhook")
+                        .withName("io.github.lancelothuxi.mockagent")
                         .withSideEffects("None")
                         .withAdmissionReviewVersions(Arrays.asList("v1"))
                         .withNewClientConfig()
-                        .withUrl("")
+                        .withUrl("https://localhost:8080/mutate")
 //                        .withNewService()
 //                        .withName("svc1")
 //                        .withNamespace("test")
@@ -66,7 +73,7 @@ public class K8sWebHookGenerator {
 
 
         client.admissionRegistration().v1()
-                .mutatingWebhookConfigurations().replace(webhookConfiguration);
+                .mutatingWebhookConfigurations().createOrReplace(webhookConfiguration);
 
     }
 
@@ -74,18 +81,6 @@ public class K8sWebHookGenerator {
      *
      */
     public void deleteWebhook(){
-
-        boolean hasMatchingWebhook = new MutatingWebhookConfigurationBuilder()
-                .hasMatchingWebhook(new Predicate<MutatingWebhookBuilder>() {
-                    @Override
-                    public boolean test(MutatingWebhookBuilder mutatingWebhookBuilder) {
-                        return mutatingWebhookBuilder.getName().equals("mock-agent-mutation-webhook");
-                    }
-                });
-        if(!hasMatchingWebhook){
-            return;
-        }
-
         client.admissionRegistration().v1()
                 .mutatingWebhookConfigurations().delete(new MutatingWebhookConfigurationBuilder().withNewMetadata()
         .withName("mock-agent-mutation-webhook").endMetadata().build());
@@ -93,14 +88,21 @@ public class K8sWebHookGenerator {
     }
 
 
-    public void selfApproveCSR(){
+
+
+    /**
+     *
+     */
+    public void selfApproveCSR(File certificatePemFile){
+
+        String csrYaml = getCsrYaml(certificatePemFile);
 
         CertificateSigningRequest csr = new CertificateSigningRequestBuilder()
                 .withNewMetadata()
-                .withName("your-csr-name")
+                .withName("mock-agent-csr")
                 .endMetadata()
                 .withNewSpec()
-                .withRequest(Base64.getEncoder().encodeToString(new byte[]{}))
+                .withRequest(csrYaml)
                 .endSpec()
                 .build();
 
@@ -112,8 +114,38 @@ public class K8sWebHookGenerator {
                 .withReason("ApprovedViaRESTApi")
                 .withMessage("Approved by REST API /approval endpoint.")
                 .build();
-        client.certificates().v1().certificateSigningRequests().withName("my-cert").approve(csrCondition);
+        client.certificates().v1().certificateSigningRequests().withName("mock-agent-csr").approve(csrCondition);
 
+    }
+
+
+    public String getCsrYaml(File certificatePemFile){
+        try {
+            // 读取PEM证书内容
+            String pemContent = FileUtils.readFileToString(certificatePemFile, Charset.defaultCharset());
+
+            // 对PEM证书内容进行Base64编码
+            String base64EncodedCertificate = Base64.getEncoder().encodeToString(pemContent.getBytes());
+
+            // 创建CSR YAML文件
+            String csrYaml = "apiVersion: certificates.k8s.io/v1beta1\n" +
+                    "kind: CertificateSigningRequest\n" +
+                    "metadata:\n" +
+                    "  name: mock-agent-csr\n" +
+                    "spec:\n" +
+                    "  request: " + base64EncodedCertificate + "\n" +
+                    "  signerName: <ca-signer-name>\n" +
+                    "  usages:\n" +
+                    "  - digital signature\n" +
+                    "  - key encipherment\n" +
+                    "  - server auth";
+
+            return csrYaml;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
 }

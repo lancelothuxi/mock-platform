@@ -44,7 +44,6 @@ public class RandomString extends AbstractFunction {
 
     @Override
     public void setParameters(Collection<CompoundVariable> parameters) {
-        // TODO 参数个数校验
         values = parameters.toArray(new CompoundVariable[parameters.size()]);
     }
 
@@ -53,11 +52,5 @@ public class RandomString extends AbstractFunction {
         return KEY;
     }
 
-    public static void main(String[] args) {
-        final String s = RandomStringUtils.random(10,"0123456789");
-
-        System.out.println("s = " + s);
-
-    }
 
 }

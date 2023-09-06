@@ -54,11 +54,5 @@ public class ReferFunction extends AbstractFunction {
         return KEY;
     }
 
-    public static void main(String[] args) {
-        final String s = RandomStringUtils.randomAlphabetic(10);
-
-        System.out.println("s = " + s);
-
-    }
 
 }
