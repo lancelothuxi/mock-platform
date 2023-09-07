@@ -29,8 +29,7 @@ public class SysPasswordService {
 
   private Cache<String, AtomicInteger> loginRecordCache;
 
-  @Value(value = "${user.password.maxRetryCount}")
-  private String maxRetryCount;
+  private int maxRetryCount = 5;
 
   @PostConstruct
   public void init() {
@@ -46,7 +45,7 @@ public class SysPasswordService {
       retryCount = new AtomicInteger(0);
       loginRecordCache.put(loginName, retryCount);
     }
-    if (retryCount.incrementAndGet() > Integer.valueOf(maxRetryCount).intValue()) {
+    if (retryCount.incrementAndGet() > maxRetryCount) {
       AsyncManager.me()
           .execute(
               AsyncFactory.recordLogininfor(

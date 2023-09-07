@@ -25,7 +25,6 @@ server:
 # MyBatis
 mybatis:
   # 搜索指定包别名
-  typeAliasesPackage: com.ruoyi.**.domain
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
@@ -88,25 +87,10 @@ spring:
   main:
     allow-circular-references: true
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    druid:
-      # 主库数据源
-      master:
-        url: jdbc:mysql://localhost:3306/mock_platform?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
-        username: root
-        password: root
-      # 初始连接数
-      initialSize: 5
-      # 最小连接池数量
-      minIdle: 10
-      # 最大连接池数量
-      maxActive: 20
-      # 配置获取连接等待超时的时间
-      maxWait: 60000
-      # 配置连接超时时间
-      connectTimeout: 30000
-      validationQuery: SELECT 1 FROM DUAL
+    url00: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
   redis:
     redisson:
       config: |
@@ -122,6 +106,7 @@ dubbo:
       name: dubbo
       port: 20180
     namespace: mock-platform
-log4j2:
-  enableConsole: true
 
+logging:
+  level:
+    root: debug
