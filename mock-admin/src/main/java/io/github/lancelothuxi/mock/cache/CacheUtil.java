@@ -12,8 +12,6 @@ import java.util.Arrays;
 public class CacheUtil {
 
     public static final String CONFIG_PREFX="mockServer:mockConfig:";
-    public static final String DATA_PREFX="mockServer:mockData:";
-
 
     public static String buildKey4Config(String... args){
         return CONFIG_PREFX+Joiner

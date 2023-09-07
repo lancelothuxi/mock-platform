@@ -11,6 +11,7 @@ import io.github.lancelothuxi.mock.service.IMockDataService;
 import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +27,8 @@ public class LocalCache   {
 
     private Cache<String, MockConfig> mockConfigCache;
 
-    private Cache<String, List<MockData>> mockDatasCache;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @Autowired
     RedissonClient redissonClient;
@@ -39,10 +41,10 @@ public class LocalCache   {
 
     @PostConstruct
     private void init(){
+
         mockConfigCache=Caffeine.newBuilder()
                 .maximumSize(Long.MAX_VALUE)
                 .build();
-
 
 
         //启动吧数据库所有enabled mock数据加载到本地缓存
@@ -52,6 +54,8 @@ public class LocalCache   {
         for (MockConfig mockConfig : mockConfigs) {
             addToCache(mockConfig);
         }
+
+
 
         RTopic mockConfigChangedTopic = redissonClient.getTopic("mockConfigChanged");
         // 订阅消息
@@ -172,9 +176,7 @@ public class LocalCache   {
      */
     public void mockConfigAdd(MockConfig request){
         RTopic mockConfigChangedTopic = redissonClient.getTopic("mockConfigChanged");
-
         MockConfigCacheUpdateMessage mockConfigCacheUpdateMessage = convertToMessag(request, OperationConstant.ADD);
-
         mockConfigChangedTopic.publish(JSON.toJSONString(mockConfigCacheUpdateMessage));
     }
 
