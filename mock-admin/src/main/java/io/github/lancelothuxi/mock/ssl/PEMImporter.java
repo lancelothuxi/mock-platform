@@ -3,10 +3,9 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.StringWriter;
 import java.security.KeyFactory;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.cert.CertificateException;
@@ -16,12 +15,20 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+
+import org.bouncycastle.operator.ContentSigner;
+import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.bouncycastle.pkcs.PKCS10CertificationRequest;
+import org.bouncycastle.pkcs.PKCS10CertificationRequestBuilder;
+import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
+import javax.security.auth.x500.X500Principal;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -49,7 +56,7 @@ public class PEMImporter {
      * @param the password to set to protect the private key
      */
     public static KeyStore createKeyStore(File privateKeyPem, File certificatePem, final String password)
-            throws Exception, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
+            throws Exception {
         final X509Certificate[] cert = createCertificates(certificatePem);
         final KeyStore keystore = KeyStore.getInstance("JKS");
         keystore.load(null);
@@ -118,6 +125,42 @@ public class PEMImporter {
     private static X509Certificate generateCertificateFromDER(byte[] certBytes) throws CertificateException {
         final CertificateFactory factory = CertificateFactory.getInstance("X.509");
         return (X509Certificate) factory.generateCertificate(new ByteArrayInputStream(certBytes));
+    }
+    /**
+     *
+     * @param certFile
+     * @param privateKeyFile
+     * @throws Exception
+     * @return
+     */
+    public static String convertCertToCSR(String certFile, String privateKeyFile) throws Exception {
+
+        X509Certificate[] certificates = createCertificates(new File(certFile));
+
+        assert certificates!=null;
+        assert certificates.length==1;
+
+        X509Certificate certificate = certificates[0];
+
+        // 读取私钥文件
+        PrivateKey privateKey = createPrivateKey(new File(privateKeyFile));
+
+        // 获取证书主题信息
+        X500Principal subject = certificate.getSubjectX500Principal();
+
+        // 创建CSR请求
+        PKCS10CertificationRequestBuilder csrBuilder = new JcaPKCS10CertificationRequestBuilder(subject, certificate.getPublicKey());
+        ContentSigner signer = new JcaContentSignerBuilder("SHA256withRSA").build(privateKey);
+        PKCS10CertificationRequest csr = csrBuilder.build(signer);
+
+        // 将CSR请求写入文件
+        StringWriter writer = new StringWriter();
+        writer.write("-----BEGIN CERTIFICATE REQUEST-----\n");
+        writer.write(Base64.getEncoder().encodeToString(csr.getEncoded()));
+        writer.write("\n-----END CERTIFICATE REQUEST-----");
+        writer.close();
+
+        return writer.toString();
     }
 
 }

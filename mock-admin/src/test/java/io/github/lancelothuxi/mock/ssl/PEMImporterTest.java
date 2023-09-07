@@ -42,4 +42,19 @@ class PEMImporterTest {
     KeyStore keyStore = PEMImporter.createKeyStore(new File(privateKeyPath), new File(certificatePath), "");
     Assert.notNull(keyStore);
   }
+
+  @Test
+  void convertCertToCSR() throws Exception{
+
+    URL location = SslUtilsTest.class.getProtectionDomain().getCodeSource().getLocation();
+    Path path = Paths.get(location.toURI());
+
+    // PEM 文件路径
+    String privateKeyPath = path+"/private-key.pem";
+    String certificatePath = path+"/certificate.pem";
+
+    String convertCertToCSR = PEMImporter.convertCertToCSR(certificatePath, privateKeyPath);
+
+    System.out.println("convertCertToCSR = " + convertCertToCSR);
+  }
 }

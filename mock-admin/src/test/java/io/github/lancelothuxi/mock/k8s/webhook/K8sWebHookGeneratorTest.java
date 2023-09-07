@@ -1,11 +1,12 @@
 package io.github.lancelothuxi.mock.k8s.webhook;
 
+import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequest;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import io.fabric8.kubernetes.client.server.mock.EnableKubernetesMockClient;
 import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,10 +39,21 @@ public class K8sWebHookGeneratorTest {
     }
 
   @Test
-  void createWebhook() {}
+  void csrTest() {
+
+      try (KubernetesClient client = new KubernetesClientBuilder().build()) {
+          CertificateSigningRequest csr = client.certificates().v1().certificateSigningRequests()
+                  .load(K8sWebHookGeneratorTest.class.getResourceAsStream("/test-csr-v1.yml")).item();
+          client.certificates().v1().certificateSigningRequests().resource(csr).create();
+      }
+
+  }
 
   @Test
-  void deleteWebhook() {}
+  void deleteWebhook() {
+
+
+  }
 
   @Test
   void selfApproveCSR() throws Exception {
@@ -52,8 +64,10 @@ public class K8sWebHookGeneratorTest {
 
       // PEM 文件路径
       String certificatePath = basePath+"/certificate.pem";
+      String privateKeyPath = path+"/private-key.pem";
+
 
       K8sWebHookGenerator k8sWebHookGenerator=new K8sWebHookGenerator();
-      k8sWebHookGenerator.selfApproveCSR(new File(certificatePath));
+      k8sWebHookGenerator.selfApproveCSR(certificatePath,privateKeyPath);
   }
 }
