@@ -7,23 +7,23 @@ package io.github.lancelothuxi.mock.mock;
  */
 public class MockExpression {
 
-    private String jsonPath="";
+  private String jsonPath = "";
 
-    private String expectedValue="";
+  private String expectedValue = "";
 
-    public String getJsonPath() {
-        return jsonPath;
-    }
+  public String getJsonPath() {
+    return jsonPath;
+  }
 
-    public void setJsonPath(String jsonPath) {
-        this.jsonPath = jsonPath;
-    }
+  public void setJsonPath(String jsonPath) {
+    this.jsonPath = jsonPath;
+  }
 
-    public String getExpectedValue() {
-        return expectedValue;
-    }
+  public String getExpectedValue() {
+    return expectedValue;
+  }
 
-    public void setExpectedValue(String expectedValue) {
-        this.expectedValue = expectedValue;
-    }
+  public void setExpectedValue(String expectedValue) {
+    this.expectedValue = expectedValue;
+  }
 }

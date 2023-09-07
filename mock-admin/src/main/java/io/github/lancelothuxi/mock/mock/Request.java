@@ -7,33 +7,32 @@ import java.util.List;
 
 public class Request {
 
-    private String appName;
-    private List<MockConfig> mockConfigList =new ArrayList<>();
+  private String appName;
+  private List<MockConfig> mockConfigList = new ArrayList<>();
 
-    private String type;
+  private String type;
 
+  public String getAppName() {
+    return appName;
+  }
 
-    public String getAppName() {
-        return appName;
-    }
+  public void setAppName(String appName) {
+    this.appName = appName;
+  }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
+  public List<MockConfig> getMockConfigList() {
+    return mockConfigList;
+  }
 
-    public List<MockConfig> getMockConfigList() {
-        return mockConfigList;
-    }
+  public void setMockConfigList(List<MockConfig> mockConfigList) {
+    this.mockConfigList = mockConfigList;
+  }
 
-    public void setMockConfigList(List<MockConfig> mockConfigList) {
-        this.mockConfigList = mockConfigList;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 }

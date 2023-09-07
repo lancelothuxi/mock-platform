@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('修改mock配置关联响应数据')" />
-    <th:block th:include="include :: datetimepicker-css" />
+    <th:block th:include="include :: header('修改mock配置关联响应数据')"/>
+    <th:block th:include="include :: datetimepicker-css"/>
 </head>
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
@@ -13,9 +13,9 @@
             <pre id="data-json-display">[[*{data}]]</pre>
         </div>
 
-        <input name="mockRuleId" th:field="*{mockConfigId}" class="form-control" type="hidden">
-        <input name="data" th:field="*{data}" class="form-control" type="hidden" id="data">
-        <input name="mockReqParams" th:field="*{mockReqParams}" class="form-control" type="hidden" id="mockReqParams">
+        <input class="form-control" name="mockRuleId" th:field="*{mockConfigId}" type="hidden">
+        <input class="form-control" id="data" name="data" th:field="*{data}" type="hidden">
+        <input class="form-control" id="mockReqParams" name="mockReqParams" th:field="*{mockReqParams}" type="hidden">
         <div class="form-group">
             <label class="col-sm-3 control-label">jsonPath表达式：</label>
             <pre id="expression-json-display">[[*{mockReqParams}]]</pre>
@@ -24,23 +24,23 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">模拟耗时(ms)：</label>
             <div class="col-sm-8">
-                <input name="timeout" th:field="*{timeout}" class="form-control" type="text">
+                <input class="form-control" name="timeout" th:field="*{timeout}" type="text">
             </div>
         </div>
 
     </form>
 </div>
-<th:block th:include="include :: footer" />
-<th:block th:include="include :: datetimepicker-js" />
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: datetimepicker-js"/>
 <script th:src="@{/js/jquery.json-editor.min.js}"></script>
 <script th:inline="javascript">
-    var dataEditor =new JsonEditor('#data-json-display',getJson($('#data')));
-    var expresionEditor =new JsonEditor('#expression-json-display',getJson($('#mockReqParams')));
+    var dataEditor = new JsonEditor('#data-json-display', getJson($('#data')));
+    var expresionEditor = new JsonEditor('#expression-json-display', getJson($('#mockReqParams')));
 
     function getJson(element) {
         try {
             return JSON.parse(element.val());
-        }catch (ex) {
+        } catch (ex) {
             return element.val()
         }
     }
@@ -51,8 +51,8 @@
     });
 
     function submitHandler() {
-        $("#data").val( dataEditor.get())
-        $("#mockReqParams").val( expresionEditor.get())
+        $("#data").val(dataEditor.get())
+        $("#mockReqParams").val(expresionEditor.get())
         if ($.validate.form()) {
             $.operate.save(prefix + "/edit", $('#form-data-edit').serialize());
         }

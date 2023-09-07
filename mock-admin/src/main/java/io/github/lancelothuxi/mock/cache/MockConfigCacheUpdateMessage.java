@@ -9,89 +9,89 @@ import java.io.Serializable;
  */
 public class MockConfigCacheUpdateMessage implements Serializable {
 
-    /** 主键 */
-    private Long id;
+  /** 主键 */
+  private Long id;
 
-    /** 服务名 */
-    private String interfaceName;
+  /** 服务名 */
+  private String interfaceName;
 
-    /** 方法名 */
-    private String methodName;
+  /** 方法名 */
+  private String methodName;
 
-    /** 分组名 */
-    private String groupName;
+  /** 分组名 */
+  private String groupName;
 
-    /** 版本号 */
-    private String version;
+  /** 版本号 */
+  private String version;
 
-    /**应用名 */
-    private String applicationName;
+  /** 应用名 */
+  private String applicationName;
 
-    private String type;
+  private String type;
 
-    private String op;
+  private String op;
 
-    public String getOp() {
-        return op;
-    }
+  public String getOp() {
+    return op;
+  }
 
-    public void setOp(String op) {
-        this.op = op;
-    }
+  public void setOp(String op) {
+    this.op = op;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getInterfaceName() {
-        return interfaceName;
-    }
+  public String getInterfaceName() {
+    return interfaceName;
+  }
 
-    public void setInterfaceName(String interfaceName) {
-        this.interfaceName = interfaceName;
-    }
+  public void setInterfaceName(String interfaceName) {
+    this.interfaceName = interfaceName;
+  }
 
-    public String getMethodName() {
-        return methodName;
-    }
+  public String getMethodName() {
+    return methodName;
+  }
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
+  public void setMethodName(String methodName) {
+    this.methodName = methodName;
+  }
 
-    public String getGroupName() {
-        return groupName;
-    }
+  public String getGroupName() {
+    return groupName;
+  }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
 
-    public String getVersion() {
-        return version;
-    }
+  public String getVersion() {
+    return version;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
-    public String getApplicationName() {
-        return applicationName;
-    }
+  public String getApplicationName() {
+    return applicationName;
+  }
 
-    public void setApplicationName(String applicationName) {
-        this.applicationName = applicationName;
-    }
+  public void setApplicationName(String applicationName) {
+    this.applicationName = applicationName;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 }

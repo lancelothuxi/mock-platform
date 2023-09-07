@@ -4,14 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,10 +29,10 @@ class SslUtilsTest {
     String basePath = path.toString();
 
     // PEM 文件路径
-    String privateKeyPath = path+"/private-key.pem";
-    String certificatePath = path+"/certificate.pem";
+    String privateKeyPath = path + "/private-key.pem";
+    String certificatePath = path + "/certificate.pem";
     // JKS 文件路径
-    String jksPath = path+"/keystore.jks";
+    String jksPath = path + "/keystore.jks";
     // 密钥库密码
     String keyStorePassword = "your-password";
     // 密钥别名
@@ -52,7 +50,8 @@ class SslUtilsTest {
       KeyStore keyStore = KeyStore.getInstance("JKS");
       keyStore.load(jksInputStream, keyStorePassword.toCharArray());
 
-      PrivateKey privateKey = (PrivateKey) keyStore.getKey(keyAlias, keyStorePassword.toCharArray());
+      PrivateKey privateKey =
+          (PrivateKey) keyStore.getKey(keyAlias, keyStorePassword.toCharArray());
       Certificate certificate = keyStore.getCertificate(keyAlias);
 
       assertTrue(privateKey != null);
@@ -64,6 +63,4 @@ class SslUtilsTest {
 
   @Test
   void convertPemToJks() {}
-
-
 }

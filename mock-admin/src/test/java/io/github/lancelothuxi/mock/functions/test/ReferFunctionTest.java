@@ -11,17 +11,17 @@ import org.testng.annotations.Test;
  */
 public class ReferFunctionTest {
 
-    //test commit
-    @Test
-    public void testExecute() {
+  // test commit
+  @Test
+  public void testExecute() {
 
-        String args="[[\"3343434343\",\"dfdfdfdfd\"]]";
+    String args = "[[\"3343434343\",\"dfdfdfdfd\"]]";
 
-        String data="${__refer($[0][0])}";
+    String data = "${__refer($[0][0])}";
 
-        CompoundVariable compoundVariable= new CompoundVariable();
-        compoundVariable.setParameters(data);
-        data=compoundVariable.execute(args);
-        Assert.assertEquals(data,"3343434343");
-    }
+    CompoundVariable compoundVariable = new CompoundVariable();
+    compoundVariable.setParameters(data);
+    data = compoundVariable.execute(args);
+    Assert.assertEquals(data, "3343434343");
+  }
 }

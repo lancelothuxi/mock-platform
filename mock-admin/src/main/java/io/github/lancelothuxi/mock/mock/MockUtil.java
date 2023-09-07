@@ -26,121 +26,128 @@ import java.util.concurrent.TimeUnit;
  */
 public class MockUtil {
 
-    private static ConcurrentMap<String, MockJSONPath> pathCache = new ConcurrentHashMap<String, MockJSONPath>(128, 0.75f, 1);
+  private static ConcurrentMap<String, MockJSONPath> pathCache =
+      new ConcurrentHashMap<String, MockJSONPath>(128, 0.75f, 1);
 
-    private static Logger logger = LoggerFactory.getLogger(MockUtil.class);
+  private static Logger logger = LoggerFactory.getLogger(MockUtil.class);
 
-    private static HashedWheelTimer hashedWheelTimer=new HashedWheelTimer(Executors.defaultThreadFactory(),100,TimeUnit.NANOSECONDS);
+  private static HashedWheelTimer hashedWheelTimer =
+      new HashedWheelTimer(Executors.defaultThreadFactory(), 100, TimeUnit.NANOSECONDS);
 
-    public static void sleep(long milliSeconds, long elapsed) throws InterruptedException {
-        //如果mock逻辑额外耗时已经超过 milliSeconds 则不需要mock
-        if (elapsed >= milliSeconds) {
-            return;
-        }
-
-        final long expectedCost = milliSeconds - elapsed;
-
-        CountDownLatch countDownLatch=new CountDownLatch(1);
-
-        hashedWheelTimer.newTimeout(new TimerTask() {
-            @Override
-            public void run(Timeout timeout)  {
-                countDownLatch.countDown();
-            }
-        }, expectedCost, TimeUnit.MILLISECONDS);
-
-        countDownLatch.await();
+  public static void sleep(long milliSeconds, long elapsed) throws InterruptedException {
+    // 如果mock逻辑额外耗时已经超过 milliSeconds 则不需要mock
+    if (elapsed >= milliSeconds) {
+      return;
     }
 
-    public static MockData getMockData(String args, MockConfig mockConfig, List<MockData> mockDataList) {
+    final long expectedCost = milliSeconds - elapsed;
 
-        Object jsonObject = JSON.parse(args);
+    CountDownLatch countDownLatch = new CountDownLatch(1);
 
-        if (mockDataList == null || mockDataList.size() == 0) {
-            if (logger.isInfoEnabled()) {
-                logger.info("mock mockDataList is empty ");
-            }
-            return null;
-        }
+    hashedWheelTimer.newTimeout(
+        new TimerTask() {
+          @Override
+          public void run(Timeout timeout) {
+            countDownLatch.countDown();
+          }
+        },
+        expectedCost,
+        TimeUnit.MILLISECONDS);
 
-        //精准匹配
-        if (mockConfig.getDirectMatch() != null && mockConfig.getDirectMatch() == 1) {
+    countDownLatch.await();
+  }
 
-            MockExpression mockExpression = mockDataList.get(0).getMockExpressions().get(0);
-            String jsonPath = mockExpression.getJsonPath();
+  public static MockData getMockData(
+      String args, MockConfig mockConfig, List<MockData> mockDataList) {
 
-            final Object jsonPathValue = compile(jsonPath).eval(jsonObject);
-            if (jsonPathValue == null) {
-                return null;
-            }
+    Object jsonObject = JSON.parse(args);
 
-            return mockConfig.getDirMockDataMap().get(jsonPathValue.toString());
-        }
+    if (mockDataList == null || mockDataList.size() == 0) {
+      if (logger.isInfoEnabled()) {
+        logger.info("mock mockDataList is empty ");
+      }
+      return null;
+    }
 
-        Map<String, String> jsonPathValueMap = new HashMap<>();
+    // 精准匹配
+    if (mockConfig.getDirectMatch() != null && mockConfig.getDirectMatch() == 1) {
 
-        for (MockData mockData : mockDataList) {
-            //获取agent所切方法调用的 实际传参
-            try {
-                boolean checkMatch = andMatch(jsonObject, mockData.getMockExpressions(), jsonPathValueMap);
-                if (checkMatch) {
-                    return mockData;
-                } else {
-                    continue;
-                }
+      MockExpression mockExpression = mockDataList.get(0).getMockExpressions().get(0);
+      String jsonPath = mockExpression.getJsonPath();
 
-            } catch (Exception ex) {
-                continue;
-            }
-        }
-
+      final Object jsonPathValue = compile(jsonPath).eval(jsonObject);
+      if (jsonPathValue == null) {
         return null;
+      }
+
+      return mockConfig.getDirMockDataMap().get(jsonPathValue.toString());
     }
 
+    Map<String, String> jsonPathValueMap = new HashMap<>();
 
-    public static boolean andMatch(Object jsonObject, List<MockExpression> mockExpressions, Map<String, String> jsonPathValueMap) {
-
-        //对实际参数 做jsonPath evaluation 看是否符合 条件
-        if (mockExpressions == null || mockExpressions.size() == 0) {
-            return true;
+    for (MockData mockData : mockDataList) {
+      // 获取agent所切方法调用的 实际传参
+      try {
+        boolean checkMatch = andMatch(jsonObject, mockData.getMockExpressions(), jsonPathValueMap);
+        if (checkMatch) {
+          return mockData;
+        } else {
+          continue;
         }
 
-        for (MockExpression mockExpression : mockExpressions) {
-
-            String jsonPath = mockExpression.getJsonPath();
-            if (!jsonPathValueMap.containsKey(jsonPath)) {
-                final Object jsonPathValue = compile(jsonPath).eval(jsonObject);
-                jsonPathValueMap.put(jsonPath, jsonPathValue == null ? null : jsonPathValue.toString());
-            }
-
-            Object jsonPathValue = jsonPathValueMap.get(jsonPath);
-
-            if (jsonPathValue == null) {
-                return false;
-            }
-
-            //对实际参数 做jsonPath evaluation 看是否符合 条件
-            if (!jsonPathValue.equals(mockExpression.getExpectedValue())) {
-                return false;
-            }
-        }
-        return true;
+      } catch (Exception ex) {
+        continue;
+      }
     }
 
+    return null;
+  }
 
-    public static MockJSONPath compile(String path) {
-        if (path == null) {
-            throw new JSONPathException("jsonpath can not be null");
-        }
+  public static boolean andMatch(
+      Object jsonObject,
+      List<MockExpression> mockExpressions,
+      Map<String, String> jsonPathValueMap) {
 
-        MockJSONPath jsonpath = pathCache.get(path);
-        if (jsonpath == null) {
-            jsonpath = new MockJSONPath(path);
-            if (pathCache.size() < 40960) {
-                pathCache.putIfAbsent(path, jsonpath);
-                jsonpath = pathCache.get(path);
-            }
-        }
-        return jsonpath;
+    // 对实际参数 做jsonPath evaluation 看是否符合 条件
+    if (mockExpressions == null || mockExpressions.size() == 0) {
+      return true;
     }
+
+    for (MockExpression mockExpression : mockExpressions) {
+
+      String jsonPath = mockExpression.getJsonPath();
+      if (!jsonPathValueMap.containsKey(jsonPath)) {
+        final Object jsonPathValue = compile(jsonPath).eval(jsonObject);
+        jsonPathValueMap.put(jsonPath, jsonPathValue == null ? null : jsonPathValue.toString());
+      }
+
+      Object jsonPathValue = jsonPathValueMap.get(jsonPath);
+
+      if (jsonPathValue == null) {
+        return false;
+      }
+
+      // 对实际参数 做jsonPath evaluation 看是否符合 条件
+      if (!jsonPathValue.equals(mockExpression.getExpectedValue())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public static MockJSONPath compile(String path) {
+    if (path == null) {
+      throw new JSONPathException("jsonpath can not be null");
+    }
+
+    MockJSONPath jsonpath = pathCache.get(path);
+    if (jsonpath == null) {
+      jsonpath = new MockJSONPath(path);
+      if (pathCache.size() < 40960) {
+        pathCache.putIfAbsent(path, jsonpath);
+        jsonpath = pathCache.get(path);
+      }
+    }
+    return jsonpath;
+  }
 }

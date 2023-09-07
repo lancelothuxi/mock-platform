@@ -1,6 +1,5 @@
 package io.github.lancelothuxi.mock.api;
 
-
 /**
  * @author lancelot
  * @version 1.0
@@ -8,10 +7,9 @@ package io.github.lancelothuxi.mock.api;
  */
 public interface CommonDubboMockService {
 
-    /**
-     *
-     * @param request mock request
-     * @return MockResponse response that contains mock information
-     */
-    MockResponse doMockRequest(MockRequest request);
+  /**
+   * @param request mock request
+   * @return MockResponse response that contains mock information
+   */
+  MockResponse doMockRequest(MockRequest request);
 }

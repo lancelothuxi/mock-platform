@@ -4,13 +4,12 @@ import java.util.Collection;
 
 public abstract class AbstractFunction implements Function {
 
-    @Override
-    abstract public String execute(Object... args) throws Exception;
+  @Override
+  public abstract String execute(Object... args) throws Exception;
 
-    @Override
-    abstract public void setParameters(Collection<CompoundVariable> parameters) throws Exception;
+  @Override
+  public abstract void setParameters(Collection<CompoundVariable> parameters) throws Exception;
 
-    @Override
-    abstract public String getReferenceKey();
-
+  @Override
+  public abstract String getReferenceKey();
 }

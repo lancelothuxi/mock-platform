@@ -2,8 +2,6 @@ package io.github.lancelothuxi.mock.cache;
 
 import com.google.common.base.Joiner;
 
-import java.util.Arrays;
-
 /**
  * @author lancelot
  * @version 1.0
@@ -11,11 +9,9 @@ import java.util.Arrays;
  */
 public class CacheUtil {
 
-    public static final String CONFIG_PREFX="mockServer:mockConfig:";
+  public static final String CONFIG_PREFX = "mockServer:mockConfig:";
 
-    public static String buildKey4Config(String... args){
-        return CONFIG_PREFX+Joiner
-                .on("_").useForNull("null")
-                        .join(args);
-    }
+  public static String buildKey4Config(String... args) {
+    return CONFIG_PREFX + Joiner.on("_").useForNull("null").join(args);
+  }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="zh" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('mock配置关联响应数据列表')" />
+    <th:block th:include="include :: header('mock配置关联响应数据列表')"/>
 </head>
 <body class="gray-bg">
 <div class="container-div">
@@ -14,10 +14,12 @@
             <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:data:add">
                 <i class="fa fa-plus"></i> 添加
             </a>
-            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:data:edit">
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="system:data:edit">
                 <i class="fa fa-edit"></i> 修改
             </a>
-            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:data:remove">
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="system:data:remove">
                 <i class="fa fa-remove"></i> 删除
             </a>
             <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:data:export">
@@ -37,17 +39,17 @@
         </div>
     </div>
 </div>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('mock:data:edit')}]];
     var removeFlag = [[${@permission.hasPermi('mock:data:remove')}]];
     var prefix = ctx + "mock/data";
-    let mockConfigId=[[${mockConfigId}]];
+    let mockConfigId = [[${mockConfigId}]];
 
-    $(function() {
+    $(function () {
         var options = {
             url: prefix + "/list",
-            createUrl: prefix + "/add?mockConfigId="+mockConfigId,
+            createUrl: prefix + "/add?mockConfigId=" + mockConfigId,
             updateUrl: prefix + "/edit/{id}",
             removeUrl: prefix + "/remove",
             exportUrl: prefix + "/export",
@@ -82,7 +84,7 @@
                     title: '模拟耗时(ms)',
                     align: 'center',
                     formatter: function (value, row, index) {
-                        return (row.timeout<=0)?"N/A":row.timeout;
+                        return (row.timeout <= 0) ? "N/A" : row.timeout;
                     }
                 },
                 {
@@ -103,7 +105,7 @@
                 {
                     title: '操作',
                     align: 'center',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
                         var actions = [];
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
@@ -113,6 +115,7 @@
         };
         $.table.init(options);
     });
+
     /* 开关显示 */
     function statusTools(row) {
         if (row.enabled == "1") {
@@ -124,22 +127,22 @@
 
     /* mock管理-启用 */
     function enable(id) {
-        $.modal.confirm("确认mock配置要启用吗？", function() {
-            $.operate.post(prefix + "/changEnable", { "id": id, "enabled": "1" });
+        $.modal.confirm("确认mock配置要启用吗？", function () {
+            $.operate.post(prefix + "/changEnable", {"id": id, "enabled": "1"});
         })
     }
 
     /* mock管理-停用 */
     function disable(id) {
-        $.modal.confirm("确认mock配置要停用吗？", function() {
-            $.operate.post(prefix + "/changEnable", { "id": id, "enabled": "0" });
+        $.modal.confirm("确认mock配置要停用吗？", function () {
+            $.operate.post(prefix + "/changEnable", {"id": id, "enabled": "0"});
         })
     }
 
     /* mock管理-启用 */
     function batchUpdateMockTime() {
-        $.modal.confirm("确认批量修改mock耗时吗？", function() {
-            $.modal.open("批量修稿mock耗时", prefix+"/batchUpdateMockTime?mockConfigId="+mockConfigId);
+        $.modal.confirm("确认批量修改mock耗时吗？", function () {
+            $.modal.open("批量修稿mock耗时", prefix + "/batchUpdateMockTime?mockConfigId=" + mockConfigId);
         })
     }
 
@@ -151,12 +154,13 @@
             <input type="file" id="file" name="file"/>
             <div class="mt10 pt5">
                 <input name="mockConfigId" th:value="${mockConfigId}" type="hidden">
-                &nbsp;	<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+                &nbsp; <a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i
+                    class="fa fa-file-excel-o"></i> 下载模板</a>
             </div>
             <font color="red" class="pull-left mt10">
                 提示：仅允许导入“xls”或“xlsx”或“csv”格式文件！
             </font>
         </div>
     </form>
-</body>
-</html>
+    </body>
+    </html>

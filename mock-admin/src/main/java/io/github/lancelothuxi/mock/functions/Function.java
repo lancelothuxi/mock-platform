@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface Function {
 
-    String getReferenceKey();
+  String getReferenceKey();
 
-    void setParameters(Collection<CompoundVariable> parameters) throws Exception;
+  void setParameters(Collection<CompoundVariable> parameters) throws Exception;
 
-    String execute(Object... args) throws Exception;
+  String execute(Object... args) throws Exception;
 }

@@ -1,177 +1,155 @@
 package io.github.lancelothuxi.mock.system.domain;
 
-import java.util.Date;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import io.github.lancelothuxi.mock.common.core.domain.BaseEntity;
 import io.github.lancelothuxi.mock.common.enums.OnlineStatus;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
 
 /**
  * 当前在线会话 sys_user_online
- * 
+ *
  * @author lancelot huxisuz@gmail.com
  */
-public class SysUserOnline extends BaseEntity
-{
-    private static final long serialVersionUID = 1L;
-    
-    /** 用户会话id */
-    private String sessionId;
+public class SysUserOnline extends BaseEntity {
+  private static final long serialVersionUID = 1L;
 
-    /** 部门名称 */
-    private String deptName;
+  /** 用户会话id */
+  private String sessionId;
 
-    /** 登录名称 */
-    private String loginName;
+  /** 部门名称 */
+  private String deptName;
 
-    /** 登录IP地址 */
-    private String ipaddr;
+  /** 登录名称 */
+  private String loginName;
 
-    /** 登录地址 */
-    private String loginLocation;
+  /** 登录IP地址 */
+  private String ipaddr;
 
-    /** 浏览器类型 */
-    private String browser;
+  /** 登录地址 */
+  private String loginLocation;
 
-    /** 操作系统 */
-    private String os;
+  /** 浏览器类型 */
+  private String browser;
 
-    /** session创建时间 */
-    private Date startTimestamp;
+  /** 操作系统 */
+  private String os;
 
-    /** session最后访问时间 */
-    private Date lastAccessTime;
+  /** session创建时间 */
+  private Date startTimestamp;
 
-    /** 超时时间，单位为分钟 */
-    private Long expireTime;
+  /** session最后访问时间 */
+  private Date lastAccessTime;
 
-    /** 在线状态 */
-    private OnlineStatus status = OnlineStatus.on_line;
+  /** 超时时间，单位为分钟 */
+  private Long expireTime;
 
-    public String getSessionId()
-    {
-        return sessionId;
-    }
+  /** 在线状态 */
+  private OnlineStatus status = OnlineStatus.on_line;
 
-    public void setSessionId(String sessionId)
-    {
-        this.sessionId = sessionId;
-    }
+  public String getSessionId() {
+    return sessionId;
+  }
 
-    public String getDeptName()
-    {
-        return deptName;
-    }
+  public void setSessionId(String sessionId) {
+    this.sessionId = sessionId;
+  }
 
-    public void setDeptName(String deptName)
-    {
-        this.deptName = deptName;
-    }
+  public String getDeptName() {
+    return deptName;
+  }
 
-    public String getLoginName()
-    {
-        return loginName;
-    }
+  public void setDeptName(String deptName) {
+    this.deptName = deptName;
+  }
 
-    public void setLoginName(String loginName)
-    {
-        this.loginName = loginName;
-    }
+  public String getLoginName() {
+    return loginName;
+  }
 
-    public String getIpaddr()
-    {
-        return ipaddr;
-    }
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
+  }
 
-    public void setIpaddr(String ipaddr)
-    {
-        this.ipaddr = ipaddr;
-    }
+  public String getIpaddr() {
+    return ipaddr;
+  }
 
-    public String getLoginLocation()
-    {
-        return loginLocation;
-    }
+  public void setIpaddr(String ipaddr) {
+    this.ipaddr = ipaddr;
+  }
 
-    public void setLoginLocation(String loginLocation)
-    {
-        this.loginLocation = loginLocation;
-    }
+  public String getLoginLocation() {
+    return loginLocation;
+  }
 
-    public String getBrowser()
-    {
-        return browser;
-    }
+  public void setLoginLocation(String loginLocation) {
+    this.loginLocation = loginLocation;
+  }
 
-    public void setBrowser(String browser)
-    {
-        this.browser = browser;
-    }
+  public String getBrowser() {
+    return browser;
+  }
 
-    public String getOs()
-    {
-        return os;
-    }
+  public void setBrowser(String browser) {
+    this.browser = browser;
+  }
 
-    public void setOs(String os)
-    {
-        this.os = os;
-    }
+  public String getOs() {
+    return os;
+  }
 
-    public Date getStartTimestamp()
-    {
-        return startTimestamp;
-    }
+  public void setOs(String os) {
+    this.os = os;
+  }
 
-    public void setStartTimestamp(Date startTimestamp)
-    {
-        this.startTimestamp = startTimestamp;
-    }
+  public Date getStartTimestamp() {
+    return startTimestamp;
+  }
 
-    public Date getLastAccessTime()
-    {
-        return lastAccessTime;
-    }
+  public void setStartTimestamp(Date startTimestamp) {
+    this.startTimestamp = startTimestamp;
+  }
 
-    public void setLastAccessTime(Date lastAccessTime)
-    {
-        this.lastAccessTime = lastAccessTime;
-    }
+  public Date getLastAccessTime() {
+    return lastAccessTime;
+  }
 
-    public Long getExpireTime()
-    {
-        return expireTime;
-    }
+  public void setLastAccessTime(Date lastAccessTime) {
+    this.lastAccessTime = lastAccessTime;
+  }
 
-    public void setExpireTime(Long expireTime)
-    {
-        this.expireTime = expireTime;
-    }
+  public Long getExpireTime() {
+    return expireTime;
+  }
 
-    public OnlineStatus getStatus()
-    {
-        return status;
-    }
+  public void setExpireTime(Long expireTime) {
+    this.expireTime = expireTime;
+  }
 
-    public void setStatus(OnlineStatus status)
-    {
-        this.status = status;
-    }
-    
-	@Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("sessionId", getSessionId())
-            .append("loginName", getLoginName())
-            .append("deptName", getDeptName())
-            .append("ipaddr", getIpaddr())
-            .append("loginLocation", getLoginLocation())
-            .append("browser", getBrowser())
-            .append("os", getOs())
-            .append("status", getStatus())
-            .append("startTimestamp", getStartTimestamp())
-            .append("lastAccessTime", getLastAccessTime())
-            .append("expireTime", getExpireTime())
-            .toString();
-    }
+  public OnlineStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(OnlineStatus status) {
+    this.status = status;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+        .append("sessionId", getSessionId())
+        .append("loginName", getLoginName())
+        .append("deptName", getDeptName())
+        .append("ipaddr", getIpaddr())
+        .append("loginLocation", getLoginLocation())
+        .append("browser", getBrowser())
+        .append("os", getOs())
+        .append("status", getStatus())
+        .append("startTimestamp", getStartTimestamp())
+        .append("lastAccessTime", getLastAccessTime())
+        .append("expireTime", getExpireTime())
+        .toString();
+  }
 }

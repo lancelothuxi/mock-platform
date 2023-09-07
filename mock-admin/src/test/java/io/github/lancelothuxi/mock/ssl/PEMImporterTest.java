@@ -9,8 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyStore;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author lancelot
  * @version 1.0
@@ -25,33 +23,34 @@ class PEMImporterTest {
     String basePath = path.toString();
 
     // PEM 文件路径
-    String privateKeyPath = basePath+"/private-key.pem";
-    String certificatePath = basePath+"/certificate.pem";
-    PEMImporter.createSSLFactory(new File(privateKeyPath),new File(certificatePath),"");
+    String privateKeyPath = basePath + "/private-key.pem";
+    String certificatePath = basePath + "/certificate.pem";
+    PEMImporter.createSSLFactory(new File(privateKeyPath), new File(certificatePath), "");
   }
 
   @Test
-  void createKeyStore() throws Exception{
+  void createKeyStore() throws Exception {
     URL location = PEMImporterTest.class.getProtectionDomain().getCodeSource().getLocation();
     Path path = Paths.get(location.toURI());
     String basePath = path.toString();
 
     // PEM 文件路径
-    String privateKeyPath = basePath+"/private-key.pem";
-    String certificatePath = basePath+"/certificate.pem";
-    KeyStore keyStore = PEMImporter.createKeyStore(new File(privateKeyPath), new File(certificatePath), "");
+    String privateKeyPath = basePath + "/private-key.pem";
+    String certificatePath = basePath + "/certificate.pem";
+    KeyStore keyStore =
+        PEMImporter.createKeyStore(new File(privateKeyPath), new File(certificatePath), "");
     Assert.notNull(keyStore);
   }
 
   @Test
-  void convertCertToCSR() throws Exception{
+  void convertCertToCSR() throws Exception {
 
     URL location = SslUtilsTest.class.getProtectionDomain().getCodeSource().getLocation();
     Path path = Paths.get(location.toURI());
 
     // PEM 文件路径
-    String privateKeyPath = path+"/private-key.pem";
-    String certificatePath = path+"/certificate.pem";
+    String privateKeyPath = path + "/private-key.pem";
+    String certificatePath = path + "/certificate.pem";
 
     String convertCertToCSR = PEMImporter.convertCertToCSR(certificatePath, privateKeyPath);
 

@@ -8,17 +8,16 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 启动程序
- * 
+ *
  * @author lancelot huxisuz@gmail.com
  */
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableDubbo
 @EnableDubboConfig
 public class Application {
 
+  public static void main(String[] args) {
 
-    public static void main(String[] args) {
-
-        SpringApplication.run(Application.class, args);
-    }
+    SpringApplication.run(Application.class, args);
+  }
 }

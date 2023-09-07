@@ -9,74 +9,71 @@ import java.io.Serializable;
  */
 public class MockRequest implements Serializable {
 
-    /**dubbo interface name**/
-    private String interfaceName;
+  /** dubbo interface name* */
+  private String interfaceName;
 
-    /**dubbo method name**/
-    private String methodName;
+  /** dubbo method name* */
+  private String methodName;
 
-    /**dubbo group name**/
-    private String groupName;
+  /** dubbo group name* */
+  private String groupName;
 
-    /**dubbo version**/
-    private String version;
+  /** dubbo version* */
+  private String version;
 
-    /**args**/
-    private String args;
+  /** args* */
+  private String args;
 
-    /**appName**/
-    private String appName;
+  /** appName* */
+  private String appName;
 
+  public MockRequest() {}
 
-    public MockRequest() {
-    }
+  public String getAppName() {
+    return this.appName;
+  }
 
+  public void setAppName(String appName) {
+    this.appName = appName;
+  }
 
-    public String getAppName() {
-        return this.appName;
-    }
+  public String getInterfaceName() {
+    return this.interfaceName;
+  }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
+  public void setInterfaceName(String interfaceName) {
+    this.interfaceName = interfaceName;
+  }
 
-    public String getInterfaceName() {
-        return this.interfaceName;
-    }
+  public String getMethodName() {
+    return this.methodName;
+  }
 
-    public void setInterfaceName(String interfaceName) {
-        this.interfaceName = interfaceName;
-    }
+  public void setMethodName(String methodName) {
+    this.methodName = methodName;
+  }
 
-    public String getMethodName() {
-        return this.methodName;
-    }
+  public String getGroupName() {
+    return this.groupName;
+  }
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
 
-    public String getGroupName() {
-        return this.groupName;
-    }
+  public String getVersion() {
+    return this.version;
+  }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
-    public String getVersion() {
-        return this.version;
-    }
+  public String getArgs() {
+    return this.args;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public String getArgs() {
-        return this.args;
-    }
-
-    public void setArgs(String args) {
-        this.args = args;
-    }
+  public void setArgs(String args) {
+    this.args = args;
+  }
 }

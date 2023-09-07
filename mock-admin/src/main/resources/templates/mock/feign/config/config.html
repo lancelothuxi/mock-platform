@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="zh" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('服务mock方法列表')" />
+    <th:block th:include="include :: header('服务mock方法列表')"/>
 </head>
 <body class="gray-bg">
 <div class="container-div">
@@ -12,16 +12,16 @@
                     <ul>
                         <li>
                             <label>应用名：</label>
-                            <input type="text" name="appliactionName"/>
+                            <input name="appliactionName" type="text"/>
                         </li>
 
                         <li>
                             <label>接口名：</label>
-                            <input type="text" name="interfaceName"/>
+                            <input name="interfaceName" type="text"/>
                         </li>
                         <li>
                             <label>方法名：</label>
-                            <input type="text" name="methodName"/>
+                            <input name="methodName" type="text"/>
                         </li>
 
                         <li>
@@ -34,16 +34,18 @@
                         </li>
                         <li>
                             <label>创建时间：</label>
-                            <input type="text" class="time-input" placeholder="请选择创建时间" name="createdAt"/>
+                            <input class="time-input" name="createdAt" placeholder="请选择创建时间" type="text"/>
                         </li>
                         <li>
                             <label>更新时间：</label>
-                            <input type="text" class="time-input" placeholder="请选择更新时间" name="updatedAt"/>
+                            <input class="time-input" name="updatedAt" placeholder="请选择更新时间" type="text"/>
                         </li>
 
                         <li>
-                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
                         </li>
                     </ul>
                 </div>
@@ -54,10 +56,12 @@
             <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:config:add">
                 <i class="fa fa-plus"></i> 添加
             </a>
-            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:config:edit">
+            <a class="btn btn-primary single disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="system:config:edit">
                 <i class="fa fa-edit"></i> 修改
             </a>
-            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:config:remove">
+            <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="system:config:remove">
                 <i class="fa fa-remove"></i> 删除
             </a>
             <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:config:export">
@@ -69,7 +73,7 @@
         </div>
     </div>
 </div>
-<th:block th:include="include :: footer" />
+<th:block th:include="include :: footer"/>
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('mock:config:edit')}]];
     var removeFlag = [[${@permission.hasPermi('mock:config:remove')}]];
@@ -77,7 +81,7 @@
     var prefix = ctx + "mock/feign/config";
     var mockDataPrefix = ctx + "mock/data";
 
-    $(function() {
+    $(function () {
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
@@ -119,7 +123,7 @@
                 {
                     field: '查看Mock数据',
                     title: '查看Mock数据',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
                         var actions = [];
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="showMockData(\'' + row.id + '\')"><i class="fa fa-street-view"></i>查看</a> ');
                         return actions.join('');
@@ -146,7 +150,7 @@
                 {
                     title: '操作',
                     align: 'center',
-                    formatter: function(value, row, index) {
+                    formatter: function (value, row, index) {
                         var actions = [];
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
@@ -165,22 +169,23 @@
             return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.id + '\')"></i> ';
         }
     }
+
     /* mock管理-启用 */
     function enable(id) {
-        $.modal.confirm("确认mock配置要启用吗？", function() {
-            $.operate.post(prefix + "/changEnable", { "id": id, "enabled": "1" });
+        $.modal.confirm("确认mock配置要启用吗？", function () {
+            $.operate.post(prefix + "/changEnable", {"id": id, "enabled": "1"});
         })
     }
 
     /* mock管理-停用 */
     function disable(id) {
-        $.modal.confirm("确认mock配置要停用吗？", function() {
-            $.operate.post(prefix + "/changEnable", { "id": id, "enabled": "0" });
+        $.modal.confirm("确认mock配置要停用吗？", function () {
+            $.operate.post(prefix + "/changEnable", {"id": id, "enabled": "0"});
         })
     }
 
     function showMockData(id) {
-        createMenuItem(mockDataPrefix + "?mockConfigId=" + id,'Mock数据');
+        createMenuItem(mockDataPrefix + "?mockConfigId=" + id, 'Mock数据');
     }
 
 </script>

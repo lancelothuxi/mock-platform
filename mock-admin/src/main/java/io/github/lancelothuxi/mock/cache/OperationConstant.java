@@ -7,9 +7,9 @@ package io.github.lancelothuxi.mock.cache;
  */
 public class OperationConstant {
 
-    public static final String ADD="add";
+  public static final String ADD = "add";
 
-    public static final String DELETE="delete";
+  public static final String DELETE = "delete";
 
-    public static final String UPDATE="update";
+  public static final String UPDATE = "update";
 }

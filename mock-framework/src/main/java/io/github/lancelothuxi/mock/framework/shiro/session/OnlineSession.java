@@ -1,165 +1,145 @@
 package io.github.lancelothuxi.mock.framework.shiro.session;
 
+import io.github.lancelothuxi.mock.common.enums.OnlineStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.session.mgt.SimpleSession;
-import io.github.lancelothuxi.mock.common.enums.OnlineStatus;
 
 /**
  * 在线用户会话属性
- * 
+ *
  * @author lancelot huxisuz@gmail.com
  */
-public class OnlineSession extends SimpleSession
-{
-    private static final long serialVersionUID = 1L;
+public class OnlineSession extends SimpleSession {
+  private static final long serialVersionUID = 1L;
 
-    /** 用户ID */
-    private Long userId;
+  /** 用户ID */
+  private Long userId;
 
-    /** 用户名称 */
-    private String loginName;
+  /** 用户名称 */
+  private String loginName;
 
-    /** 部门名称 */
-    private String deptName;
-	
-	/** 用户头像 */
-	private String avatar;
+  /** 部门名称 */
+  private String deptName;
 
-    /** 登录IP地址 */
-    private String host;
+  /** 用户头像 */
+  private String avatar;
 
-    /** 浏览器类型 */
-    private String browser;
+  /** 登录IP地址 */
+  private String host;
 
-    /** 操作系统 */
-    private String os;
+  /** 浏览器类型 */
+  private String browser;
 
-    /** 在线状态 */
-    private OnlineStatus status = OnlineStatus.on_line;
+  /** 操作系统 */
+  private String os;
 
-    /** 属性是否改变 优化session数据同步 */
-    private transient boolean attributeChanged = false;
+  /** 在线状态 */
+  private OnlineStatus status = OnlineStatus.on_line;
 
-    @Override
-    public String getHost()
-    {
-        return host;
-    }
+  /** 属性是否改变 优化session数据同步 */
+  private transient boolean attributeChanged = false;
 
-    @Override
-    public void setHost(String host)
-    {
-        this.host = host;
-    }
+  @Override
+  public String getHost() {
+    return host;
+  }
 
-    public String getBrowser()
-    {
-        return browser;
-    }
+  @Override
+  public void setHost(String host) {
+    this.host = host;
+  }
 
-    public void setBrowser(String browser)
-    {
-        this.browser = browser;
-    }
+  public String getBrowser() {
+    return browser;
+  }
 
-    public String getOs()
-    {
-        return os;
-    }
+  public void setBrowser(String browser) {
+    this.browser = browser;
+  }
 
-    public void setOs(String os)
-    {
-        this.os = os;
-    }
+  public String getOs() {
+    return os;
+  }
 
-    public Long getUserId()
-    {
-        return userId;
-    }
+  public void setOs(String os) {
+    this.os = os;
+  }
 
-    public void setUserId(Long userId)
-    {
-        this.userId = userId;
-    }
+  public Long getUserId() {
+    return userId;
+  }
 
-    public String getLoginName()
-    {
-        return loginName;
-    }
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
 
-    public void setLoginName(String loginName)
-    {
-        this.loginName = loginName;
-    }
+  public String getLoginName() {
+    return loginName;
+  }
 
-    public String getDeptName()
-    {
-        return deptName;
-    }
+  public void setLoginName(String loginName) {
+    this.loginName = loginName;
+  }
 
-    public void setDeptName(String deptName)
-    {
-        this.deptName = deptName;
-    }
+  public String getDeptName() {
+    return deptName;
+  }
 
-    public OnlineStatus getStatus()
-    {
-        return status;
-    }
+  public void setDeptName(String deptName) {
+    this.deptName = deptName;
+  }
 
-    public void setStatus(OnlineStatus status)
-    {
-        this.status = status;
-    }
+  public OnlineStatus getStatus() {
+    return status;
+  }
 
-    public void markAttributeChanged()
-    {
-        this.attributeChanged = true;
-    }
+  public void setStatus(OnlineStatus status) {
+    this.status = status;
+  }
 
-    public void resetAttributeChanged()
-    {
-        this.attributeChanged = false;
-    }
+  public void markAttributeChanged() {
+    this.attributeChanged = true;
+  }
 
-    public boolean isAttributeChanged()
-    {
-        return attributeChanged;
-    }
+  public void resetAttributeChanged() {
+    this.attributeChanged = false;
+  }
 
-	public String getAvatar() {
-		return avatar;
-	}
+  public boolean isAttributeChanged() {
+    return attributeChanged;
+  }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-	
-    @Override
-    public void setAttribute(Object key, Object value)
-    {
-        super.setAttribute(key, value);
-    }
+  public String getAvatar() {
+    return avatar;
+  }
 
-    @Override
-    public Object removeAttribute(Object key)
-    {
-        return super.removeAttribute(key);
-    }
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
+  }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userId", getUserId())
-            .append("loginName", getLoginName())
-            .append("deptName", getDeptName())
-            .append("avatar", getAvatar())
-            .append("host", getHost())
-            .append("browser", getBrowser())
-            .append("os", getOs())
-            .append("status", getStatus())
-            .append("attributeChanged", isAttributeChanged())
-            .toString();
-    }
+  @Override
+  public void setAttribute(Object key, Object value) {
+    super.setAttribute(key, value);
+  }
+
+  @Override
+  public Object removeAttribute(Object key) {
+    return super.removeAttribute(key);
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+        .append("userId", getUserId())
+        .append("loginName", getLoginName())
+        .append("deptName", getDeptName())
+        .append("avatar", getAvatar())
+        .append("host", getHost())
+        .append("browser", getBrowser())
+        .append("os", getOs())
+        .append("status", getStatus())
+        .append("attributeChanged", isAttributeChanged())
+        .toString();
+  }
 }
