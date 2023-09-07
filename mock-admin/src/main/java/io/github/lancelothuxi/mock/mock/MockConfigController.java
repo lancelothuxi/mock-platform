@@ -12,12 +12,8 @@ import io.github.lancelothuxi.mock.common.core.text.Convert;
 import io.github.lancelothuxi.mock.common.enums.BusinessType;
 import io.github.lancelothuxi.mock.common.utils.poi.ExcelUtil;
 import io.github.lancelothuxi.mock.domain.MockConfig;
-import io.github.lancelothuxi.mock.domain.MockData;
 import io.github.lancelothuxi.mock.service.IMockConfigService;
 import io.github.lancelothuxi.mock.service.IMockDataService;
-import io.github.lancelothuxi.mock.vo.MockConfigVo;
-import io.github.lancelothuxi.mock.vo.MockDataVo;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.apache.commons.lang.ObjectUtils.defaultIfNull;
 
@@ -200,55 +195,6 @@ public class MockConfigController extends BaseController
         return arrayList;
     }
 
-    @PostMapping("/getAllByType")
-    @ResponseBody
-    public Response getAllByType(@RequestBody Request request){
-
-        MockConfig mockConfig=new MockConfig();
-        mockConfig.setType(request.getType());
-        mockConfig.setEnabled("1");
-        mockConfig.setAppliactionName(request.getAppName());
-
-        final List<MockConfig> mockConfigs = mockConfigService.selectMockConfigList(mockConfig);
-        if(CollectionUtils.isEmpty(mockConfigs)){
-            return new Response();
-        }
-
-        final List<String> ids = mockConfigs.stream().map(t->t.getId()+"").collect(Collectors.toList());
-        final List<MockData> mockDataList = mockDataService.selectListByConfigList(ids);
-
-
-        final List<MockConfigVo> mockConfigVos =new ArrayList<>();
-
-        for (MockConfig config : mockConfigs) {
-
-            MockConfigVo mockConfigVo = new MockConfigVo();
-            mockConfigVo.setId(config.getId());
-            mockConfigVo.setInterfaceName(config.getInterfaceName());
-            mockConfigVo.setMethodName(config.getMethodName());
-            mockConfigVo.setGroupName(config.getGroupName());
-            mockConfigVo.setVersion(config.getVersion());
-            mockConfigVo.setServerSideMock(config.getServerSideMock());
-            mockConfigVo.setAppliactionName(config.getAppliactionName());
-            mockConfigVos.add(mockConfigVo);
-
-            for (MockData mockData : mockDataList) {
-                if(config.getId().toString().equals(mockData.getMockConfigId())){
-                    MockDataVo mockDataVo=new MockDataVo();
-                    mockDataVo.setData(mockData.getData());
-                    mockDataVo.setMockReqParams(mockData.getMockReqParams());
-                    mockDataVo.setTimeout(mockData.getTimeout());
-                    mockDataVo.setExpectedValue(mockData.getExpectedValue());
-                    mockConfigVo.getMockDataList().add(mockDataVo);
-                }
-            }
-        }
-
-        Response response=new Response();
-        response.setMockConfigs(mockConfigVos);
-        return response;
-    }
-
 
     /**
      * 查询服务mock方法列表
@@ -280,6 +226,5 @@ public class MockConfigController extends BaseController
     {
         return success(mockConfigService.updateMockConfig(mockConfig));
     }
-
 
 }

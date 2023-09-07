@@ -11,7 +11,6 @@ public class MockExpression {
 
     private String expectedValue="";
 
-
     public String getJsonPath() {
         return jsonPath;
     }

@@ -66,7 +66,7 @@ public class LocalCache   {
 
                     String op = request.getOp();
 
-                    String cacheKey = CacheUtil.buildKey4Config(request.getAppliactionName(), request.getType(), request.getAppliactionName(),
+                    String cacheKey = CacheUtil.buildKey4Config(request.getApplicationName(), request.getType(), request.getApplicationName(),
                             request.getMethodName(), request.getGroupName(), request.getVersion());
 
                     if(OperationConstant.ADD.equals(op)){
@@ -77,7 +77,7 @@ public class LocalCache   {
                         mockConfigRequest.setGroupName(request.getGroupName());
                         mockConfigRequest.setVersion(request.getVersion());
                         mockConfigRequest.setEnabled("1");
-                        mockConfigRequest.setAppliactionName(request.getAppliactionName());
+                        mockConfigRequest.setAppliactionName(request.getApplicationName());
 
                         MockConfig real = mockConfigService.selectMockConfig(mockConfigRequest);
                         if(real!=null){
@@ -103,7 +103,7 @@ public class LocalCache   {
                         mockConfigRequest.setGroupName(request.getGroupName());
                         mockConfigRequest.setVersion(request.getVersion());
                         mockConfigRequest.setEnabled("1");
-                        mockConfigRequest.setAppliactionName(request.getAppliactionName());
+                        mockConfigRequest.setAppliactionName(request.getApplicationName());
 
                         MockConfig real = mockConfigService.selectMockConfig(mockConfigRequest);
                         if(real!=null){
@@ -201,7 +201,7 @@ public class LocalCache   {
         mockConfigCacheUpdateMessage.setMethodName(request.getMethodName());
         mockConfigCacheUpdateMessage.setGroupName(request.getGroupName());
         mockConfigCacheUpdateMessage.setVersion(request.getVersion());
-        mockConfigCacheUpdateMessage.setAppliactionName(request.getAppliactionName());
+        mockConfigCacheUpdateMessage.setApplicationName(request.getAppliactionName());
         mockConfigCacheUpdateMessage.setType(request.getType());
         return mockConfigCacheUpdateMessage;
     }

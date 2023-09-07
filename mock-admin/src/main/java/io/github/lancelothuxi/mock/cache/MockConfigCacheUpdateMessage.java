@@ -24,7 +24,8 @@ public class MockConfigCacheUpdateMessage implements Serializable {
     /** 版本号 */
     private String version;
 
-    private String appliactionName;
+    /**应用名 */
+    private String applicationName;
 
     private String type;
 
@@ -78,12 +79,12 @@ public class MockConfigCacheUpdateMessage implements Serializable {
         this.version = version;
     }
 
-    public String getAppliactionName() {
-        return appliactionName;
+    public String getApplicationName() {
+        return applicationName;
     }
 
-    public void setAppliactionName(String appliactionName) {
-        this.appliactionName = appliactionName;
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
     }
 
     public String getType() {

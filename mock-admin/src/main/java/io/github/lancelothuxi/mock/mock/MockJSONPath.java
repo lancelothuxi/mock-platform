@@ -4238,28 +4238,4 @@ public class MockJSONPath implements JSONAware {
 
         return reserved;
     }
-
-    public static Object reserveToObject(Object object, String... paths) {
-        if (paths == null || paths.length == 0) {
-            return object;
-        }
-
-        JSONObject reserved = new JSONObject(true);
-        for (String item : paths) {
-            MockJSONPath path = MockJSONPath.compile(item);
-            path.init();
-            Segment lastSegement = path.segments[path.segments.length - 1];
-            if (lastSegement instanceof PropertySegment) {
-                Object value = path.eval(object);
-                if (value == null) {
-                    continue;
-                }
-                path.set(reserved, value);
-            } else {
-                // skip
-            }
-        }
-
-        return reserved;
-    }
 }

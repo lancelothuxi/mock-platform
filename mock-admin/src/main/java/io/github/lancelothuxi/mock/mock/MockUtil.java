@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONPathException;
 import io.github.lancelothuxi.mock.domain.MockConfig;
 import io.github.lancelothuxi.mock.domain.MockData;
 import io.netty.util.HashedWheelTimer;
+import io.netty.util.Timeout;
+import io.netty.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -23,13 +26,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class MockUtil {
 
-
     private static ConcurrentMap<String, MockJSONPath> pathCache = new ConcurrentHashMap<String, MockJSONPath>(128, 0.75f, 1);
-    private static ConcurrentMap<String, Object> jsonPathValueMap = new ConcurrentHashMap<String, Object>(128, 0.75f, 1);
 
     private static Logger logger = LoggerFactory.getLogger(MockUtil.class);
-
-    private static TimeUtil timeUtil = new TimeUtil();
 
     private static HashedWheelTimer hashedWheelTimer=new HashedWheelTimer(Executors.defaultThreadFactory(),100,TimeUnit.NANOSECONDS);
 
@@ -39,30 +38,18 @@ public class MockUtil {
             return;
         }
 
-        long startTime = System.currentTimeMillis();
-
         final long expectedCost = milliSeconds - elapsed;
 
-//        CountDownLatch countDownLatch=new CountDownLatch(1);
+        CountDownLatch countDownLatch=new CountDownLatch(1);
 
-//        hashedWheelTimer.newTimeout(new TimerTask() {
-//            @Override
-//            public void run(Timeout timeout) throws Exception {
-//                countDownLatch.countDown();
-//            }
-//        }, expectedCost, TimeUnit.MILLISECONDS);
-//
-//        countDownLatch.await();
+        hashedWheelTimer.newTimeout(new TimerTask() {
+            @Override
+            public void run(Timeout timeout)  {
+                countDownLatch.countDown();
+            }
+        }, expectedCost, TimeUnit.MILLISECONDS);
 
-        timeUtil.delay((int) expectedCost);
-
-        long endTime = System.currentTimeMillis();
-
-        final long realCost = endTime - startTime;
-
-        if ((realCost > 10 && realCost > (expectedCost) * 1.2)) {
-            logger.error("mock sleep expected={} real={}", expectedCost, realCost);
-        }
+        countDownLatch.await();
     }
 
     public static MockData getMockData(String args, MockConfig mockConfig, List<MockData> mockDataList) {
