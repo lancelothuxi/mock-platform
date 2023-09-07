@@ -97,18 +97,18 @@ public class K8sWebHookGenerator {
     /**
      *
      */
-    public void selfApproveCSR(String certificatePem,String privatePem) throws Exception{
+    public void selfApproveCSR(String certificatePem,String privatePem,String csrName) throws Exception{
 
         String csrContent = PEMImporter.convertCertToCSR(certificatePem, privatePem);
-        String csrYaml = getCsrYaml(csrContent);
+        String csrEncoded = encodeBase64(csrContent);
 
         CertificateSigningRequest csr = new CertificateSigningRequestBuilder()
                 .withNewMetadata()
-                .withName("mock111s")
+                .withName(csrName)
                 .endMetadata()
                 .withNewSpec()
-                .withRequest(csrYaml)
-                .withSignerName("kubernetes.io/kubelet-serving")
+                .withRequest(csrEncoded)
+                .withSignerName("kubernetes.io/kube-apiserver-client")
                 .withUsages(
                     "client auth"
                 )
@@ -118,13 +118,13 @@ public class K8sWebHookGenerator {
 
         client.certificates().v1().certificateSigningRequests().resource(csr).create();
 
-//        CertificateSigningRequestCondition csrCondition = new CertificateSigningRequestConditionBuilder()
-//                .withType("Approved")
-//                .withStatus("True")
-//                .withReason("ApprovedViaRESTApi")
-//                .withMessage("Approved by REST API /approval endpoint.")
-//                .build();
-//        client.certificates().v1().certificateSigningRequests().withName("mock-agent-csr").approve(csrCondition);
+        CertificateSigningRequestCondition csrCondition = new CertificateSigningRequestConditionBuilder()
+                .withType("Approved")
+                .withStatus("True")
+                .withReason("ApprovedViaRESTApi")
+                .withMessage("Approved by REST API /approval endpoint.")
+                .build();
+        client.certificates().v1().certificateSigningRequests().withName(csrName).approve(csrCondition);
 
     }
 
@@ -152,30 +152,6 @@ public class K8sWebHookGenerator {
         return base64EncodedCertificate;
     }
 
-
-    public static void main(String[] args) {
-        String csrContent = "-----BEGIN CERTIFICATE REQUEST-----\n" +
-                "MIIC2DCCAcACAQAwgY0xCzAJBgNVBAYTAkNOMRIwEAYDVQQIDAlHdWFuZ2Rvbmcx\n" +
-                "EjAQBgNVBAcMCUd1YW5nIFN0cmF0ZTEPMA0GA1UECgwGRGV2ZWxvcG1lbnQxCzAJ\n" +
-                "BgNVBAsMAklUMRswGQYDVQQDDBJkZXZlbG9wbWVudC5jb20gRXhhbXBsZTEhMB8G\n" +
-                "CSqGSIb3DQEJARYSbWFpbEBleGFtcGxlLmNvbTCCASIwDQYJKoZIhvcNAQEBBQAD\n" +
-                "ggEPADCCAQoCggEBAK0RyJg3u5sHbXj6j2QIj2EJ3C+H3+QH5q9PjF9ZP1L4WdaS\n" +
-                "fj+3aCqS9WjTz0Oyf/6rWU6rJ4r5/8d6VvGgKoZQqJQ1lZ1OeJ0E1uY0oXGY3QVx\n" +
-                "kW2F1oUZ5mYxL0KtXs2rS2LXQ5n3tZa0w3W1tL3S0bL6P6w3PmTQmJfEi5YtYl3x\n" +
-                "Xa8Kx6X7q0r3TJ8tZ4dUoL8qz1+U9fZjvzYjJc2zHxGvF2U2w3Jn7e0dVK69yG6p\n" +
-                "R/7eL9lWg2U8QfL8uQJ7mS8Ov8b7eL7kZnW6u1aI+Y6yMxAVhAe6gj9hG9gqyj9g\n" +
-                "FtG5vyK5+YQjyW7p3MzWQ1lQJqkta+e8OqLhLJ/7zqGd6XxU2H6+Z5kCAwEAAaAA\n" +
-                "MA0GCSqGSIb3DQEBCwUAA4IBAQBG7vMj4U6v3Zx0CIyvBmMq8wZ3zjD0FvC9n9J/\n" +
-                "wJG6F3rLWVbq2nJvG8z6Oz4nHx6LZQ2bE8pM6mNnXRmWq3pM9U4L1UQJYp6N3uZQ\n" +
-                "w/huW5W0+7aWhw6CvE5vAqgWzUQK8dZ0kL1T7dM0mI1G+3V1SxqG7B7KxH6yGf3g\n" +
-                "7c6l6fFZJfG4QkD2yx2T7r0b8TzIbe2l9t3/hJXx7Ivz0vNe4g9p3HczM5KT5Yd0\n" +
-                "Rk0+DmUWJfHr0h2hK2aSf7Y+9DjzVx7B7gX5H9KQ4H8lMz9r1oZ1Nz4zjD7Lg5h+\n" +
-                "NBQMbJ9+GzTF7hIqZ1Rm1PzEGDjRdMlQ9o+ZGx8pU6UOQ0u3uA2fJr7Kq3x9X6aA\n" +
-                "-----END CERTIFICATE REQUEST-----";
-
-        String encodedCsr = encodeBase64(csrContent);
-        System.out.println("Encoded CSR: " + encodedCsr);
-    }
 
     private static String encodeBase64(String content) {
         byte[] encodedBytes = Base64.getEncoder().encode(content.getBytes(StandardCharsets.UTF_8));

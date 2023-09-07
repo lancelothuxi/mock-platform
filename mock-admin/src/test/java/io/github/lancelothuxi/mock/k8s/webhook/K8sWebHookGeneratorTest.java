@@ -68,6 +68,6 @@ public class K8sWebHookGeneratorTest {
 
 
       K8sWebHookGenerator k8sWebHookGenerator=new K8sWebHookGenerator();
-      k8sWebHookGenerator.selfApproveCSR(certificatePath,privateKeyPath);
+      k8sWebHookGenerator.selfApproveCSR(certificatePath,privateKeyPath,"mynam22");
   }
 }
