@@ -49,21 +49,8 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-  /** Session超时时间，单位为毫秒（默认30分钟） */
-  @Value("${shiro.session.expireTime}")
-  private int expireTime;
 
-  /** 相隔多久检查一次session的有效性，单位毫秒，默认就是10分钟 */
-  @Value("${shiro.session.validationInterval}")
-  private int validationInterval;
-
-  /** 同一个用户最大会话数 */
-  @Value("${shiro.session.maxSession}")
-  private int maxSession;
-
-  /** 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户 */
-  @Value("${shiro.session.kickoutAfter}")
-  private boolean kickoutAfter;
+  private int expireTime = 30;
 
   /** 验证码开关 */
   @Value("${shiro.user.captchaEnabled}")
@@ -105,27 +92,8 @@ public class ShiroConfig {
   @Value("${shiro.rememberMe.enabled: false}")
   private boolean rememberMe;
 
-  @Autowired private RedissonClient redissonClient;
-
-  /** 缓存管理器 使用Ehcache实现 */
-  //    @Bean
-  //    public EhCacheManager getEhCacheManager()
-  //    {
-  //        net.sf.ehcache.CacheManager cacheManager =
-  // net.sf.ehcache.CacheManager.getCacheManager("ruoyi");
-  //        EhCacheManager em = new EhCacheManager();
-  //        if (StringUtils.isNull(cacheManager))
-  //        {
-  //            em.setCacheManager(new
-  // net.sf.ehcache.CacheManager(getCacheManagerConfigFileInputStream()));
-  //            return em;
-  //        }
-  //        else
-  //        {
-  //            em.setCacheManager(cacheManager);
-  //            return em;
-  //        }
-  //    }
+  @Autowired
+  private RedissonClient redissonClient;
 
   @Bean
   public CacheManager cacheManager() {
@@ -333,9 +301,8 @@ public class ShiroConfig {
     kickoutSessionFilter.setCacheManager(cacheManager());
     kickoutSessionFilter.setSessionManager(sessionManager());
     // 同一个用户最大的会话数，默认-1无限制；比如2的意思是同一个用户允许最多同时两个人登录
-    kickoutSessionFilter.setMaxSession(maxSession);
+    kickoutSessionFilter.setMaxSession(10);
     // 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序
-    kickoutSessionFilter.setKickoutAfter(kickoutAfter);
     // 被踢出后重定向到的地址；
     kickoutSessionFilter.setKickoutUrl("/login?kickout=1");
     return kickoutSessionFilter;

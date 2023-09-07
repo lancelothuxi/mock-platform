@@ -23,7 +23,6 @@ public class MockData extends BaseEntity {
   private Long id;
 
   /** mock规则配置表的id */
-  //    @ExcelProperty(name = "mock规则配置表的id")
   private String mockConfigId;
 
   /** mock响应数据值 */
@@ -35,7 +34,6 @@ public class MockData extends BaseEntity {
   private String mockReqParams;
 
   /** 根据jsonpath eval后的实际值 */
-  //    @ExcelProperty(name = "预期值")
   private String expectedValue;
 
   /** 超时时间 */
@@ -43,21 +41,17 @@ public class MockData extends BaseEntity {
   private Integer timeout;
 
   /** 服务名 */
-  //    @ExcelProperty(name = "服务名")
   private String interfaceName;
 
   /** 方法名 */
-  //    @ExcelProperty(name = "方法名")
   private String methodName;
 
   /** 创建时间 */
   @JsonFormat(pattern = "yyyy-MM-dd")
-  //    @ExcelProperty(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
   private Date createdTime;
 
   /** 更新时间 */
   @JsonFormat(pattern = "yyyy-MM-dd")
-  //    @ExcelProperty(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
   private Date updatedTime;
 
   /** 是否启用 */
