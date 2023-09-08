@@ -27,15 +27,15 @@ import java.util.List;
  * @date 2023-09-08
  */
 @Controller
-@RequestMapping("/system/config")
+@RequestMapping("/k8s/config")
 public class KubeConfigController extends BaseController
 {
-    private String prefix = "system/config";
+    private String prefix = "k8s/config";
 
     @Autowired
     private IKubeConfigService kubeConfigService;
 
-    @RequiresPermissions("system:config:view")
+    @RequiresPermissions("k8s:config:view")
     @GetMapping()
     public String config()
     {
@@ -45,7 +45,7 @@ public class KubeConfigController extends BaseController
     /**
      * 查询k8s管理列表
      */
-    @RequiresPermissions("system:config:list")
+    @RequiresPermissions("k8s:config:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(KubeConfig kubeConfig)
@@ -58,7 +58,7 @@ public class KubeConfigController extends BaseController
     /**
      * 导出k8s管理列表
      */
-    @RequiresPermissions("system:config:export")
+    @RequiresPermissions("k8s:config:export")
     @Log(title = "k8s管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -81,7 +81,7 @@ public class KubeConfigController extends BaseController
     /**
      * 新增保存k8s管理
      */
-    @RequiresPermissions("system:config:add")
+    @RequiresPermissions("k8s:config:add")
     @Log(title = "k8s管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -93,7 +93,7 @@ public class KubeConfigController extends BaseController
     /**
      * 修改k8s管理
      */
-    @RequiresPermissions("system:config:edit")
+    @RequiresPermissions("k8s:config:edit")
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap)
     {
@@ -105,7 +105,7 @@ public class KubeConfigController extends BaseController
     /**
      * 修改保存k8s管理
      */
-    @RequiresPermissions("system:config:edit")
+    @RequiresPermissions("k8s:config:edit")
     @Log(title = "k8s管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -117,7 +117,7 @@ public class KubeConfigController extends BaseController
     /**
      * 删除k8s管理
      */
-    @RequiresPermissions("system:config:remove")
+    @RequiresPermissions("k8s:config:remove")
     @Log(title = "k8s管理", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
