@@ -47,17 +47,6 @@
                 <input class="form-control pword" maxlength="20" name="password" placeholder="密码" type="password"/>
                 <input class="form-control pword" maxlength="20" name="confirmPassword" placeholder="确认密码"
                        type="password"/>
-                <div class="row m-t" th:if="${captchaEnabled==true}">
-                    <div class="col-xs-6">
-                        <input class="form-control code" maxlength="5" name="validateCode" placeholder="验证码"
-                               type="text">
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="javascript:void(0);" title="点击更换验证码">
-                            <img class="imgcode" th:src="@{/captcha/captchaImage(type=${captchaType})}" width="85%"/>
-                        </a>
-                    </div>
-                </div>
                 <div class="checkbox-custom" th:classappend="${captchaEnabled==false} ? 'm-t'">
                     <input id="acceptTerm" name="acceptTerm" type="checkbox"> <label for="acceptTerm">我已阅读并同意</label>
                     <a href="https://gitee.com/y_project/RuoYi/blob/master/README.md" target="_blank">使用条款</a>

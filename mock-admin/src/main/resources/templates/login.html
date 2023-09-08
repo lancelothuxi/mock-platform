@@ -52,17 +52,6 @@
                 <p class="m-t-md">你若不离不弃，我必生死相依</p>
                 <input class="form-control uname" name="username" placeholder="用户名" type="text" value="admin"/>
                 <input class="form-control pword" name="password" placeholder="密码" type="password" value="admin123"/>
-                <div class="row m-t" th:if="${captchaEnabled==true}">
-                    <div class="col-xs-6">
-                        <input class="form-control code" maxlength="5" name="validateCode" placeholder="验证码"
-                               type="text"/>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="javascript:void(0);" title="点击更换验证码">
-                            <img class="imgcode" th:src="@{/captcha/captchaImage(type=${captchaType})}" width="85%"/>
-                        </a>
-                    </div>
-                </div>
                 <div class="checkbox-custom" th:classappend="${captchaEnabled==false} ? 'm-t'" th:if="${isRemembered}">
                     <input id="rememberme" name="rememberme" type="checkbox"> <label for="rememberme">记住我</label>
                 </div>
