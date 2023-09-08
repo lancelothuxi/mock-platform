@@ -34,12 +34,12 @@
         </where>
     </sql>
 
-    <select id="selectConfig" parameterType="SysConfig" resultMap="SysConfigResult">
+    <select id="selectConfig" parameterType="io.github.lancelothuxi.mock.system.domain.SysConfig" resultMap="SysConfigResult">
         <include refid="selectConfigVo"/>
         <include refid="sqlwhereSearch"/>
     </select>
 
-    <select id="selectConfigList" parameterType="SysConfig" resultMap="SysConfigResult">
+    <select id="selectConfigList" parameterType="io.github.lancelothuxi.mock.system.domain.SysConfig" resultMap="SysConfigResult">
         <include refid="selectConfigVo"/>
         <where>
             <if test="configName != null and configName != ''">
@@ -70,7 +70,7 @@
         where config_key = #{configKey} limit 1
     </select>
 
-    <insert id="insertConfig" parameterType="SysConfig">
+    <insert id="insertConfig" parameterType="io.github.lancelothuxi.mock.system.domain.SysConfig">
         insert into sys_config (
         <if test="configName != null and configName != '' ">config_name,</if>
         <if test="configKey != null and configKey != '' ">config_key,</if>
@@ -90,7 +90,7 @@
         )
     </insert>
 
-    <update id="updateConfig" parameterType="SysConfig">
+    <update id="updateConfig" parameterType="io.github.lancelothuxi.mock.system.domain.SysConfig">
         update sys_config
         <set>
             <if test="configName != null and configName != ''">config_name = #{configName},</if>

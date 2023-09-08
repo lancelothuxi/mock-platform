@@ -15,7 +15,10 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.security.KeyFactory;
 import java.security.KeyStore;
@@ -67,8 +70,26 @@ public class PEMImporter {
     return keystore;
   }
 
-  private static PrivateKey createPrivateKey(File privateKeyPem) throws Exception {
-    final BufferedReader r = new BufferedReader(new FileReader(privateKeyPem));
+  /**
+   * Create a KeyStore from standard PEM files
+   *
+   * @param privateKeyPem the private key PEM file
+   * @param certificatePem the certificate(s) PEM file
+   * @param the password to set to protect the private key
+   */
+  public static KeyStore createKeyStore(
+          InputStream privateKeyPem,String alias, InputStream certificatePem, final String password) throws Exception {
+    final X509Certificate[] cert = createCertificates(certificatePem);
+    final KeyStore keystore = KeyStore.getInstance("JKS");
+    keystore.load(null);
+    // Import private key
+    final PrivateKey key = createPrivateKey(privateKeyPem);
+    keystore.setKeyEntry(alias, key, password.toCharArray(), cert);
+    return keystore;
+  }
+
+  private static PrivateKey createPrivateKey(InputStream privateKeyPem) throws Exception {
+    final BufferedReader r = new BufferedReader(new InputStreamReader(privateKeyPem));
     String s = r.readLine();
     if (s == null || !s.contains("BEGIN PRIVATE KEY")) {
       r.close();
@@ -89,9 +110,14 @@ public class PEMImporter {
     return generatePrivateKeyFromDER(bytes);
   }
 
-  private static X509Certificate[] createCertificates(File certificatePem) throws Exception {
+
+  private static PrivateKey createPrivateKey(File privateKeyPem) throws Exception {
+    return createPrivateKey(new FileInputStream(privateKeyPem));
+  }
+
+  private static X509Certificate[] createCertificates(InputStream certificatePem) throws Exception {
     final List<X509Certificate> result = new ArrayList<X509Certificate>();
-    final BufferedReader r = new BufferedReader(new FileReader(certificatePem));
+    final BufferedReader r = new BufferedReader(new InputStreamReader(certificatePem));
     String s = r.readLine();
     if (s == null || !s.contains("BEGIN CERTIFICATE")) {
       r.close();
@@ -115,6 +141,10 @@ public class PEMImporter {
     r.close();
 
     return result.toArray(new X509Certificate[result.size()]);
+  }
+
+  private static X509Certificate[] createCertificates(File certificatePem) throws Exception {
+    return createCertificates(new FileInputStream(certificatePem));
   }
 
   private static RSAPrivateKey generatePrivateKeyFromDER(byte[] keyBytes)

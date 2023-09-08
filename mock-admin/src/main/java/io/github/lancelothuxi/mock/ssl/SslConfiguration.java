@@ -1,15 +1,14 @@
 package io.github.lancelothuxi.mock.ssl;
 
-import org.eclipse.jetty.server.Connector;
-import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
-import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ResourceLoader;
 
-import java.util.Collections;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import java.io.InputStream;
+import java.security.KeyStore;
+
 /**
  * @author lancelot
  * @version 1.0
@@ -18,25 +17,23 @@ import java.util.Collections;
 @Configuration
 public class SslConfiguration {
 
-  //    @Bean
-  //    public SslContextFactory.Server sslContextFactory() {
-  //        SslContextFactory.Server sslContextFactory = new SslContextFactory.Server();
-  //        sslContextFactory.setSslContext(sslContext);
-  //        sslContextFactory.setIncludeProtocols(protocols);
-  //        sslContextFactory.setIncludeCipherSuites(ciphers);
-  //        sslContextFactory.setNeedClientAuth(true);
-  //        return sslContextFactory;
-  //    }
+  private final ResourceLoader resourceLoader;
+
+  public SslConfiguration(ResourceLoader resourceLoader) {
+    this.resourceLoader = resourceLoader;
+  }
 
   @Bean
-  public ConfigurableServletWebServerFactory webServerFactory(
-      SslContextFactory.Server sslContextFactory) {
-    JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
-    factory.setPort(8443);
-    JettyServerCustomizer jettyServerCustomizer =
-        server ->
-            server.setConnectors(new Connector[] {new ServerConnector(server, sslContextFactory)});
-    factory.setServerCustomizers(Collections.singletonList(jettyServerCustomizer));
-    return factory;
+  public SSLContext sslContext() throws Exception {
+    InputStream certInputStream = resourceLoader.getResource("classpath:" + "cert/certificate.pem").getInputStream();
+    InputStream privateKeyInputStream = resourceLoader.getResource("classpath:" + "cert/private-key.pem").getInputStream();
+    String password="";
+    KeyStore keyStore = PEMImporter.createKeyStore(privateKeyInputStream, "", certInputStream, "");
+    KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+    keyManagerFactory.init(keyStore, password.toCharArray());
+
+    SSLContext sslContext = SSLContext.getInstance("TLS");
+    sslContext.init(keyManagerFactory.getKeyManagers(), null, null);
+    return sslContext;
   }
 }

@@ -1,6 +1,6 @@
 server:
   # 服务器的HTTP端口，默认为80
-  port: 8080
+  port: 8555
   servlet:
     # 应用的访问路径
     context-path: /
@@ -87,10 +87,10 @@ spring:
   main:
     allow-circular-references: true
   datasource:
-    url00: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/mock_platform?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
   redis:
     redisson:
       config: |
