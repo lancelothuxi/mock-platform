@@ -50,7 +50,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:config:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:config:remove')}]];
-        var prefix = ctx + "system/config";
+        var prefix = ctx + "k8s/config";
 
         $(function() {
             var options = {
