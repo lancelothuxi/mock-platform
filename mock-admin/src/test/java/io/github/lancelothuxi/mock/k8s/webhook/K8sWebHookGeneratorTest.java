@@ -5,6 +5,7 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import io.fabric8.kubernetes.client.server.mock.EnableKubernetesMockClient;
 import io.fabric8.kubernetes.client.server.mock.KubernetesMockServer;
+import io.github.lancelothuxi.mock.domain.KubeConfig;
 import org.junit.jupiter.api.Test;
 
 import java.net.URL;
@@ -26,7 +27,8 @@ public class K8sWebHookGeneratorTest {
   public void testCreateWebhook() {
 
     K8sWebHookGenerator k8sWebHookGenerator = new K8sWebHookGenerator();
-    k8sWebHookGenerator.createWebhook();
+    KubeConfig kubeConfig =new KubeConfig();
+    k8sWebHookGenerator.createWebhook(kubeConfig);
   }
 
   @Test

@@ -12,10 +12,15 @@ import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequest
 import io.fabric8.kubernetes.api.model.certificates.v1.CertificateSigningRequestConditionBuilder;
 import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClientBuilder;
+import io.github.lancelothuxi.mock.domain.KubeConfig;
 import io.github.lancelothuxi.mock.mock.MockDubboServiceImpl;
+import io.github.lancelothuxi.mock.service.IKubeConfigService;
 import io.github.lancelothuxi.mock.ssl.PEMImporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -28,9 +33,13 @@ import java.util.Map;
  * @version 1.0
  * @since 2023/8/14 下午7:33
  */
+@Service
 public class K8sWebHookGenerator {
 
   private static Logger logger = LoggerFactory.getLogger(MockDubboServiceImpl.class);
+
+  @Autowired
+  private IKubeConfigService kubeConfigService;
 
   KubernetesClient client = new DefaultKubernetesClient();
 
@@ -40,7 +49,11 @@ public class K8sWebHookGenerator {
   }
 
   /** 创建一个MutatingWebhookConfiguration */
-  public void createWebhook() {
+  public void createWebhook(KubeConfig kubeConfig) {
+
+    client= new KubernetesClientBuilder()
+            .withConfig(kubeConfig.getContent())
+            .build();
 
     Map<String, String> labelMap = new HashMap<>();
     labelMap.put("mock-agent-enabled", "true");

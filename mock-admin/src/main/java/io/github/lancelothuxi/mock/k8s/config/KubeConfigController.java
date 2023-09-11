@@ -1,4 +1,4 @@
-package io.github.lancelothuxi.mock.controller;
+package io.github.lancelothuxi.mock.k8s.config;
 
 import io.github.lancelothuxi.mock.common.annotation.Log;
 import io.github.lancelothuxi.mock.common.core.controller.BaseController;
