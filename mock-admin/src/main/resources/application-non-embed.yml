@@ -113,16 +113,3 @@ spring:
       connectTimeout: 30000
       validationQuery: SELECT 1 FROM DUAL
 
-dubbo:
-  application:
-    name: mock-platform
-  registry:
-    address: zookeeper://localhost:2181
-  protocols:
-    dubbo:
-      name: dubbo
-      port: 20180
-    namespace: mock-platform
-log4j2:
-  enableConsole: true
-

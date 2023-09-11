@@ -96,16 +96,6 @@ spring:
       config: |
         singleServerConfig:
           address: redis://127.0.0.1:6379
-dubbo:
-  application:
-    name: mock-platform
-  registry:
-    address: zookeeper://localhost:2181
-  protocols:
-    dubbo:
-      name: dubbo
-      port: 20180
-    namespace: mock-platform
 
 logging:
   level:
