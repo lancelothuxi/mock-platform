@@ -1,30 +1,30 @@
-## Compiled class files
-#target/
-#
-## IDE-specific files
-#.idea/
-#*.iml
-#*.iws
-#*.ipr
-#
-## Maven-specific files
-#pom.xml.tag
-#pom.xml.releaseBackup
-#pom.xml.versionsBackup
-#pom.xml.next
-#release.properties
-#dependency-reduced-pom.xml
-#buildNumber.properties
-#.mvn/timing.properties
-#
-## Logs
-#logs/
-#*.log
-#
-## OS-specific files
-#.DS_Store
-#Thumbs.db
-#
-## Miscellaneous
-#*.class
-#*.jar
+# Compiled class files
+target/
+
+# IDE-specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Maven-specific files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Logs
+logs/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.class
+*.jar
