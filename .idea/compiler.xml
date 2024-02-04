@@ -35,29 +35,23 @@
         <module name="ruoyi-system" />
         <module name="ruoyi-common-redis" />
         <module name="ruoyi-generator" />
-        <module name="ruoyi-common-tenant" />
         <module name="ruoyi-common-doc" />
         <module name="ruoyi-common-satoken" />
-        <module name="ruoyi-common-security" />
         <module name="ruoyi-common-oss" />
         <module name="ruoyi-common-websocket" />
         <module name="ruoyi-common-encrypt" />
-        <module name="ruoyi-common-sensitive" />
         <module name="ruoyi-common-excel" />
         <module name="ruoyi-common-log" />
         <module name="ruoyi-admin" />
         <module name="ruoyi-common-mybatis" />
         <module name="ruoyi-monitor-admin" />
-        <module name="ruoyi-common-sms" />
         <module name="ruoyi-common-json" />
         <module name="ruoyi-common-mail" />
         <module name="ruoyi-common-core" />
-        <module name="ruoyi-common-translation" />
         <module name="ruoyi-common-web" />
         <module name="ruoyi-common-ratelimiter" />
         <module name="ruoyi-demo" />
         <module name="ruoyi-common-idempotent" />
-        <module name="ruoyi-common-social" />
       </profile>
       <profile name="Annotation profile for ruoyi-powerjob-server" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -87,6 +81,12 @@
       <module name="mock-framework" target="1.8" />
       <module name="mock-platform" target="1.8" />
       <module name="mock-system" target="1.8" />
+      <module name="ruoyi-common-security" target="17" />
+      <module name="ruoyi-common-sensitive" target="17" />
+      <module name="ruoyi-common-sms" target="17" />
+      <module name="ruoyi-common-social" target="17" />
+      <module name="ruoyi-common-tenant" target="17" />
+      <module name="ruoyi-common-translation" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
