@@ -209,7 +209,7 @@ create table sys_operation_log
 )
     comment '操作日志记录';
 
-INSERT INTO  sys_operation_log (operation_id, business_type, request_method, request_module, request_url, called_method, operator_type, user_id, username, operator_ip, operator_location, dept_id, dept_name, operation_param, operation_result, status, error_stack, operation_time, deleted) VALUES (561, 1, 2, '菜单管理', '/system/menus', 'com.agileboot.admin.controller.system.SysMenuController.add()', 1, 0, 'admin', '127.0.0.1', '内网IP', 0, null, '{"menuName":"","permission":"","parentId":2035,"path":"","isButton":false,"routerName":"","meta":{"showParent":true,"rank":0},"status":1},', '', 1, '', '2023-07-22 17:06:57', 0);
+INSERT INTO  sys_operation_log (operation_id, business_type, request_method, request_module, request_url, called_method, operator_type, user_id, username, operator_ip, operator_location, dept_id, dept_name, operation_param, operation_result, status, error_stack, operation_time, deleted) VALUES (561, 1, 2, '菜单管理', '/system/menus', 'system.controller.admin.io.github.lancelothuxi.mock.server.SysMenuController.add()', 1, 0, 'admin', '127.0.0.1', '内网IP', 0, null, '{"menuName":"","permission":"","parentId":2035,"path":"","isButton":false,"routerName":"","meta":{"showParent":true,"rank":0},"status":1},', '', 1, '', '2023-07-22 17:06:57', 0);
 
 create table sys_post
 (

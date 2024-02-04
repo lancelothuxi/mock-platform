@@ -50,9 +50,9 @@ spring:
             datasource:
                 # 主库数据源
                 master:
-                    url: jdbc:mysql://localhost:33067/agileboot-pure?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                    url: jdbc:mysql://localhost:3306/agileboot-pure?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                     username: root
-                    password: 12345
+                    password: 123456
                 # 从库数据源
 #                slave:
 #                    url: jdbc:mysql://localhost:33067/agileboot2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
@@ -64,7 +64,7 @@ spring:
         # 地址
         host: localhost
         # 端口，默认为6379
-        port: 36379
+        port: 6379
         # 数据库索引
         database: 0
         # 密码

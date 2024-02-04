@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mock-system" />
+        <module name="mock-framework" />
+        <module name="agileboot-domain" />
+        <module name="agileboot-infrastructure" />
+        <module name="agileboot-admin" />
+        <module name="agileboot-common" />
         <module name="mock-api" />
         <module name="mock-common" />
-        <module name="mock-system" />
         <module name="mock-admin" />
-        <module name="mock-framework" />
       </profile>
       <profile name="Annotation profile for RuoYi-Vue-Plus" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -30,28 +34,28 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
+        <module name="ruoyi-common-mybatis" />
         <module name="ruoyi-common-job" />
         <module name="ruoyi-job" />
         <module name="ruoyi-system" />
+        <module name="ruoyi-monitor-admin" />
+        <module name="ruoyi-common-json" />
         <module name="ruoyi-common-redis" />
         <module name="ruoyi-generator" />
+        <module name="ruoyi-common-mail" />
         <module name="ruoyi-common-doc" />
+        <module name="ruoyi-common-core" />
         <module name="ruoyi-common-satoken" />
+        <module name="ruoyi-common-web" />
+        <module name="ruoyi-common-ratelimiter" />
+        <module name="ruoyi-demo" />
         <module name="ruoyi-common-oss" />
         <module name="ruoyi-common-websocket" />
+        <module name="ruoyi-common-idempotent" />
         <module name="ruoyi-common-encrypt" />
         <module name="ruoyi-common-excel" />
         <module name="ruoyi-common-log" />
         <module name="ruoyi-admin" />
-        <module name="ruoyi-common-mybatis" />
-        <module name="ruoyi-monitor-admin" />
-        <module name="ruoyi-common-json" />
-        <module name="ruoyi-common-mail" />
-        <module name="ruoyi-common-core" />
-        <module name="ruoyi-common-web" />
-        <module name="ruoyi-common-ratelimiter" />
-        <module name="ruoyi-demo" />
-        <module name="ruoyi-common-idempotent" />
       </profile>
       <profile name="Annotation profile for ruoyi-powerjob-server" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -75,6 +79,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="agileboot-api" target="1.8" />
       <module name="mock-admin" target="1.8" />
       <module name="mock-api" target="1.8" />
       <module name="mock-common" target="1.8" />

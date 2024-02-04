@@ -184,4 +184,4 @@ create table sys_user
     deleted      tinyint   default 0  not null comment '删除标志（0代表存在 1代表删除）'
 );
 
-CREATE ALIAS FIND_IN_SET FOR "com.agileboot.infrastructure.mybatisplus.MySqlFunction.findInSet";
+CREATE ALIAS FIND_IN_SET FOR "mybatisplus.infrastructure.io.github.lancelothuxi.mock.server.MySqlFunction.findInSet";
