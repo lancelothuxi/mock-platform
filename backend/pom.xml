@@ -47,6 +47,7 @@
         <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.5</maven.surefire.plugin.version>
         <maven.war.plugin.version>3.1.0</maven.war.plugin.version>
+        <mapstruct.version>1.5.2.Final</mapstruct.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -123,6 +124,25 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <!-- mapstruct 配置 -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
 
             <!-- excel工具 -->
