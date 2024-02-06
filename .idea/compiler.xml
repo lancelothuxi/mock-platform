@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ruoyi-framework" />
+        <module name="ruoyi-system" />
         <module name="mock-system" />
         <module name="mock-framework" />
-        <module name="agileboot-domain" />
-        <module name="agileboot-infrastructure" />
-        <module name="agileboot-admin" />
-        <module name="agileboot-common" />
+        <module name="mock-platform-frontend" />
+        <module name="ruoyi-common" />
+        <module name="ruoyi-generator" />
         <module name="mock-api" />
         <module name="mock-common" />
+        <module name="ruoyi-quartz" />
         <module name="mock-admin" />
+        <module name="ruoyi-admin" />
       </profile>
       <profile name="Annotation profile for RuoYi-Vue-Plus" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -37,11 +40,9 @@
         <module name="ruoyi-common-mybatis" />
         <module name="ruoyi-common-job" />
         <module name="ruoyi-job" />
-        <module name="ruoyi-system" />
         <module name="ruoyi-monitor-admin" />
         <module name="ruoyi-common-json" />
         <module name="ruoyi-common-redis" />
-        <module name="ruoyi-generator" />
         <module name="ruoyi-common-mail" />
         <module name="ruoyi-common-doc" />
         <module name="ruoyi-common-core" />
@@ -55,7 +56,6 @@
         <module name="ruoyi-common-encrypt" />
         <module name="ruoyi-common-excel" />
         <module name="ruoyi-common-log" />
-        <module name="ruoyi-admin" />
       </profile>
       <profile name="Annotation profile for ruoyi-powerjob-server" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -79,12 +79,16 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="agileboot" target="1.8" />
+      <module name="agileboot-admin" target="1.8" />
       <module name="agileboot-api" target="1.8" />
+      <module name="agileboot-common" target="1.8" />
+      <module name="agileboot-domain" target="1.8" />
+      <module name="agileboot-infrastructure" target="1.8" />
       <module name="mock-admin" target="1.8" />
       <module name="mock-api" target="1.8" />
       <module name="mock-common" target="1.8" />
       <module name="mock-framework" target="1.8" />
-      <module name="mock-platform" target="1.8" />
       <module name="mock-system" target="1.8" />
       <module name="ruoyi-common-security" target="17" />
       <module name="ruoyi-common-sensitive" target="17" />
@@ -96,8 +100,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ruoyi-admin" options="-parameters" />
-      <module name="ruoyi-common" options="-parameters" />
+      <module name="ruoyi-admin" options="" />
+      <module name="ruoyi-common" options="" />
       <module name="ruoyi-common-core" options="-parameters" />
       <module name="ruoyi-common-doc" options="-parameters" />
       <module name="ruoyi-common-encrypt" options="-parameters" />
@@ -122,12 +126,12 @@
       <module name="ruoyi-common-websocket" options="-parameters" />
       <module name="ruoyi-demo" options="-parameters" />
       <module name="ruoyi-extend" options="-parameters" />
-      <module name="ruoyi-generator" options="-parameters" />
+      <module name="ruoyi-generator" options="" />
       <module name="ruoyi-job" options="-parameters" />
       <module name="ruoyi-modules" options="-parameters" />
       <module name="ruoyi-monitor-admin" options="-parameters" />
       <module name="ruoyi-powerjob-server" options="-parameters" />
-      <module name="ruoyi-system" options="-parameters" />
+      <module name="ruoyi-system" options="" />
       <module name="ruoyi-vue-plus" options="-parameters" />
     </option>
   </component>
