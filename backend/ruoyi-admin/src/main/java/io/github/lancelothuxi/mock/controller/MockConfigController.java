@@ -2,6 +2,7 @@ package io.github.lancelothuxi.mock.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * mock配置Controller
- * 
+ *
  * @author huxisuz@gmail.com
  * @date 2024-02-06
  */
 @RestController
 @RequestMapping("/mock/config")
-public class MockConfigController extends BaseController
-{
+public class MockConfigController extends BaseController {
     @Autowired
     private IMockConfigService mockConfigService;
 
@@ -39,8 +39,7 @@ public class MockConfigController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:config:list')")
     @GetMapping("/list")
-    public TableDataInfo list(MockConfig mockConfig)
-    {
+    public TableDataInfo list(MockConfig mockConfig) {
         startPage();
         List<MockConfig> list = mockConfigService.selectMockConfigList(mockConfig);
         return getDataTable(list);
@@ -52,8 +51,7 @@ public class MockConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:config:export')")
     @Log(title = "mock配置", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, MockConfig mockConfig)
-    {
+    public void export(HttpServletResponse response, MockConfig mockConfig) {
         List<MockConfig> list = mockConfigService.selectMockConfigList(mockConfig);
         ExcelUtil<MockConfig> util = new ExcelUtil<MockConfig>(MockConfig.class);
         util.exportExcel(response, list, "mock配置数据");
@@ -64,8 +62,7 @@ public class MockConfigController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:config:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id)
-    {
+    public AjaxResult getInfo(@PathVariable("id") Long id) {
         return success(mockConfigService.selectMockConfigById(id));
     }
 
@@ -75,8 +72,7 @@ public class MockConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:config:add')")
     @Log(title = "mock配置", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody MockConfig mockConfig)
-    {
+    public AjaxResult add(@RequestBody MockConfig mockConfig) {
         return toAjax(mockConfigService.insertMockConfig(mockConfig));
     }
 
@@ -86,8 +82,7 @@ public class MockConfigController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:config:edit')")
     @Log(title = "mock配置", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody MockConfig mockConfig)
-    {
+    public AjaxResult edit(@RequestBody MockConfig mockConfig) {
         return toAjax(mockConfigService.updateMockConfig(mockConfig));
     }
 
@@ -96,9 +91,8 @@ public class MockConfigController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:config:remove')")
     @Log(title = "mock配置", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids)
-    {
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(mockConfigService.deleteMockConfigByIds(ids));
     }
 }

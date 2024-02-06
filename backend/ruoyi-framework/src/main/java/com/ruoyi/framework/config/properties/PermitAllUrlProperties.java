@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.RegExUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,12 +21,11 @@ import com.ruoyi.common.annotation.Anonymous;
 
 /**
  * 设置Anonymous注解允许匿名访问的url
- * 
+ *
  * @author ruoyi
  */
 @Configuration
-public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware
-{
+public class PermitAllUrlProperties implements InitializingBean, ApplicationContextAware {
     private static final Pattern PATTERN = Pattern.compile("\\{(.*?)\\}");
 
     private ApplicationContext applicationContext;
@@ -35,8 +35,7 @@ public class PermitAllUrlProperties implements InitializingBean, ApplicationCont
     public String ASTERISK = "*";
 
     @Override
-    public void afterPropertiesSet()
-    {
+    public void afterPropertiesSet() {
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
         Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
 
@@ -56,18 +55,15 @@ public class PermitAllUrlProperties implements InitializingBean, ApplicationCont
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext context) throws BeansException
-    {
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
         this.applicationContext = context;
     }
 
-    public List<String> getUrls()
-    {
+    public List<String> getUrls() {
         return urls;
     }
 
-    public void setUrls(List<String> urls)
-    {
+    public void setUrls(List<String> urls) {
         this.urls = urls;
     }
 }

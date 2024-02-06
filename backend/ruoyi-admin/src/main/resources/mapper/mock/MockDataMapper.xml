@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.github.lancelothuxi.mock.mapper.MockDataMapper">
-    
+
     <resultMap type="io.github.lancelothuxi.mock.domain.MockData" id="MockDataResult">
-        <result property="id"    column="id"    />
-        <result property="data"    column="data"    />
-        <result property="timeout"    column="timeout"    />
-        <result property="enabled"    column="enabled"    />
-        <result property="mockConfigId"    column="mock_config_id"    />
-        <result property="matchType"    column="match_type"    />
-        <result property="matchExpression"    column="match_expression"    />
-        <result property="createdTime"    column="created_time"    />
-        <result property="updatedTime"    column="updated_time"    />
+        <result property="id" column="id"/>
+        <result property="data" column="data"/>
+        <result property="timeout" column="timeout"/>
+        <result property="enabled" column="enabled"/>
+        <result property="mockConfigId" column="mock_config_id"/>
+        <result property="matchType" column="match_type"/>
+        <result property="matchExpression" column="match_expression"/>
+        <result property="createdTime" column="created_time"/>
+        <result property="updatedTime" column="updated_time"/>
     </resultMap>
 
     <sql id="selectMockDataVo">
-        select id, data, timeout, enabled, mock_config_id, match_type, match_expression, created_time, updated_time from mock_data
+        select id,
+               data,
+               timeout,
+               enabled,
+               mock_config_id,
+               match_type,
+               match_expression,
+               created_time,
+               updated_time
+        from mock_data
     </sql>
 
-    <select id="selectMockDataList" parameterType="io.github.lancelothuxi.mock.domain.MockData" resultMap="MockDataResult">
+    <select id="selectMockDataList" parameterType="io.github.lancelothuxi.mock.domain.MockData"
+            resultMap="MockDataResult">
         <include refid="selectMockDataVo"/>
-        <where>  
-            <if test="enabled != null "> and enabled = #{enabled}</if>
-            <if test="matchType != null  and matchType != ''"> and match_type = #{matchType}</if>
-            <if test="matchExpression != null  and matchExpression != ''"> and match_expression = #{matchExpression}</if>
+        <where>
+            <if test="enabled != null ">and enabled = #{enabled}</if>
+            <if test="matchType != null  and matchType != ''">and match_type = #{matchType}</if>
+            <if test="matchExpression != null  and matchExpression != ''">and match_expression = #{matchExpression}</if>
         </where>
     </select>
-    
+
     <select id="selectMockDataById" parameterType="Long" resultMap="MockDataResult">
         <include refid="selectMockDataVo"/>
         where id = #{id}
     </select>
-        
-    <insert id="insertMockData" parameterType="io.github.lancelothuxi.mock.domain.MockData" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="insertMockData" parameterType="io.github.lancelothuxi.mock.domain.MockData" useGeneratedKeys="true"
+            keyProperty="id">
         insert into mock_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="data != null">data,</if>
@@ -45,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="matchExpression != null">match_expression,</if>
             <if test="createdTime != null">created_time,</if>
             <if test="updatedTime != null">updated_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="data != null">#{data},</if>
             <if test="timeout != null">#{timeout},</if>
@@ -55,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="matchExpression != null">#{matchExpression},</if>
             <if test="createdTime != null">#{createdTime},</if>
             <if test="updatedTime != null">#{updatedTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateMockData" parameterType="io.github.lancelothuxi.mock.domain.MockData">
@@ -74,11 +85,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteMockDataById" parameterType="Long">
-        delete from mock_data where id = #{id}
+        delete
+        from mock_data
+        where id = #{id}
     </delete>
 
     <delete id="deleteMockDataByIds" parameterType="String">
-        delete from mock_data where id in 
+        delete from mock_data where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

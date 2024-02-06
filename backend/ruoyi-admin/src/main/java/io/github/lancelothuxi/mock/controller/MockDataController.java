@@ -2,6 +2,7 @@ package io.github.lancelothuxi.mock.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * mock数据Controller
- * 
+ *
  * @author ruoyi
  * @date 2024-02-06
  */
 @RestController
 @RequestMapping("/mock/data")
-public class MockDataController extends BaseController
-{
+public class MockDataController extends BaseController {
     @Autowired
     private IMockDataService mockDataService;
 
@@ -39,8 +39,7 @@ public class MockDataController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:data:list')")
     @GetMapping("/list")
-    public TableDataInfo list(MockData mockData)
-    {
+    public TableDataInfo list(MockData mockData) {
         startPage();
         List<MockData> list = mockDataService.selectMockDataList(mockData);
         return getDataTable(list);
@@ -52,8 +51,7 @@ public class MockDataController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:data:export')")
     @Log(title = "mock数据", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, MockData mockData)
-    {
+    public void export(HttpServletResponse response, MockData mockData) {
         List<MockData> list = mockDataService.selectMockDataList(mockData);
         ExcelUtil<MockData> util = new ExcelUtil<MockData>(MockData.class);
         util.exportExcel(response, list, "mock数据数据");
@@ -64,8 +62,7 @@ public class MockDataController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:data:query')")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") Long id)
-    {
+    public AjaxResult getInfo(@PathVariable("id") Long id) {
         return success(mockDataService.selectMockDataById(id));
     }
 
@@ -75,8 +72,7 @@ public class MockDataController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:data:add')")
     @Log(title = "mock数据", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody MockData mockData)
-    {
+    public AjaxResult add(@RequestBody MockData mockData) {
         return toAjax(mockDataService.insertMockData(mockData));
     }
 
@@ -86,8 +82,7 @@ public class MockDataController extends BaseController
     @PreAuthorize("@ss.hasPermi('mock:data:edit')")
     @Log(title = "mock数据", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody MockData mockData)
-    {
+    public AjaxResult edit(@RequestBody MockData mockData) {
         return toAjax(mockDataService.updateMockData(mockData));
     }
 
@@ -96,9 +91,8 @@ public class MockDataController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('mock:data:remove')")
     @Log(title = "mock数据", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids)
-    {
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(mockDataService.deleteMockDataByIds(ids));
     }
 }
