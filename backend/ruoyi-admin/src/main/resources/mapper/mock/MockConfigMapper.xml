@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.lancelothuxi.mock.mapper.MockConfigMapper">
+    
+    <resultMap type="io.github.lancelothuxi.mock.domain.MockConfig" id="MockConfigResult">
+        <result property="id"    column="id"    />
+        <result property="applicationName"    column="application_name"    />
+        <result property="interfaceName"    column="interface_name"    />
+        <result property="methodName"    column="method_name"    />
+        <result property="groupName"    column="group_name"    />
+        <result property="version"    column="version"    />
+        <result property="enabled"    column="enabled"    />
+        <result property="type"    column="type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedTime"    column="updated_time"    />
+    </resultMap>
+
+    <sql id="selectMockConfigVo">
+        select id, application_name, interface_name, method_name, group_name, version, enabled, type, created_time, updated_time from mock_config
+    </sql>
+
+    <select id="selectMockConfigList" parameterType="io.github.lancelothuxi.mock.domain.MockConfig" resultMap="MockConfigResult">
+        <include refid="selectMockConfigVo"/>
+        <where>  
+            <if test="applicationName != null  and applicationName != ''"> and application_name like concat('%', #{applicationName}, '%')</if>
+            <if test="interfaceName != null  and interfaceName != ''"> and interface_name like concat('%', #{interfaceName}, '%')</if>
+            <if test="methodName != null  and methodName != ''"> and method_name like concat('%', #{methodName}, '%')</if>
+            <if test="groupName != null  and groupName != ''"> and group_name like concat('%', #{groupName}, '%')</if>
+            <if test="version != null  and version != ''"> and version = #{version}</if>
+            <if test="enabled != null  and enabled != ''"> and enabled = #{enabled}</if>
+        </where>
+    </select>
+    
+    <select id="selectMockConfigById" parameterType="Long" resultMap="MockConfigResult">
+        <include refid="selectMockConfigVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMockConfig" parameterType="io.github.lancelothuxi.mock.domain.MockConfig" useGeneratedKeys="true" keyProperty="id">
+        insert into mock_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="applicationName != null">application_name,</if>
+            <if test="interfaceName != null">interface_name,</if>
+            <if test="methodName != null">method_name,</if>
+            <if test="groupName != null">group_name,</if>
+            <if test="version != null">version,</if>
+            <if test="enabled != null">enabled,</if>
+            <if test="type != null">type,</if>
+            <if test="createdTime != null">created_time,</if>
+            <if test="updatedTime != null">updated_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="applicationName != null">#{applicationName},</if>
+            <if test="interfaceName != null">#{interfaceName},</if>
+            <if test="methodName != null">#{methodName},</if>
+            <if test="groupName != null">#{groupName},</if>
+            <if test="version != null">#{version},</if>
+            <if test="enabled != null">#{enabled},</if>
+            <if test="type != null">#{type},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMockConfig" parameterType="io.github.lancelothuxi.mock.domain.MockConfig">
+        update mock_config
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="applicationName != null">application_name = #{applicationName},</if>
+            <if test="interfaceName != null">interface_name = #{interfaceName},</if>
+            <if test="methodName != null">method_name = #{methodName},</if>
+            <if test="groupName != null">group_name = #{groupName},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="createdTime != null">created_time = #{createdTime},</if>
+            <if test="updatedTime != null">updated_time = #{updatedTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMockConfigById" parameterType="Long">
+        delete from mock_config where id = #{id}
+    </delete>
+
+    <delete id="deleteMockConfigByIds" parameterType="String">
+        delete from mock_config where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
