@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  webapp:
+    image: quellanan/zlflovemm:1.0.0
+    ports:
+      - "9001:9090"
+    volumes:
+      - "/data"
+    depends_on:
+      - redis
+      - mysql
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /redis/redis.conf:/etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_USER: 'root'
+      MYSQL_PASS: '123456'
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./db:/var/lib/mysql"
+      - "./conf/my.cnf:/etc/my.cnf"
+      - "./init:/docker-entrypoint-initdb.d/"

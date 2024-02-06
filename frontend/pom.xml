@@ -42,7 +42,7 @@
 					</execution>
 					<!-- Install all project dependencies -->
 					<execution>
-						<id>npm install</id>
+						<id>pnpm install</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
