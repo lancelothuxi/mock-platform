@@ -91,28 +91,28 @@
             </plugin>
 
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.13</version>
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.38.1</version>
                 <configuration>
-                    <repository>mock</repository>
-                    <tag>latest</tag>
-                    <buildArgs>
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
+                    <images>
+                        <image>
+                            <name>lancelothuxi/mock-platform:${project.version}</name>
+                            <build>
+                                <from>eclipse-temurin:8u402-b06-jre</from>
+                                <assemblies>
+                                    <assembly>
+                                        <descriptorRef>artifact</descriptorRef>
+                                    </assembly>
+                                </assemblies>
+                                <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar</entryPoint>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
 
 </project>
