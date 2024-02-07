@@ -64,6 +64,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -95,6 +96,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.38.1</version>
                 <configuration>
+                    <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <images>
                         <image>
                             <name>lancelothuxi/mock-platform:${project.version}</name>
@@ -107,12 +109,50 @@
                                 </assemblies>
                                 <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar</entryPoint>
                             </build>
+                            <run>
+                                <links>
+                                    <link>mysql</link>
+                                    <link>redis</link>
+                                </links>
+                                <env>
+                                    <DB_HOST>mysql</DB_HOST>
+                                    <REDIS_HOST>redis</REDIS_HOST>
+                                </env>
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+                            </run>
+                        </image>
+
+                        <image>
+                            <alias>mysql</alias>
+                            <name>mysql:latest</name>
+                            <run>
+                                <env>
+                                    <MYSQL_ROOT_PASSWORD>123456</MYSQL_ROOT_PASSWORD>
+                                </env>
+                                <volumes>
+                                    <bind>
+                                        <volume>${project.basedir}/sql:/docker-entrypoint-initdb.d</volume>
+                                    </bind>
+                                </volumes>
+                                <wait>
+                                    <time>10000</time>
+                                </wait>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>redis</alias>
+                            <name>redis:latest</name>
+                            <run>
+                                <wait>
+                                    <time>10000</time>
+                                </wait>
+                            </run>
                         </image>
                     </images>
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>${project.artifactId}-${project.version}</finalName>
     </build>
-
 </project>
