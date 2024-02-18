@@ -18,54 +18,47 @@
 	</properties>
 
 	<build>
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>com.github.eirslett</groupId>-->
-<!--				<artifactId>frontend-maven-plugin</artifactId>-->
-<!--				<version>${frontend-maven-plugin.version}</version>-->
-<!--				<configuration>-->
-<!--					&lt;!&ndash; optional: where to download node from. Defaults to https://nodejs.org/dist/ &ndash;&gt;-->
-<!--					<nodeDownloadRoot>https://registry.npmmirror.com/-/binary/node/</nodeDownloadRoot>-->
-<!--					&lt;!&ndash; optional: where to download npm from. Defaults to https://registry.npmjs.org/npm/-/ &ndash;&gt;-->
-<!--					<npmDownloadRoot>https://registry.npmmirror.com/-/binary/npm/</npmDownloadRoot>-->
-<!--				</configuration>-->
-<!--				<executions>-->
-<!--					&lt;!&ndash; Install our node and npm version to run npm/node scripts&ndash;&gt;-->
-<!--					<execution>-->
-<!--						<id>install node and npm</id>-->
-<!--						<goals>-->
-<!--							<goal>install-node-and-npm</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<nodeVersion>v16.17.0</nodeVersion>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--					&lt;!&ndash; Install all project dependencies &ndash;&gt;-->
-<!--					<execution>-->
-<!--						<id>pnpm install</id>-->
-<!--						<goals>-->
-<!--							<goal>npm</goal>-->
-<!--						</goals>-->
-<!--						&lt;!&ndash; optional: default phase is "generate-resources" &ndash;&gt;-->
-<!--						<phase>generate-resources</phase>-->
-<!--						&lt;!&ndash; Optional configuration which provides for running any npm command &ndash;&gt;-->
-<!--						<configuration>-->
-<!--							<arguments>install</arguments>-->
-<!--							<npmRegistryURL>http://registry.npmmirror.com/</npmRegistryURL>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--					&lt;!&ndash; Build and minify static files &ndash;&gt;-->
-<!--					<execution>-->
-<!--						<id>vite build</id>-->
-<!--						<goals>-->
-<!--							<goal>npx</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<arguments>vite build</arguments>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
+		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>${frontend-maven-plugin.version}</version>
+				<configuration>
+          <downloadRoot>http://npm.taobao.org/mirrors/node/</downloadRoot>
+        </configuration>
+				<executions>
+					<!-- Install our node and npm version to run npm/node scripts-->
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v16.17.0</nodeVersion>
+						</configuration>
+					</execution>
+					<!-- Install all project dependencies -->
+          <execution>
+            <id>install frontend dependencies</id>
+            <goals>
+              <goal>npx</goal>
+            </goals>
+            <configuration>
+              <arguments>pnpm install</arguments>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>run dev</id>
+            <goals>
+              <goal>npx</goal>
+            </goals>
+            <configuration>
+              <arguments>pnpm dev</arguments>
+            </configuration>
+          </execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>
