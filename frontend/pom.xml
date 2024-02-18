@@ -30,6 +30,7 @@
 					<!-- Install our node and npm version to run npm/node scripts-->
 					<execution>
 						<id>install node and npm</id>
+            <phase>none</phase>
 						<goals>
 							<goal>install-node-and-npm</goal>
 						</goals>
@@ -39,7 +40,7 @@
 					</execution>
 					<!-- Install all project dependencies -->
           <execution>
-            <id>install frontend dependencies</id>
+            <id>install-frontend-dependencies</id>
             <goals>
               <goal>npx</goal>
             </goals>
@@ -49,7 +50,8 @@
           </execution>
 
           <execution>
-            <id>run dev</id>
+            <id>run-dev</id>
+            <phase>none</phase>
             <goals>
               <goal>npx</goal>
             </goals>
