@@ -5,7 +5,7 @@ echo "compile and run in docker"
 cd $dir/..
 mvn clean install && cd $dir/../backend/ruoyi-admin && mvn docker:build && mvn docker:run
 
-
+cd $dir/../frontend
 echo "pnpm install"
 mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@install-frontend-dependencies
 
