@@ -14,8 +14,77 @@
 		<module>backend</module>
 	</modules>
 
+	<properties>
+		<finalName>mock-platform-backend</finalName>
+	</properties>
 
-	<build></build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.38.1</version>
+				<configuration>
+					<autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+					<images>
+						<image>
+							<name>lancelothuxi/mock-platform-backend:${project.version}</name>
+							<build>
+								<from>eclipse-temurin:8u402-b06-jre</from>
+								<workdir>${project.basedir}/backend/ruoyi-admin/target</workdir>
+								<entryPoint>java -jar /maven/${finalName}.jar</entryPoint>
+							</build>
+							<run>
+								<!--create link to mysql and redis-->
+								<links>
+									<link>mysql</link>
+									<link>redis</link>
+								</links>
 
+								<env>
+									<!--set env to mysql and redis-->
+									<DB_HOST>mysql</DB_HOST>
+									<REDIS_HOST>redis</REDIS_HOST>
+								</env>
+								<ports>
+									<port>8080:8080</port>
+								</ports>
+							</run>
+						</image>
 
+						<!--start mysql-->
+						<image>
+							<alias>mysql</alias>
+							<name>mysql:latest</name>
+							<run>
+								<env>
+									<MYSQL_ROOT_PASSWORD>123456</MYSQL_ROOT_PASSWORD>
+								</env>
+								<volumes>
+									<bind>
+										<!--init sql-->
+										<volume>${project.basedir}/sql:/docker-entrypoint-initdb.d</volume>
+									</bind>
+								</volumes>
+								<wait>
+									<time>10000</time>
+								</wait>
+							</run>
+						</image>
+
+						<!--start redis-->
+						<image>
+							<alias>redis</alias>
+							<name>redis:latest</name>
+							<run>
+								<wait>
+									<time>10000</time>
+								</wait>
+							</run>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
