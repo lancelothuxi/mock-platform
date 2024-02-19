@@ -107,7 +107,7 @@
                                         <descriptorRef>artifact</descriptorRef>
                                     </assembly>
                                 </assemblies>
-                                <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar</entryPoint>
+                                <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
                             <run>
                                 <links>
