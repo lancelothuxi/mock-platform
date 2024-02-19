@@ -5,14 +5,12 @@
 		 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.lancelothuxi</groupId>
-	<artifactId>mock-platform</artifactId>
+	<artifactId>mock-platform-examples</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>frontend</module>
-		<module>backend</module>
-		<module>examples</module>
+		<module>dubboApache</module>
 	</modules>
 
 	<properties>

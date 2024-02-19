@@ -6,15 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ruoyi-framework" />
         <module name="ruoyi-system" />
-        <module name="mock-system" />
         <module name="mock-framework" />
-        <module name="mock-platform-frontend" />
-        <module name="ruoyi-common" />
         <module name="ruoyi-generator" />
         <module name="mock-api" />
         <module name="mock-common" />
+        <module name="ruoyi-framework" />
+        <module name="mock-system" />
+        <module name="mock-platform-frontend" />
+        <module name="ruoyi-common" />
         <module name="ruoyi-quartz" />
         <module name="mock-admin" />
         <module name="ruoyi-admin" />
@@ -85,10 +85,15 @@
       <module name="agileboot-common" target="1.8" />
       <module name="agileboot-domain" target="1.8" />
       <module name="agileboot-infrastructure" target="1.8" />
+      <module name="examples (1)" target="1.5" />
+      <module name="examples (2)" target="1.5" />
+      <module name="examples (3)" target="1.5" />
       <module name="mock-admin" target="1.8" />
       <module name="mock-api" target="1.8" />
       <module name="mock-common" target="1.8" />
       <module name="mock-framework" target="1.8" />
+      <module name="mock-platform-examples" target="1.5" />
+      <module name="mock-platform-examples-dubboAlibaba" target="1.5" />
       <module name="mock-system" target="1.8" />
       <module name="ruoyi-common-security" target="17" />
       <module name="ruoyi-common-sensitive" target="17" />
@@ -96,6 +101,8 @@
       <module name="ruoyi-common-social" target="17" />
       <module name="ruoyi-common-tenant" target="17" />
       <module name="ruoyi-common-translation" target="17" />
+      <module name="ruoyi-quartz (1)" target="1.8" />
+      <module name="ruoyi-quartz (2)" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

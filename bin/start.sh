@@ -34,3 +34,4 @@ mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@install-frontend-depend
 
 echo "pnpm dev"
 mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@run-dev
+
