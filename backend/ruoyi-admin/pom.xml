@@ -101,7 +101,7 @@
                         <image>
                             <name>lancelothuxi/mock-platform:${project.version}</name>
                             <build>
-                                <from>eclipse-temurin:8u402-b06-jre</from>
+                                <from>eclipse-temurin:8-jre</from>
                                 <assemblies>
                                     <assembly>
                                         <descriptorRef>artifact</descriptorRef>
@@ -134,6 +134,7 @@
                                 <volumes>
                                     <bind>
                                         <volume>${project.basedir}/sql:/docker-entrypoint-initdb.d</volume>
+                                        <volume>${project.basedir}/conf/my.cnf:/etc/mysql/my.cnf</volume>
                                     </bind>
                                 </volumes>
                                 <wait>
