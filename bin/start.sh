@@ -1,13 +1,21 @@
 #!/bin/sh
+cd $(dirname "$0") || exit 1
 cd ..
 baseDir=`pwd`
 # 要判断的端口号
 port=8080
 # 检查端口是否被占用
 if netstat -an | grep LISTEN | grep $port > /dev/null; then
-  echo "端口 $port 已被占用"
+  echo "后台端口 $port 已被占用"
   exit 1
 fi
+
+mysqlPort=3306
+if netstat -an | grep LISTEN | grep $mysqlPort > /dev/null; then
+  echo "mysql端口 $mysqlPort 已被占用"
+  exit 1
+fi
+
 
 echo "compile and run in docker"
 mvn clean install

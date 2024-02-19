@@ -131,6 +131,9 @@
                                 <env>
                                     <MYSQL_ROOT_PASSWORD>123456</MYSQL_ROOT_PASSWORD>
                                 </env>
+                                <ports>
+                                    <port>3306:3306</port>
+                                </ports>
                                 <volumes>
                                     <bind>
                                         <volume>${project.basedir}/sql:/docker-entrypoint-initdb.d</volume>
@@ -147,7 +150,7 @@
                             <name>redis:latest</name>
                             <run>
                                 <wait>
-                                    <time>10000</time>
+                                    <time>1000</time>
                                 </wait>
                             </run>
                         </image>

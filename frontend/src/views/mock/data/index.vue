@@ -11,8 +11,8 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="匹配规则类型" prop="matchType">
-        <el-select v-model="queryParams.matchType" placeholder="请选择匹配规则类型" clearable>
+      <el-form-item label="匹配规则" prop="matchType">
+        <el-select v-model="queryParams.matchType" placeholder="请选择匹配规则" clearable>
           <el-option
             v-for="dict in mock_expression_rule_type"
             :key="dict.value"
@@ -79,7 +79,7 @@
           <dict-tag :options="sys_yes_no" :value="scope.row.enabled"/>
         </template>
       </el-table-column>
-      <el-table-column label="匹配规则类型" align="center" prop="matchType">
+      <el-table-column label="匹配规则" align="center" prop="matchType">
         <template #default="scope">
           <dict-tag :options="mock_expression_rule_type" :value="scope.row.matchType"/>
         </template>
@@ -97,7 +97,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
