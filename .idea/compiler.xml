@@ -6,140 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ruoyi-system" />
-        <module name="mock-framework" />
-        <module name="ruoyi-generator" />
-        <module name="mock-api" />
-        <module name="mock-common" />
         <module name="ruoyi-framework" />
-        <module name="mock-system" />
+        <module name="ruoyi-system" />
         <module name="mock-platform-frontend" />
         <module name="ruoyi-common" />
+        <module name="ruoyi-generator" />
+        <module name="mock-agent-examples" />
         <module name="ruoyi-quartz" />
-        <module name="mock-admin" />
         <module name="ruoyi-admin" />
       </profile>
-      <profile name="Annotation profile for RuoYi-Vue-Plus" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc-scribe/0.15.0/therapi-runtime-javadoc-scribe-0.15.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc/0.15.0/therapi-runtime-javadoc-0.15.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/3.1.7/spring-boot-configuration-processor-3.1.7.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-processor/1.3.5/mapstruct-plus-processor-1.3.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus/1.3.5/mapstruct-plus-1.3.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/cn/hutool/hutool-core/5.8.15/hutool-core-5.8.15.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/baidu/lbsyun/javapoet/1.9.0/javapoet-1.9.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
-        </processorPath>
-        <module name="ruoyi-common-mybatis" />
-        <module name="ruoyi-common-job" />
-        <module name="ruoyi-job" />
-        <module name="ruoyi-monitor-admin" />
-        <module name="ruoyi-common-json" />
-        <module name="ruoyi-common-redis" />
-        <module name="ruoyi-common-mail" />
-        <module name="ruoyi-common-doc" />
-        <module name="ruoyi-common-core" />
-        <module name="ruoyi-common-satoken" />
-        <module name="ruoyi-common-web" />
-        <module name="ruoyi-common-ratelimiter" />
-        <module name="ruoyi-demo" />
-        <module name="ruoyi-common-oss" />
-        <module name="ruoyi-common-websocket" />
-        <module name="ruoyi-common-idempotent" />
-        <module name="ruoyi-common-encrypt" />
-        <module name="ruoyi-common-excel" />
-        <module name="ruoyi-common-log" />
-      </profile>
-      <profile name="Annotation profile for ruoyi-powerjob-server" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc-scribe/0.15.0/therapi-runtime-javadoc-scribe-0.15.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/github/therapi/therapi-runtime-javadoc/0.15.0/therapi-runtime-javadoc-0.15.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/2.7.18/spring-boot-configuration-processor-2.7.18.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus-processor/1.3.5/mapstruct-plus-processor-1.3.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/io/github/linpeilie/mapstruct-plus/1.3.5/mapstruct-plus-1.3.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/cn/hutool/hutool-core/5.8.15/hutool-core-5.8.15.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/baidu/lbsyun/javapoet/1.9.0/javapoet-1.9.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
-        </processorPath>
-        <module name="ruoyi-powerjob-server" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="agileboot" target="1.8" />
-      <module name="agileboot-admin" target="1.8" />
-      <module name="agileboot-api" target="1.8" />
-      <module name="agileboot-common" target="1.8" />
-      <module name="agileboot-domain" target="1.8" />
-      <module name="agileboot-infrastructure" target="1.8" />
-      <module name="examples (1)" target="1.5" />
-      <module name="examples (2)" target="1.5" />
-      <module name="examples (3)" target="1.5" />
-      <module name="mock-admin" target="1.8" />
-      <module name="mock-api" target="1.8" />
-      <module name="mock-common" target="1.8" />
-      <module name="mock-framework" target="1.8" />
-      <module name="mock-platform-examples" target="1.5" />
-      <module name="mock-platform-examples-dubboAlibaba" target="1.5" />
-      <module name="mock-system" target="1.8" />
-      <module name="ruoyi-common-security" target="17" />
-      <module name="ruoyi-common-sensitive" target="17" />
-      <module name="ruoyi-common-sms" target="17" />
-      <module name="ruoyi-common-social" target="17" />
-      <module name="ruoyi-common-tenant" target="17" />
-      <module name="ruoyi-common-translation" target="17" />
-      <module name="ruoyi-quartz (1)" target="1.8" />
-      <module name="ruoyi-quartz (2)" target="1.8" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ruoyi-admin" options="" />
-      <module name="ruoyi-common" options="" />
-      <module name="ruoyi-common-core" options="-parameters" />
-      <module name="ruoyi-common-doc" options="-parameters" />
-      <module name="ruoyi-common-encrypt" options="-parameters" />
-      <module name="ruoyi-common-excel" options="-parameters" />
-      <module name="ruoyi-common-idempotent" options="-parameters" />
-      <module name="ruoyi-common-job" options="-parameters" />
-      <module name="ruoyi-common-json" options="-parameters" />
-      <module name="ruoyi-common-log" options="-parameters" />
-      <module name="ruoyi-common-mail" options="-parameters" />
-      <module name="ruoyi-common-mybatis" options="-parameters" />
-      <module name="ruoyi-common-oss" options="-parameters" />
-      <module name="ruoyi-common-ratelimiter" options="-parameters" />
-      <module name="ruoyi-common-redis" options="-parameters" />
-      <module name="ruoyi-common-satoken" options="-parameters" />
-      <module name="ruoyi-common-security" options="-parameters" />
-      <module name="ruoyi-common-sensitive" options="-parameters" />
-      <module name="ruoyi-common-sms" options="-parameters" />
-      <module name="ruoyi-common-social" options="-parameters" />
-      <module name="ruoyi-common-tenant" options="-parameters" />
-      <module name="ruoyi-common-translation" options="-parameters" />
-      <module name="ruoyi-common-web" options="-parameters" />
-      <module name="ruoyi-common-websocket" options="-parameters" />
-      <module name="ruoyi-demo" options="-parameters" />
-      <module name="ruoyi-extend" options="-parameters" />
-      <module name="ruoyi-generator" options="" />
-      <module name="ruoyi-job" options="-parameters" />
-      <module name="ruoyi-modules" options="-parameters" />
-      <module name="ruoyi-monitor-admin" options="-parameters" />
-      <module name="ruoyi-powerjob-server" options="-parameters" />
-      <module name="ruoyi-system" options="" />
-      <module name="ruoyi-vue-plus" options="-parameters" />
-    </option>
   </component>
 </project>

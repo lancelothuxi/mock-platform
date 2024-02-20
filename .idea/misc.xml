@@ -4,25 +4,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/backend/pom.xml" />
-        <option value="$PROJECT_DIR$/frontend/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/backend/agileboot-api/pom.xml" />
-        <option value="$PROJECT_DIR$/examples/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-security/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-sensitive/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-sms/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-social/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-tenant/pom.xml" />
-        <option value="$PROJECT_DIR$/ruoyi-common/ruoyi-common-translation/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK" />
 </project>
