@@ -98,14 +98,6 @@
                                 </assembly>
                                 <entryPoint>java -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
-                            <copy>
-                                <entries>
-                                    <entry>
-                                        <containerPath>/usr/local</containerPath>
-                                        <hostDirectory>${project.basedir}/pom.xml</hostDirectory>
-                                    </entry>
-                                </entries>
-                            </copy>
                         </image>
                     </images>
                 </configuration>
