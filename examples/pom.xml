@@ -98,6 +98,12 @@
                                 </assembly>
                                 <entryPoint>java -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
+
+                            <run>
+                                <env>
+                                    <MOCK_APPLICATION_NAME>demo</MOCK_APPLICATION_NAME>
+                                </env>
+                            </run>
                         </image>
                     </images>
                 </configuration>
