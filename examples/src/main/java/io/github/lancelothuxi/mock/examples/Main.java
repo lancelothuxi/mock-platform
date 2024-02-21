@@ -12,7 +12,8 @@ public class Main {
         while (true){
            try {
                demoCall();
-           }finally {
+           }catch (Exception ex){}
+           finally {
                try {
                    Thread.sleep(1000);
                } catch (InterruptedException e) {
