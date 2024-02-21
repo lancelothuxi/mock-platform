@@ -79,12 +79,24 @@
                             <name>lancelothuxi/mock-platform-examples:${project.version}</name>
                             <build>
                                 <from>eclipse-temurin:8-jre</from>
-                                <assemblies>
-                                    <assembly>
-                                        <descriptorRef>artifact</descriptorRef>
-                                    </assembly>
-                                </assemblies>
-                                <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
+                                <assembly>
+                                    <name>my-project-assembly</name>
+                                    <inline>
+                                        <id>copy-test-file</id>
+                                        <files>
+                                            <file>
+                                                <source>${project.basedir}/agent/mock-agent.jar</source>
+                                                <outputDirectory>.</outputDirectory>
+                                            </file>
+                                            <file>
+                                                <source>${project.basedir}/target/${project.artifactId}-${project.version}.jar</source>
+                                                <outputDirectory>.</outputDirectory>
+                                            </file>
+                                        </files>
+                                    </inline>
+                                    <targetDir>/deployments</targetDir>
+                                </assembly>
+                                <entryPoint>java -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
                             <copy>
                                 <entries>
