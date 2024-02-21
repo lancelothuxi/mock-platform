@@ -46,16 +46,26 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>io.github.lancelothuxi.mock.examples.Main</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                            <relocations/>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>io.github.lancelothuxi.mock.examples.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -76,6 +86,14 @@
                                 </assemblies>
                                 <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
+                            <copy>
+                                <entries>
+                                    <entry>
+                                        <containerPath>/usr/local</containerPath>
+                                        <hostDirectory>${project.basedir}/pom.xml</hostDirectory>
+                                    </entry>
+                                </entries>
+                            </copy>
                         </image>
                     </images>
                 </configuration>
