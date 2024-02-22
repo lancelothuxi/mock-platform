@@ -20,7 +20,6 @@ fi
 echo "compile and run in docker"
 mvn clean install
 cd $baseDir/backend/ruoyi-admin
-echo `pwd`
 sh -c "(mvn docker:build && mvn docker:run) &"
 
 # 等待端口被监听
@@ -33,5 +32,15 @@ echo "pnpm install"
 mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@install-frontend-dependencies
 
 echo "pnpm dev"
-mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@run-dev
+sh -c "(mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@run-dev) &"
 
+
+frontendPort=80
+# 等待端口被监听
+while ! netstat -an | grep LISTEN | grep $frontendPort > /dev/null; do
+  sleep 1
+done
+
+cd $baseDir/examples
+echo "run examples"
+mvn docker:build && mvn docker:run
