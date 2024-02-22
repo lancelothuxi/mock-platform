@@ -10,6 +10,8 @@ if netstat -an | grep LISTEN | grep $port > /dev/null; then
   exit 1
 fi
 
+#删除docker containers todo
+
 mysqlPort=3306
 if netstat -an | grep LISTEN | grep $mysqlPort > /dev/null; then
   echo "mysql端口 $mysqlPort 已被占用"
@@ -35,12 +37,6 @@ echo "pnpm dev"
 sh -c "(mvn com.github.eirslett:frontend-maven-plugin:1.12.1:npx@run-dev) &"
 
 
-frontendPort=80
-# 等待端口被监听
-while ! netstat -an | grep LISTEN | grep $frontendPort > /dev/null; do
-  sleep 1
-done
-
 cd $baseDir/examples
 echo "run examples"
-mvn docker:build && mvn docker:run
+sh -c "(mvn docker:build && mvn docker:run) &"

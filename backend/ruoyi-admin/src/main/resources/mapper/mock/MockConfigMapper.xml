@@ -31,7 +31,7 @@
         from mock_config
     </sql>
 
-    <select id="selectMockConfigList" parameterType="io.github.lancelothuxi.mock.domain.MockConfig"
+    <select id="query4Page" parameterType="io.github.lancelothuxi.mock.domain.MockConfig"
             resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         <where>
@@ -49,10 +49,34 @@
         </where>
     </select>
 
+    <select id="selectMockConfigList" parameterType="io.github.lancelothuxi.mock.domain.MockConfig"
+            resultMap="MockConfigResult">
+        <include refid="selectMockConfigVo"/>
+        <where>
+            <if test="applicationName != null">and application_name = #{applicationName},</if>
+            <if test="interfaceName != null">and interface_name = #{interfaceName},</if>
+            <if test="methodName != null">and method_name = #{methodName},</if>
+            <if test="groupName != null">and group_name = #{groupName},</if>
+            <if test="version != null">and version = #{version},</if>
+            <if test="enabled != null">enabled = #{enabled},</if>
+            <if test="type != null">type = #{type},</if>
+        </where>
+    </select>
+
     <select id="selectMockConfigById" parameterType="Long" resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         where id = #{id}
     </select>
+
+
+    <select id="selectMockConfig" parameterType="io.github.lancelothuxi.mock.domain.MockConfig" resultMap="MockConfigResult">
+        <include refid="selectMockConfigVo"/>
+        where application_name = #{applicationName} and interface_name = #{interfaceName}
+        and method_name = #{methodName}
+        <if test="groupName != null">and group_name = #{groupName},</if>
+        <if test="version != null">and version = #{version},</if>
+    </select>
+
 
     <insert id="insertMockConfig" parameterType="io.github.lancelothuxi.mock.domain.MockConfig" useGeneratedKeys="true"
             keyProperty="id">

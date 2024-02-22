@@ -12,9 +12,11 @@
         <module name="ruoyi-common" />
         <module name="ruoyi-generator" />
         <module name="mock-agent-examples" />
-        <module name="ruoyi-quartz" />
         <module name="ruoyi-admin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ruoyi-quartz" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

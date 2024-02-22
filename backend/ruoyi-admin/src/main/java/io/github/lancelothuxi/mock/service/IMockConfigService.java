@@ -27,6 +27,9 @@ public interface IMockConfigService {
      */
     public List<MockConfig> selectMockConfigList(MockConfig mockConfig);
 
+
+    public List<MockConfig> query4Page(MockConfig mockConfig);
+
     /**
      * 新增mock配置
      *
@@ -58,4 +61,6 @@ public interface IMockConfigService {
      * @return 结果
      */
     public int deleteMockConfigById(Long id);
+
+    MockConfig selectMockConfig(MockConfig clientConfig);
 }

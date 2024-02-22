@@ -41,6 +41,11 @@ public class MockConfigServiceImpl implements IMockConfigService {
         return mockConfigMapper.selectMockConfigList(mockConfig);
     }
 
+    @Override
+    public List<MockConfig> query4Page(MockConfig mockConfig) {
+        return mockConfigMapper.query4Page(mockConfig);
+    }
+
     /**
      * 新增mock配置
      *
@@ -83,5 +88,10 @@ public class MockConfigServiceImpl implements IMockConfigService {
     @Override
     public int deleteMockConfigById(Long id) {
         return mockConfigMapper.deleteMockConfigById(id);
+    }
+
+    @Override
+    public MockConfig selectMockConfig(MockConfig clientConfig) {
+        return mockConfigMapper.selectMockConfig(clientConfig);
     }
 }

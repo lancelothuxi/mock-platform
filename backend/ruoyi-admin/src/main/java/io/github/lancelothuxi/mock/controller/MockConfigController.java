@@ -3,6 +3,7 @@ package io.github.lancelothuxi.mock.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import io.github.lancelothuxi.mock.dto.QueryMockConfigsRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +42,31 @@ public class MockConfigController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(MockConfig mockConfig) {
         startPage();
-        List<MockConfig> list = mockConfigService.selectMockConfigList(mockConfig);
+        List<MockConfig> list = mockConfigService.query4Page(mockConfig);
         return getDataTable(list);
+    }
+
+    /**
+     * @param mockConfigsRequest
+     * @return
+     */
+    @RequestMapping("/syncConfigs")
+    public List<MockConfig> getMockConfigs(QueryMockConfigsRequest mockConfigsRequest) {
+        List<MockConfig> enabledMockConfigs = mockConfigsRequest.getMockConfigList();
+
+        List<MockConfig> clientConfigs = mockConfigsRequest.getMockConfigList();
+        for (MockConfig clientConfig : clientConfigs) {
+            MockConfig mockConfig = mockConfigService.selectMockConfig(clientConfig);
+            if(mockConfig==null){
+                mockConfigService.insertMockConfig(clientConfig);
+            }else {
+                clientConfig.setId(mockConfig.getId());
+                if(mockConfig.configEnabled()){
+                    enabledMockConfigs.add(clientConfig);
+                }
+            }
+        }
+        return enabledMockConfigs;
     }
 
     /**

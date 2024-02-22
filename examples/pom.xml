@@ -90,7 +90,7 @@
                             <build>
                                 <from>eclipse-temurin:8-jre</from>
                                 <assembly>
-                                    <name>my-project-assembly</name>
+                                    <name>copy</name>
                                     <inline>
                                         <id>copy-test-file</id>
                                         <files>
@@ -108,12 +108,15 @@
                                 </assembly>
                                 <entryPoint>java -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
-
                             <run>
                                 <env>
                                     <MOCK_APPLICATION_NAME>demo</MOCK_APPLICATION_NAME>
-                                    <MOCK_SERVER_URL>http://localhost:8080</MOCK_SERVER_URL>
+                                    <MOCK_SERVER_URL>http://mock-platform-1:8080</MOCK_SERVER_URL>
                                 </env>
+
+                                <links>
+                                    <link>mock-platform-1</link>
+                                </links>
                             </run>
                         </image>
                     </images>
