@@ -6,8 +6,11 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import io.github.lancelothuxi.mock.examples.dubbo.apache.DubboApacheExampleService;
 import io.github.lancelothuxi.mock.examples.feign.HelloFeignService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         while (true){
            try {
@@ -29,18 +32,12 @@ public class Main {
         ExampleService service = new ExampleService();
         // 调用被 mock 的方法
         int result = service.add(1, 2);
-        System.out.println("cal result = " + result);
+        logger.info("cal result = " + result);
 
         DubboApacheExampleService dubboApacheExampleService =new DubboApacheExampleService();
         String sayHelloByDubbo = dubboApacheExampleService.sayHelloByDubbo();
 
         //输出： sayHelloByDubbo =  this is mock data
-        System.out.println("sayHelloByDubbo = " + sayHelloByDubbo);
-
-        HelloFeignService feignService = Feign.builder().encoder(new JacksonEncoder()).decoder(new JacksonDecoder())
-                .contract(new Contract.Default())
-                .target(HelloFeignService.class, "http://localhost");
-
-        System.out.println("feignService.hello() = " + feignService.hello());
+        logger.info("sayHelloByDubbo = " + sayHelloByDubbo);
     }
 }
