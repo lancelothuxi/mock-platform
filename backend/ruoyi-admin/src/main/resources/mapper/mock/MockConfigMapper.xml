@@ -53,13 +53,13 @@
             resultMap="MockConfigResult">
         <include refid="selectMockConfigVo"/>
         <where>
-            <if test="applicationName != null">and application_name = #{applicationName},</if>
-            <if test="interfaceName != null">and interface_name = #{interfaceName},</if>
-            <if test="methodName != null">and method_name = #{methodName},</if>
-            <if test="groupName != null">and group_name = #{groupName},</if>
-            <if test="version != null">and version = #{version},</if>
-            <if test="enabled != null">enabled = #{enabled},</if>
-            <if test="type != null">type = #{type},</if>
+            <if test="applicationName != null">and application_name = #{applicationName}</if>
+            <if test="interfaceName != null">and interface_name = #{interfaceName}</if>
+            <if test="methodName != null">and method_name = #{methodName}</if>
+            <if test="groupName != null">and group_name = #{groupName}</if>
+            <if test="version != null">and version = #{version}</if>
+            <if test="enabled != null">and enabled = #{enabled}</if>
+            <if test="type != null">and type = #{type}</if>
         </where>
     </select>
 

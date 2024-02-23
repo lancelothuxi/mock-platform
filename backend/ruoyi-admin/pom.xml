@@ -109,7 +109,7 @@
                                         <descriptorRef>artifact</descriptorRef>
                                     </assembly>
                                 </assemblies>
-                                <entryPoint>java -jar /maven/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
+                                <entryPoint>java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar /maven/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8 </entryPoint>
                             </build>
                             <run>
                                 <links>
@@ -122,6 +122,7 @@
                                 </env>
                                 <ports>
                                     <port>8080:8080</port>
+                                    <port>5005:5005</port>
                                 </ports>
                             </run>
                         </image>

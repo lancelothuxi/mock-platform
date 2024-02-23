@@ -52,7 +52,10 @@ public class MockConfigController extends BaseController {
      */
     @RequestMapping("/syncConfigs")
     public List<MockConfig> getMockConfigs(QueryMockConfigsRequest mockConfigsRequest) {
-        List<MockConfig> enabledMockConfigs = mockConfigsRequest.getMockConfigList();
+
+        MockConfig queryCondition=new MockConfig();
+        queryCondition.setEnabled("1");
+        List<MockConfig> enabledMockConfigs = mockConfigService.selectMockConfigList(queryCondition);
 
         List<MockConfig> clientConfigs = mockConfigsRequest.getMockConfigList();
         for (MockConfig clientConfig : clientConfigs) {
