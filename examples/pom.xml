@@ -23,12 +23,6 @@
     <dependencies>
 
         <dependency>
-            <groupId>io.github.lancelothuxi</groupId>
-            <artifactId>mock-agent-build</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.7.18</version>
@@ -120,14 +114,16 @@
                                     </inline>
                                     <targetDir>/deployments</targetDir>
                                 </assembly>
-                                <entryPoint>java -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
+                                <entryPoint>java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5001 -javaagent:/deployments/mock-agent.jar -jar /deployments/${project.artifactId}-${project.version}.jar -Dfile.encoding=UTF-8</entryPoint>
                             </build>
                             <run>
                                 <env>
                                     <MOCK_APPLICATION_NAME>demo</MOCK_APPLICATION_NAME>
                                     <MOCK_SERVER_URL>http://mock-platform-1:8080</MOCK_SERVER_URL>
                                 </env>
-
+                                <ports>
+                                    <port>5001:5001</port>
+                                </ports>
                                 <links>
                                     <link>mock-platform-1</link>
                                 </links>

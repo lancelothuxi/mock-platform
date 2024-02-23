@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dubbo-alibaba/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dubbo-alibaba/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dubbo-apache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dubbo-apache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dynamic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/dynamic/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/openfeign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/openfeign/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/spring/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/spring/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/agent-plugins/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/build/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/build/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/examples/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/examples/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../mock-agent/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-admin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-common/src/main/java" charset="UTF-8" />
