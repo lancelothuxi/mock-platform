@@ -15,7 +15,4 @@ public class QueryMockConfigsRequest {
     private String type;
 
     private List<MockConfig> mockConfigList = new ArrayList<>();
-
-    private List<MockConfig> registerConfigList = new ArrayList<>();
-
 }

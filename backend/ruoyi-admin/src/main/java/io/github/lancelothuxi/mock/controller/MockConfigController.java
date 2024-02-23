@@ -51,7 +51,7 @@ public class MockConfigController extends BaseController {
      * @return
      */
     @RequestMapping("/syncConfigs")
-    public List<MockConfig> getMockConfigs(QueryMockConfigsRequest mockConfigsRequest) {
+    public List<MockConfig> getMockConfigs(@RequestBody QueryMockConfigsRequest mockConfigsRequest) {
 
         MockConfig queryCondition=new MockConfig();
         queryCondition.setEnabled("1");

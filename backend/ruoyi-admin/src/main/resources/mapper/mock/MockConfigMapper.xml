@@ -73,8 +73,8 @@
         <include refid="selectMockConfigVo"/>
         where application_name = #{applicationName} and interface_name = #{interfaceName}
         and method_name = #{methodName}
-        <if test="groupName != null">and group_name = #{groupName},</if>
-        <if test="version != null">and version = #{version},</if>
+        <if test="groupName != null">and group_name = #{groupName}</if>
+        <if test="version != null">and version = #{version}</if>
     </select>
 
 
