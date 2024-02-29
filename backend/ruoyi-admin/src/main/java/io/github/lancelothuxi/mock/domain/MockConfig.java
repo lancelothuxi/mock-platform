@@ -14,9 +14,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @date 2024-02-06
  */
 @Data
-public class MockConfig extends BaseEntity {
-    private static final long serialVersionUID = 1L;
-
+public class MockConfig {
     /**
      * 主键
      */
@@ -56,7 +54,7 @@ public class MockConfig extends BaseEntity {
      * 开关（1开启 0关闭）
      */
     @Excel(name = "开关", readConverterExp = "1=开启,0=关闭")
-    private String enabled;
+    private int enabled;
 
     /**
      * dubbo/dubboreset/feign

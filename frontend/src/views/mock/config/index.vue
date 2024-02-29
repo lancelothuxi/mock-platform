@@ -100,9 +100,9 @@
         <template #default="scope">
           <el-switch
             v-model="scope.row.enabled"
-            active-value="0"
-            inactive-value="1"
-            @change="handleStatusChange(scope.row)"
+            :active-value=1
+            :inactive-value=0
+            @change="handleStatusChange($event,scope.row)"
           ></el-switch>
         </template>
       </el-table-column>
@@ -324,14 +324,13 @@ function handleDelete(row) {
 }
 
 /** 用户状态修改  */
-function handleStatusChange(row) {
-  let text = row.enabled === "0" ? "启用" : "停用";
+function handleStatusChange(val) {
+  let text = val == 1 ? "启用" : "停用";
   proxy.$modal.confirm('确认要' + text  + '吗?').then(function () {
-    return changeConfigStatus(row.id, row.enabled);
+    return changeConfigStatus(row.id, val);
   }).then(() => {
     proxy.$modal.msgSuccess(text + "成功");
   }).catch(function () {
-    row.status = row.status === "0" ? "1" : "0";
   });
 };
 /** 导出按钮操作 */

@@ -1,7 +1,5 @@
-CREATE
-database `ry-vue` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-use
-`ry-vue`;
+CREATE database `ry-vue` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+use `ry-vue`;
 -- ----------------------------
 -- 1、部门表
 -- ----------------------------

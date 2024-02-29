@@ -53,7 +53,7 @@ public class MockConfigController extends BaseController {
     @RequestMapping("/syncConfigs")
     public List<MockConfig> getMockConfigs(@RequestBody QueryMockConfigsRequest mockConfigsRequest) {
         MockConfig queryCondition=new MockConfig();
-        queryCondition.setEnabled("1");
+        queryCondition.setEnabled(1);
         List<MockConfig> enabledMockConfigs = mockConfigService.selectMockConfigList(queryCondition);
 
         List<MockConfig> clientConfigs = mockConfigsRequest.getMockConfigList();
@@ -76,7 +76,7 @@ public class MockConfigController extends BaseController {
      * 查询服务mock方法列表
      */
     @PostMapping("/changeStatus")
-    public AjaxResult changEnable(MockConfig mockConfig) {
+    public AjaxResult changEnable(@RequestBody MockConfig mockConfig) {
         return success(mockConfigService.updateMockConfig(mockConfig));
     }
 
