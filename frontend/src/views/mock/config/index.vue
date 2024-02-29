@@ -106,6 +106,13 @@
           ></el-switch>
         </template>
       </el-table-column>
+      <el-table-column label="查看数据" align="center" :show-overflow-tooltip="true">
+        <template #default="scope">
+          <router-link :to="'/mock/data?mockConfigId' + scope.row.id" class="link-type">
+            <span>查看</span>
+          </router-link>
+        </template>
+      </el-table-column>
       <el-table-column label="创建时间" align="center" prop="createdTime" width="180">
         <template #default="scope">
           <span>{{ parseTime(scope.row.createdTime, '{y}-{m}-{d}') }}</span>
