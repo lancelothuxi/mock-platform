@@ -42,3 +42,16 @@ export function delConfig(id) {
     method: 'delete'
   })
 }
+
+
+export function changeConfigStatus(id, enabled) {
+  const data = {
+    id,
+    enabled
+  }
+  return request({
+    url: '/mock/config/changeStatus',
+    method: 'put',
+    data: data
+  })
+}

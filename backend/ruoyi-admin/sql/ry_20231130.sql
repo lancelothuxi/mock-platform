@@ -1,5 +1,7 @@
-CREATE database `ry-vue` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-use `ry-vue`;
+CREATE
+database `ry-vue` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+use
+`ry-vue`;
 -- ----------------------------
 -- 1、部门表
 -- ----------------------------
@@ -1035,33 +1037,31 @@ create table gen_table_column
 drop table if exists mock_config;
 create table mock_config
 (
-    id               int auto_increment comment '主键'
-        primary key,
-    application_name varchar(128)                          null comment '应用名',
-    interface_name   varchar(255)                          null comment '服务名',
-    method_name      varchar(255)                          null comment '方法名',
-    group_name       varchar(255)                          null comment '分组名',
-    version          varchar(32)                           null comment '版本号',
-    enabled          char        default '0'               null comment '开关（1开启 0关闭）',
-    type             varchar(20) default 'dubbo'           not null comment 'dubbo/dubboreset/feign',
-    created_time     datetime    default CURRENT_TIMESTAMP not null comment '创建时间',
-    updated_time     datetime    default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间'
+    id               int auto_increment comment '主键' primary key,
+    application_name varchar(128) not null default '' comment '应用名',
+    interface_name   varchar(255) not null default '' comment '服务名',
+    method_name      varchar(255) not null default '' comment '方法名',
+    group_name       varchar(255) not null default '' comment '分组名',
+    version          varchar(32)  not null default '' comment '版本号',
+    enabled          int          not null default 0 comment '开关（1开启 0关闭）',
+    type             varchar(20)           default 'dubbo' not null comment '类型',
+    created_time     datetime              default CURRENT_TIMESTAMP not null comment '创建时间',
+    updated_time     datetime              default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间'
 ) comment 'mock配置';
 
 
 drop table if exists mock_data;
 create table mock_data
 (
-    id               int auto_increment comment '主键'
-        primary key,
-    data             varchar(4096)                      null comment 'mock响应数据值',
-    timeout          int                                null comment '指定超时时间',
-    enabled          int      default 1                 not null comment '是否启用',
-    mock_config_id   int      default 0                 not null comment 'mock规则配置表的id',
-    match_type       varchar(10)                        null comment '匹配规则类型',
-    match_expression varchar(1024)                      null comment '匹配规则',
-    created_time     datetime default CURRENT_TIMESTAMP not null comment '创建时间',
-    updated_time     datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间'
+    id               int auto_increment comment '主键' primary key,
+    data             varchar(4096) not null default '' comment 'mock响应数据值',
+    timeout          int           not null default 0 comment '指定超时时间',
+    enabled          int           not null default 1 comment '是否启用',
+    mock_config_id   int           not null default 0 comment 'mock规则配置表的id',
+    match_type       varchar(10)   not null default 'ognl' comment '匹配规则类型',
+    match_expression varchar(1024) not null default '' comment '匹配规则',
+    created_time     datetime               default CURRENT_TIMESTAMP not null comment '创建时间',
+    updated_time     datetime               default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间'
 ) comment 'mock数据';
 
 create index mock_data_mock_config_id_index
@@ -1073,48 +1073,72 @@ values ('2', 'mock管理', '0', '2', 'mock', null, '', 1, 0, 'M', '0', '0', '', 
         '系统管理目录');
 
 -- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置', '2', '1', 'config', 'mock/config/index', 1, 0, 'C', '0', '0', 'mock:config:list', 'example', 'admin', sysdate(), '', null, 'mock配置菜单');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置', '2', '1', 'config', 'mock/config/index', 1, 0, 'C', '0', '0', 'mock:config:list', 'example',
+        'admin', sysdate(), '', null, 'mock配置菜单');
 -- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据', '2', '2', 'data', 'mock/data/index', 1, 0, 'C', '0', '0', 'mock:data:list', 'code', 'admin', sysdate(), '', null, 'mock数据菜单');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据', '2', '2', 'data', 'mock/data/index', 1, 0, 'C', '0', '0', 'mock:data:list', 'code', 'admin',
+        sysdate(), '', null, 'mock数据菜单');
 
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'mock:config:query',        '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置查询', @parentId, '1', '#', '', 1, 0, 'F', '0', '0', 'mock:config:query', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'mock:config:add',          '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置新增', @parentId, '2', '#', '', 1, 0, 'F', '0', '0', 'mock:config:add', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'mock:config:edit',         '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置修改', @parentId, '3', '#', '', 1, 0, 'F', '0', '0', 'mock:config:edit', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'mock:config:remove',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置删除', @parentId, '4', '#', '', 1, 0, 'F', '0', '0', 'mock:config:remove', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock配置导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'mock:config:export',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock配置导出', @parentId, '5', '#', '', 1, 0, 'F', '0', '0', 'mock:config:export', '#', 'admin', sysdate(), '',
+        null, '');
 
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'mock:data:query',        '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据查询', @parentId, '1', '#', '', 1, 0, 'F', '0', '0', 'mock:data:query', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'mock:data:add',          '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据新增', @parentId, '2', '#', '', 1, 0, 'F', '0', '0', 'mock:data:add', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'mock:data:edit',         '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据修改', @parentId, '3', '#', '', 1, 0, 'F', '0', '0', 'mock:data:edit', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'mock:data:remove',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据删除', @parentId, '4', '#', '', 1, 0, 'F', '0', '0', 'mock:data:remove', '#', 'admin', sysdate(), '',
+        null, '');
 
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('mock数据导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'mock:data:export',       '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status,
+                      perms, icon, create_by, create_time, update_by, update_time, remark)
+values ('mock数据导出', @parentId, '5', '#', '', 1, 0, 'F', '0', '0', 'mock:data:export', '#', 'admin', sysdate(), '',
+        null, '');

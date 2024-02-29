@@ -91,13 +91,21 @@
 
     <el-table v-loading="loading" :data="configList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="主键" align="center" prop="id" />
       <el-table-column label="应用名" align="center" prop="applicationName" />
-      <el-table-column label="服务名" align="center" prop="interfaceName" />
+      <el-table-column label="服务名" align="center" prop="interfaceName" width="500"/>
       <el-table-column label="方法名" align="center" prop="methodName" />
       <el-table-column label="分组名" align="center" prop="groupName" />
       <el-table-column label="版本号" align="center" prop="version" />
-      <el-table-column label="开关" align="center" prop="enabled" />
+      <el-table-column label="状态" align="center" key="enabled" >
+        <template #default="scope">
+          <el-switch
+            v-model="scope.row.enabled"
+            active-value="0"
+            inactive-value="1"
+            @change="handleStatusChange(scope.row)"
+          ></el-switch>
+        </template>
+      </el-table-column>
       <el-table-column label="创建时间" align="center" prop="createdTime" width="180">
         <template #default="scope">
           <span>{{ parseTime(scope.row.createdTime, '{y}-{m}-{d}') }}</span>
@@ -142,8 +150,8 @@
         <el-form-item label="版本号" prop="version">
           <el-input v-model="form.version" placeholder="请输入版本号" />
         </el-form-item>
-        <el-form-item label="dubbo/dubboreset/feign" prop="type">
-          <el-select v-model="form.type" placeholder="请选择dubbo/dubboreset/feign">
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="form.type" placeholder="请选择类型">
             <el-option
               v-for="dict in sys_yes_no"
               :key="dict.value"
@@ -180,7 +188,7 @@
 </template>
 
 <script setup name="Config">
-import { listConfig, getConfig, delConfig, addConfig, updateConfig } from "@/api/mock/config";
+import {listConfig, getConfig, delConfig, addConfig, updateConfig, changeConfigStatus} from "@/api/mock/config";
 
 const { proxy } = getCurrentInstance();
 const { sys_yes_no } = proxy.useDict('sys_yes_no');
@@ -317,9 +325,9 @@ function handleDelete(row) {
 
 /** 用户状态修改  */
 function handleStatusChange(row) {
-  let text = row.status === "0" ? "启用" : "停用";
-  proxy.$modal.confirm('确认要"' + text + '""' + row.userName + '"用户吗?').then(function () {
-    return changeUserStatus(row.userId, row.status);
+  let text = row.enabled === "0" ? "启用" : "停用";
+  proxy.$modal.confirm('确认要' + text  + '吗?').then(function () {
+    return changeConfigStatus(row.id, row.enabled);
   }).then(() => {
     proxy.$modal.msgSuccess(text + "成功");
   }).catch(function () {
