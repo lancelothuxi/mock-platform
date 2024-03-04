@@ -183,6 +183,7 @@ const single = ref(true);
 const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
+const route = useRoute();
 
 const data = reactive({
   form: {},
@@ -199,12 +200,6 @@ const data = reactive({
     ],
     mockConfigId: [
       { required: true, message: "mock规则配置表的id不能为空", trigger: "blur" }
-    ],
-    createdTime: [
-      { required: true, message: "创建时间不能为空", trigger: "blur" }
-    ],
-    updatedTime: [
-      { required: true, message: "更新时间不能为空", trigger: "blur" }
     ]
   }
 });
@@ -212,7 +207,7 @@ const data = reactive({
 const { queryParams, form, rules } = toRefs(data);
 
 /** 查询mock数据列表 */
-function getList() {
+function getList(mockConfigId) {
   loading.value = true;
   listData(queryParams.value).then(response => {
     dataList.value = response.rows;
@@ -319,5 +314,5 @@ function handleExport() {
   }, `data_${new Date().getTime()}.xlsx`)
 }
 
-getList();
+getList(route.query.mockConfigId);
 </script>

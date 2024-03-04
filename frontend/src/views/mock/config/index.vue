@@ -108,7 +108,7 @@
       </el-table-column>
       <el-table-column label="查看数据" align="center" :show-overflow-tooltip="true">
         <template #default="scope">
-          <router-link :to="'/mock/data?mockConfigId' + scope.row.id" class="link-type">
+          <router-link :to="{path: '/mock/data', query: {mockConfigId:scope.row.id}}">
             <span>查看</span>
           </router-link>
         </template>
