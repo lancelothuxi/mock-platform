@@ -109,10 +109,10 @@
     <!-- 添加或修改mock数据对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="mock响应数据值" prop="data">
+        <el-form-item label="mock数据" prop="data">
           <el-input v-model="form.data" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="指定超时时间" prop="timeout">
+        <el-form-item label="超时时间" prop="timeout">
           <el-input v-model="form.timeout" placeholder="请输入指定超时时间" />
         </el-form-item>
         <el-form-item label="是否启用" prop="enabled">
@@ -125,11 +125,8 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="mock规则配置表的id" prop="mockConfigId">
-          <el-input v-model="form.mockConfigId" placeholder="请输入mock规则配置表的id" />
-        </el-form-item>
-        <el-form-item label="匹配规则类型" prop="matchType">
-          <el-select v-model="form.matchType" placeholder="请选择匹配规则类型">
+        <el-form-item label="规则类型" prop="matchType">
+          <el-select v-model="form.matchType" placeholder="规则类型">
             <el-option
               v-for="dict in mock_expression_rule_type"
               :key="dict.value"
@@ -140,22 +137,6 @@
         </el-form-item>
         <el-form-item label="匹配规则" prop="matchExpression">
           <el-input v-model="form.matchExpression" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="创建时间" prop="createdTime">
-          <el-date-picker clearable
-            v-model="form.createdTime"
-            type="date"
-            value-format="YYYY-MM-DD"
-            placeholder="请选择创建时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="更新时间" prop="updatedTime">
-          <el-date-picker clearable
-            v-model="form.updatedTime"
-            type="date"
-            value-format="YYYY-MM-DD"
-            placeholder="请选择更新时间">
-          </el-date-picker>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -207,9 +188,9 @@ const data = reactive({
 const { queryParams, form, rules } = toRefs(data);
 
 /** 查询mock数据列表 */
-function getList(mockConfigId) {
+function getList(query) {
   loading.value = true;
-  listData(queryParams.value).then(response => {
+  listData(query).then(response => {
     dataList.value = response.rows;
     total.value = response.total;
     loading.value = false;
@@ -314,5 +295,5 @@ function handleExport() {
   }, `data_${new Date().getTime()}.xlsx`)
 }
 
-getList(route.query.mockConfigId);
+getList(route.query);
 </script>
