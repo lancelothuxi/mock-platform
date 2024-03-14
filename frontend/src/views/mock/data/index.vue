@@ -109,8 +109,9 @@
     <!-- 添加或修改mock数据对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="mock数据" >
-          <v-ace-editor v-model:value="form.data" lang="json" :options="{ useWorker: true }" />
+        <el-form-item label="mock数据" style="height: 300px">
+          <IEditor
+          />
         </el-form-item>
         <el-form-item label="超时时间" prop="timeout">
           <el-input v-model="form.timeout" placeholder="请输入指定超时时间" />
@@ -151,20 +152,7 @@
 
 <script setup name="Data">
 import { listData, getData, delData, addData, updateData } from "@/api/mock/data";
-import { VAceEditor } from 'vue3-ace-editor';
-
-// ace主题包
-import 'ace-builds/src-min-noconflict/theme-kuroir'
-import 'ace-builds/src-min-noconflict/theme-one_dark'
-import 'ace-builds/src-min-noconflict/theme-github'
-// ace 检索框
-import 'ace-builds/src-min-noconflict/ext-searchbox'
-// ace语言包
-import 'ace-builds/src-min-noconflict/mode-javascript'
-import 'ace-builds/src-min-noconflict/mode-xml'
-import 'ace-builds/src-min-noconflict/mode-json5'
-//代码完成
-import 'ace-builds/src-min-noconflict/ext-language_tools'
+import IEditor from "@/views/mock/data/IEditor.vue";
 const { proxy } = getCurrentInstance();
 const { sys_yes_no, mock_expression_rule_type } = proxy.useDict('sys_yes_no', 'mock_expression_rule_type');
 
