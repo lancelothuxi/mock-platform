@@ -19,18 +19,31 @@ export default {
       editor: null
     }
   },
+  props: {
+    value: {
+      type: String,
+      default: '',
+    },
+  },
+
+  setup(props, vm) {
+    let options = {
+      theme: 'ace/theme/tomorrow', // 主题
+      mode: 'ace/mode/mysql', // 代码匹配模式
+      tabSize: 2, //标签大小
+      fontSize: 14, //设置字号
+      wrap: true, // 用户输入的sql语句，自动换行
+      enableSnippets: true, // 启用代码段
+      showLineNumbers: true, // 显示行号
+      enableLiveAutocompletion: true, // 启用实时自动完成功能 （比如：智能代码提示）
+      enableBasicAutocompletion: true, // 启用基本自动完成功能
+      scrollPastEnd: true, // 滚动位置
+      highlightActiveLine: true, // 高亮当前行
+    }
+  },
   mounted() {
-    ace.config.set("basePath", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/");
-    //快速开始-demo
-    this.editor = ace.edit(this.$refs.ace, {
-      maxLines: 24, // 最大行数，超过会自动出现滚动条
-      minLines: 12, // 最小行数，还未到最大行数时，编辑器会自动伸缩大小
-      fontSize: 10, // 编辑器内字体大小
-      theme: 'ace/theme/github', // 默认设置的主题
-      mode: 'ace/mode/json', // 默认设置的语言模式
-      tabSize: 4,// 制表符设置为 4 个空格大小
-      readOnly: false //只读
-    });
+    this.editor = ace.edit(this.$refs.ace, this.options);
+    this.editor.setValue('dddds') // 设置内容
   },
   methods: {
   }

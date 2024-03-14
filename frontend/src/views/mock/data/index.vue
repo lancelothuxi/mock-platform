@@ -72,8 +72,8 @@
     <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="主键" align="center" prop="id" />
-      <el-table-column label="mock响应数据值" align="center" prop="data" />
-      <el-table-column label="指定超时时间" align="center" prop="timeout" />
+      <el-table-column label="mock数据" align="center" prop="data" />
+      <el-table-column label="超时时间" align="center" prop="timeout" />
       <el-table-column label="是否启用" align="center" prop="enabled">
         <template #default="scope">
           <dict-tag :options="sys_yes_no" :value="scope.row.enabled"/>
@@ -110,14 +110,13 @@
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="mock数据" style="height: 300px">
-          <IEditor
-          />
+          <IEditor/>
         </el-form-item>
         <el-form-item label="超时时间" prop="timeout">
-          <el-input v-model="form.timeout" placeholder="请输入指定超时时间" />
+          <el-input v-model="form.timeout" placeholder="输入超时时间" />
         </el-form-item>
         <el-form-item label="是否启用" prop="enabled">
-          <el-select v-model="form.enabled" placeholder="请选择是否启用">
+          <el-select v-model="form.enabled" placeholder="是否启用">
             <el-option
               v-for="dict in sys_yes_no"
               :key="dict.value"
