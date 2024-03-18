@@ -107,10 +107,10 @@
     />
 
     <!-- 添加或修改mock数据对话框 -->
-    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
+    <el-dialog :title="title" v-model="open" width="700px" append-to-body>
       <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="mock数据" style="height: 300px">
-          <IEditor/>
+          <IEditor v-model:content="form.data"/>
         </el-form-item>
         <el-form-item label="超时时间" prop="timeout">
           <el-input v-model="form.timeout" placeholder="输入超时时间" />
@@ -136,7 +136,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="匹配规则" prop="matchExpression">
-          <el-input v-model="form.matchExpression" type="textarea" placeholder="请输入内容" />
+          <IEditor v-model:content="form.      "/>
         </el-form-item>
       </el-form>
       <template #footer>
