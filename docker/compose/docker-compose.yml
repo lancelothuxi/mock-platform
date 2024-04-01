@@ -19,8 +19,10 @@ services:
     networks:
       - custom-net
     restart: always
-  torna:
-    image: registry.cn-hangzhou.aliyuncs.com/tanghc/torna:latest
+  backend:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
     container_name: torna
     ports:
       - 7700:7700
