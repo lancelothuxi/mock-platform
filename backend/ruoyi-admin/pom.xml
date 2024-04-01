@@ -98,6 +98,7 @@
                 <version>0.38.1</version>
                 <configuration>
                     <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+                    <dockerHost>tcp://127.0.0.1:2375</dockerHost>
                     <images>
                         <image>
                             <alias>mock_platform</alias>

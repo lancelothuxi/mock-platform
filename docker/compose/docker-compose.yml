@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mysql:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: mysql
+    #    ports:
+    #      - 3306:3306
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: '%'
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --lower_case_table_names=1
+    networks:
+      - custom-net
+    restart: always
+  torna:
+    image: registry.cn-hangzhou.aliyuncs.com/tanghc/torna:latest
+    container_name: torna
+    ports:
+      - 7700:7700
+    depends_on:
+      - mysql
+    ## 建立连接
+    links:
+      - mysql
+    volumes:
+      - ./application.properties:/torna/config/application.properties
+    environment:
+      - TZ=Asia/Shanghai
+      - JAVA_OPTS=-server -Xmx512m -Xms512m -Djava.awt.headless=true
+    networks:
+      - custom-net
+    restart: always
+networks:
+  custom-net:
