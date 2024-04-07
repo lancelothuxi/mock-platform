@@ -21,9 +21,9 @@ services:
     restart: always
   backend:
     build:
-      context: ./mysql
-      dockerfile: Dockerfile
-    container_name: torna
+      context: ../..
+      dockerfile: ./docker/compose/backend/Dockerfile
+    container_name: backend
     ports:
       - 7700:7700
     depends_on:
