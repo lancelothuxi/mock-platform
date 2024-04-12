@@ -6,7 +6,8 @@ FROM maven:3.6.0-jdk-8-slim as build
 # 将pom.xml文件，拷贝到工作目录下
 COPY docker/compose/backend/settings.xml /build/
 
-COPY . /build/backend
+COPY ./backend /build/backend
+COPY ./pom.xml /build/backend
 
 
 RUN mvn -s /build/settings.xml -f /build/backend/pom.xml clean package

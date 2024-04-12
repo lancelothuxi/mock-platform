@@ -16,28 +16,36 @@ services:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_general_ci
       --lower_case_table_names=1
-    networks:
-      - custom-net
-    restart: always
-  backend:
-    build:
-      context: ../..
-      dockerfile: ./docker/compose/backend/Dockerfile
-    container_name: backend
     ports:
-      - 7700:7700
-    depends_on:
-      - mysql
-    ## 建立连接
-    links:
-      - mysql
-    volumes:
-      - ./application.properties:/torna/config/application.properties
-    environment:
-      - TZ=Asia/Shanghai
-      - JAVA_OPTS=-server -Xmx512m -Xms512m -Djava.awt.headless=true
+      - '3306:3306'
     networks:
       - custom-net
     restart: always
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+#  backend:
+#    build:
+#      context: ../..
+#      dockerfile: ./docker/compose/backend/Dockerfile
+#    container_name: backend
+#    ports:
+#      - 7700:7700
+#    depends_on:
+#      - mysql
+#    ## 建立连接
+#    links:
+#      - mysql
+#    volumes:
+#      - ./application.properties:/torna/config/application.properties
+#    environment:
+#      - TZ=Asia/Shanghai
+#      - JAVA_OPTS=-server -Xmx512m -Xms512m -Djava.awt.headless=true
+#    networks:
+#      - custom-net
+#    restart: always
 networks:
   custom-net:
