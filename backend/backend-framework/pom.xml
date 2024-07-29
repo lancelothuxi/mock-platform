@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ruoyi-framework</artifactId>
+    <artifactId>backend-framework</artifactId>
 
     <description>
         framework框架核心
@@ -56,7 +56,7 @@
         <!-- 系统模块-->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-system</artifactId>
+            <artifactId>backend-system</artifactId>
         </dependency>
 
     </dependencies>

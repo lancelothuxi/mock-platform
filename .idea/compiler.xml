@@ -6,23 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="backend-common" />
         <module name="mock-agent-plugin-spring" />
         <module name="mock-agent-examples (1)" />
-        <module name="ruoyi-system" />
         <module name="mock-agent-examples (2)" />
         <module name="mock-agent-plugin-openfeign" />
+        <module name="backend-framework" />
+        <module name="backend-system" />
         <module name="mock-agent-build" />
-        <module name="ruoyi-framework" />
+        <module name="backend-admin" />
         <module name="mock-platform-frontend" />
         <module name="mock-agent-plugin-dubbo-apache" />
-        <module name="ruoyi-common" />
         <module name="mock-agent-core" />
         <module name="mock-agent-plugin-dubbo-alibaba" />
         <module name="mock-agent-plugin-dynamic" />
-        <module name="ruoyi-admin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mock-agent-examples" target="1.8" />
+      <module name="ruoyi" target="1.8" />
       <module name="ruoyi-generator" target="1.8" />
       <module name="ruoyi-quartz" target="1.8" />
     </bytecodeTargetLevel>

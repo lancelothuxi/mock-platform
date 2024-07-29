@@ -21,18 +21,18 @@
     <file url="file://$PROJECT_DIR$/../mock-agent/examples/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../mock-agent/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../mock-agent/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-admin/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-admin/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-common/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-common/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-framework/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-admin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/backend-system/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-generator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-generator/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-quartz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/ruoyi-quartz/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-system/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/backend/ruoyi-system/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/backend/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examples/src/main/java" charset="UTF-8" />

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ruoyi-system</artifactId>
+    <artifactId>backend-system</artifactId>
 
     <description>
         system系统模块
@@ -20,7 +20,7 @@
         <!-- 通用工具-->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common</artifactId>
+            <artifactId>backend-common</artifactId>
         </dependency>
 
     </dependencies>

@@ -6,7 +6,11 @@ import createCompression from './compression'
 import createSetupExtend from './setup-extend'
 
 export default function createVitePlugins(viteEnv, isBuild = false) {
-    const vitePlugins = [vue()]
+    const vitePlugins = [vue({
+      script:{
+        defineModel:true
+      }
+    })]
     vitePlugins.push(createAutoImport())
 	vitePlugins.push(createSetupExtend())
     vitePlugins.push(createSvgIcon(isBuild))

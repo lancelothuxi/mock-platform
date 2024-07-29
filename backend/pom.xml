@@ -9,8 +9,7 @@
         <artifactId>mock-platform</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>com.ruoyi</groupId>
-    <artifactId>ruoyi</artifactId>
+    <artifactId>mock-platform-backend</artifactId>
     <version>3.8.7</version>
 
     <properties>
@@ -175,11 +174,10 @@
     </dependencyManagement>
 
     <modules>
-        <module>ruoyi-admin</module>
-        <module>ruoyi-framework</module>
-        <module>ruoyi-system</module>
-        <module>ruoyi-generator</module>
-        <module>ruoyi-common</module>
+        <module>backend-admin</module>
+        <module>backend-framework</module>
+        <module>backend-system</module>
+        <module>backend-common</module>
     </modules>
     <packaging>pom</packaging>
 
