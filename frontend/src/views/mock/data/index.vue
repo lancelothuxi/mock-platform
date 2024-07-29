@@ -110,7 +110,7 @@
     <el-dialog :title="title" v-model="open" width="700px" append-to-body>
       <el-form ref="dataRef" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="mock数据" style="height: 300px">
-          <IEditor v-model:content="form.data"/>
+          <IEditor v-model="form.data"/>
         </el-form-item>
         <el-form-item label="超时时间" prop="timeout">
           <el-input v-model="form.timeout" placeholder="输入超时时间" />
