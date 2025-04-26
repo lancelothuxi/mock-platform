@@ -31,14 +31,12 @@
 
 
 
-## Getting started
+## 一键启动
 
-The following code snippet comes from [Dubbo Samples](https://github.com/apache/dubbo-samples.git). You may clone the sample project and step into the `dubbo-samples-api` subdirectory before proceeding.
+一键从源码编译到运行
 
 ```bash
-git clone https://github.com/apache/dubbo-samples.git
-cd dubbo-samples/1-basic/dubbo-samples-api
+sh ./bin/start.sh
 ```
 
-There's a [README](https://github.com/apache/dubbo-samples/blob/389cd612f1ea57ee6e575005b32f195c442c35a2/1-basic/dubbo-samples-api/README.md) file under `dubbo-samples-api` directory. We recommend referencing the samples in that directory by following the below-mentioned instructions: 
 
