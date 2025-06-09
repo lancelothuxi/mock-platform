@@ -8,7 +8,7 @@
 * 支持模拟耗时
 
 
-![自动注册dubbo服务](./asset/dubbo_mock.png)
+![自动注册dubbo服务](./asset/dubbo.png)
 ![mock数据](./asset/data.png)
 ![根据jsonpath匹配数据](./asset/jsonpath.png)
 
